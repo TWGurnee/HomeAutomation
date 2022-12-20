@@ -1,6 +1,7 @@
 import random
-import recipes as r
+import Data.recipes as r
 from Config.emails import send_email
+from Config.config import SMTP_EMAIL
 
 #### Food Ideas Section ####
 """
@@ -10,8 +11,7 @@ from Config.emails import send_email
 """
 #### TO-DO ####
 """
-- Categorise Foods for prettier list: Restucture ingredients (add weights/amounts, perhaps prices and calories)
-- Compare to last weeks recipes to ensure variety?
+- Compare to last weeks recipes to ensure variety? - save output in json/txt file? load in for comparison?
 - Re-rolling the whole thing?
 - Re-rolling just one item?
 - Look into receiving emails via the script?
@@ -68,4 +68,5 @@ msg = "This week's meal plan:\n" + meal_plan_string + '\nShopping list:\n' + sho
 subject = "Meal Plan"
 
 # Send meal plan
-send_email(subject, msg)
+send_email(subject, msg, SMTP_EMAIL)
+send_email(subject, msg, "freya.macdonald300@gmail.com")
