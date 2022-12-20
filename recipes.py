@@ -1,11 +1,16 @@
 from dataclasses import dataclass
 
-@dataclass
+@dataclass(frozen=True)
 class Ingredient:
     name: str
     quantity: int
     category: str
     choices: list[str]=None
+
+    def __hash__(self):
+        # Create a hash value based on the name, quantity, and category of the ingredient
+        # You could use any combination of these attributes or add more attributes to the hash if needed
+        return hash((self.name, self.quantity, self.category))
 
 @dataclass
 class Recipe:
@@ -18,6 +23,9 @@ class Recipe:
         self.__class__.All_Recipes.append(self)
 
 # Recipes list:
+
+# Tim's Meals
+
 Burritos = Recipe(
     name='Burritos',
     ingredients=[
@@ -155,6 +163,7 @@ Stir_Fry = Recipe(
         ],
     type='Tim')
 
+# Freya's Meals
 
 Mac_and_Cheese = Recipe(
     name='Mac & Cheese',
@@ -300,6 +309,8 @@ Katsu_Curry = Recipe(
         Ingredient(name='Leaves', quantity=1, category='Veg')
         ], 
     type='Freya')
+
+# Healthy Meals
 
 Chicken_Avocado_Salad = Recipe(
     name='Chicken Avocado Salad',

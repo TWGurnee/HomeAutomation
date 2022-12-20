@@ -1,6 +1,6 @@
 import random
 import recipes as r
-#from Config.emails import send_email
+from Config.emails import send_email
 
 #### Food Ideas Section ####
 """
@@ -30,32 +30,42 @@ for type in meal_types:
   choices = random.sample([meal for meal in r.Recipe.All_Recipes if meal.type == type], 2)
   weekly_meal_plan.extend(choices)
 
-# update shopping list accordingly
-# for meal in weekly_meal_plan:
-#   shopping_list[]
+# Create a dictionary to hold the ingredients by category
+ingredients_by_category = {}
 
-"""
-Each meal has list of ingredients
-Each Ingredient is an object with a Category, name and quantity.
-We want a list split by category, ensuring only one of each name is picked with the total quantity of the meal plan.
-How can we arrange this?
-"""
+# Iterate through the weekly meal plan and add the ingredients to the dictionary
+for meal in weekly_meal_plan:
+    for ingredient in meal.ingredients:
+        # If the category doesn't exist in the dictionary yet, add it
+        if ingredient.category not in ingredients_by_category:
+            ingredients_by_category[ingredient.category] = {}
 
-print(shopping_list)
+        # If the ingredient name doesn't exist in the dictionary yet, add it
+        if ingredient.name not in ingredients_by_category[ingredient.category]:
+            ingredients_by_category[ingredient.category][ingredient.name] = ingredient.quantity
 
-# # print the weekly meal plan
-# print(f"Weekly Meal Plan:\n{weekly_meal_plan}")
+        # If the ingredient name does exist, add the quantity to the existing value
+        else:
+            ingredients_by_category[ingredient.category][ingredient.name] += ingredient.quantity
 
-# # print the shopping list
-# print(f"Shopping List:\n{shopping_list}")
+# Create an empty string to hold the output
+shopping_list_string = ""
 
-# # Convert lists to strings:
-# meal_plan_string = ', '.join(weekly_meal_plan)
-# shopping_list_string = ', '.join(shopping_list)
+# Iterate through the dictionary and build the output string
+for category, ingredients in ingredients_by_category.items():
+    # Add the category name to the output string
+    shopping_list_string += f"\n{category}:\n"
+    # Iterate through the ingredients and add their names and quantities to the output string
+    for name, quantity in ingredients.items():
+        shopping_list_string += f"- {name}: {quantity}\n"
 
-# # Create email message
-# msg = "This week's meal plan:\n" + meal_plan_string + '\nShopping list:\n' + shopping_list_string
-# subject = "Meal Plan"
+# Convert lists to strings:
+meal_plan_list = [meal.name for meal in weekly_meal_plan]
+meal_plan_string = ', '.join(meal_plan_list)
 
-# # Send meal plan
-# send_email(subject, msg)
+# Create email message
+msg = "This week's meal plan:\n" + meal_plan_string + '\nShopping list:\n' + shopping_list_string
+subject = "Meal Plan"
+
+# Send meal plan
+send_email(subject, msg)
