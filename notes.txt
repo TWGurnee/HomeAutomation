@@ -1,0 +1,6 @@
+NOTES:
+
+Abstraction:
+- Emails function X
+- Recipies
+-
