@@ -5,7 +5,6 @@ class Ingredient:
     name: str
     quantity: int
     category: str
-    choices: list[str]=None
 
     def __hash__(self):
         # Create a hash value based on the name, quantity, and category of the ingredient
@@ -22,11 +21,22 @@ class Recipe:
     def __post_init__(self):
         self.__class__.All_Recipes.append(self)
 
-#### Food Ideas Section ####
+#### Food Ideas ####
 """
 - Roast shrimp and veggie salad
 - More Salads & healthy options
 """
+
+# Ingredient.categories:
+    # Meat (includes fish)
+    # Veg
+    # Frozen
+    # Beverages
+    # Long-life
+    # Dairy
+    # Condiment
+    # Bread
+    # Herbs/Spices
 
 # Recipes list:
 
@@ -35,7 +45,7 @@ class Recipe:
 Burritos = Recipe(
     name='Burritos',
     ingredients=[
-        Ingredient(name='Mince/Chicken', quantity=1, category="Meat", choices=['Mince', 'Chicken']),
+        Ingredient(name='Mince/Chicken', quantity=1, category="Meat"),
         Ingredient(name='Onions', quantity=1, category="Veg"),
         Ingredient(name='Peppers', quantity=1, category="Veg"),
         Ingredient(name='Wraps', quantity=1, category="Bread"),
@@ -58,7 +68,7 @@ Indian_Curry = Recipe(
         Ingredient(name='Rice', quantity=1, category='Long-life'),
         Ingredient(name='Naan', quantity=1, category='Bread'),
         Ingredient(name='Chutney', quantity=1, category='Condiment'),
-        Ingredient(name='Yoghurt/Cream', quantity=1, category='Dairy', choices=['Yoghurt', 'Cream'])
+        Ingredient(name='Yoghurt/Cream', quantity=1, category='Dairy')
         ],
     type='Tim')
 
@@ -113,7 +123,7 @@ Pizza = Recipe(
         Ingredient(name='Flatbread', quantity=1, category='Bread'), 
         Ingredient(name='Mozzarella', quantity=1, category='Dairy'), 
         Ingredient(name='Parmesan', quantity=1, category='Dairy'), 
-        Ingredient(name='Meat Topping', quantity=1, category='Meat', choices=['Pepperoni', 'Chicken', 'Prosciutto']), 
+        Ingredient(name='Meat Topping', quantity=1, category='Meat'), 
         Ingredient(name='Mushrooms', quantity=1, category='Veg'),
         Ingredient(name='Peppers', quantity=1, category='Veg'),
         Ingredient(name='Tomato Puree', quantity=1, category='Long-life')
@@ -165,7 +175,7 @@ Stir_Fry = Recipe(
         Ingredient(name='Mini-Corn', quantity=1, category='Veg'),
         Ingredient(name='Beansprouts', quantity=1, category='Veg'),
         Ingredient(name='Mushrooms', quantity=1, category='Veg'),
-        Ingredient(name='Chicken/Steak', quantity=1, category='Meat', choices=['Chicken', 'Steak'])
+        Ingredient(name='Chicken/Steak', quantity=1, category='Meat')
         ],
     type='Tim')
 
@@ -262,7 +272,7 @@ Salmon_Fillet = Recipe(
     ingredients=[
         Ingredient(name='Salmon', quantity=1, category='Meat'), 
         Ingredient(name='Potatoes', quantity=1, category='Veg'),
-        Ingredient(name='Broccoli/Asparagus', quantity=1, category='Veg', choices=['Broccoli', 'Asparagus']),
+        Ingredient(name='Broccoli/Asparagus', quantity=1, category='Veg'),
         Ingredient(name='Butter', quantity=1, category='Dairy'), 
         Ingredient(name='Oregano', quantity=1, category='Herbs/Spices'),
         Ingredient(name='Chili Flakes', quantity=1, category='Herbs/Spices'), 
