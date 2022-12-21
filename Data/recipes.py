@@ -103,7 +103,7 @@ Thai_Curry = Recipe(
 Burgers = Recipe(
     name='Burgers',
     ingredients=[
-        Ingredient(name='Mince', quantity=1, category='Meat'),
+        Ingredient(name='Mince/Pulled Chicken', quantity=1, category='Meat'),
         Ingredient(name='Bread Rolls', quantity=1, category='Bread'),
         Ingredient(name='Beef Tomato', quantity=1, category='Veg'),
         Ingredient(name='Lettuce', quantity=1, category='Veg'), 
@@ -134,8 +134,8 @@ Steak = Recipe(
     name='Steak',
     ingredients=[
         Ingredient(name='Steak', quantity=1, category='Meat'),
-        Ingredient(name='Broccoli/Asparagus', quantity=1, category='Veg', choices=['Broccoli', 'Asparagus']),
-        Ingredient(name='Chips/Potatoes', quantity=1, category='Veg', choices=['Potatoes', 'Chips']),
+        Ingredient(name='Broccoli/Asparagus', quantity=1, category='Veg'),
+        Ingredient(name='Chips/Potatoes', quantity=1, category='Veg'),
         Ingredient(name='Peppercorn Sauce', quantity=1, category='Condiment')
         ],
     type='Tim')
@@ -179,7 +179,143 @@ Stir_Fry = Recipe(
         ],
     type='Tim')
 
+Carmelised_Onion_Sausages = Recipe(
+    name='Carmelised Onion Sausages',
+    ingredients=[
+        Ingredient(name='Onions', quantity=1, category='Veg'),
+        Ingredient(name='Peppers', quantity=1, category='Veg'),
+        Ingredient(name='Garlic', quantity=1, category='Veg'),
+        Ingredient(name='Green Beans', quantity=1, category='Frozen'),
+        Ingredient(name='Parsely', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Sausages', quantity=1, category='Meat'),
+        Ingredient(name='Tomato Puree', quantity=1, category='Long-life'),
+        Ingredient(name='Paprika', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Rice', quantity=1, category='Long-life'),
+        Ingredient(name='Chicken Stock', quantity=1, category='Long-life'),
+        Ingredient(name='Cheddar', quantity=1, category='Dairy'),
+        Ingredient(name='Chilli', quantity=1, category='Veg')
+        ],
+    type='Tim')
+
+
+Spiced_Pork_Ragu = Recipe(
+    name='Spiced Pork Ragu',
+    ingredients=[
+        Ingredient(name='Pasta', quantity=1, category='Long-life'),
+        Ingredient(name='Spinach', quantity=1, category='Veg'),
+        Ingredient(name='Garlic', quantity=1, category='Veg'),
+        Ingredient(name='Chopped Tomatoes', quantity=1, category='Frozen'),
+        Ingredient(name='Parsely', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Sausages', quantity=1, category='Meat'),
+        Ingredient(name='Tomato Puree', quantity=1, category='Long-life'),
+        Ingredient(name='Cheddar', quantity=1, category='Dairy'),
+        Ingredient(name='Chilli Flakes', quantity=1, category='Herbs/Spices')
+        ],
+    type='Tim')
+
+Prawn_Chorizo_Rice = Recipe(
+    name='Prawn Chorizo Rice',
+    ingredients=[
+        Ingredient(name='Plum Tomatoes', quantity=1, category='Veg'),
+        Ingredient(name='Peppers', quantity=1, category='Veg'),
+        Ingredient(name='Garlic', quantity=1, category='Veg'),
+        Ingredient(name='Ciabatta', quantity=1, category='Bread'),
+        Ingredient(name='Parsely', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Chorizo', quantity=1, category='Meat'),
+        Ingredient(name='Tomato Puree', quantity=1, category='Long-life'),
+        Ingredient(name='Paprika', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Rice', quantity=1, category='Long-life'),
+        Ingredient(name='Prawns', quantity=1, category='Frozen'),
+        Ingredient(name='Cheddar', quantity=1, category='Dairy')
+        ],
+    type='Tim')
+
+Loaded_Wedges = Recipe(
+    name='Mexican Loaded Wedges',
+    ingredients=[
+        Ingredient(name='Spring Onion', quantity=1, category='Veg'),
+        Ingredient(name='Peppers', quantity=1, category='Veg'),
+        Ingredient(name='Garlic', quantity=1, category='Veg'),
+        Ingredient(name='Potatoes', quantity=1, category='Veg'),
+        Ingredient(name='Lime', quantity=1, category='Veg'),
+        Ingredient(name='Mince/Chicken', quantity=1, category='Meat'),
+        Ingredient(name='Tomato Passata', quantity=1, category='Veg'),
+        Ingredient(name='Paprika', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Beef Stock/Chicken Stock', quantity=1, category='Long-life'),
+        Ingredient(name='Cheddar', quantity=1, category='Dairy'),
+        Ingredient(name='Black Beans', quantity=1, category='Long-life'),
+        Ingredient(name='Carrots', quantity=1, category='Veg')
+        ],
+    type='Tim')
+
 # Freya's Meals
+
+Sweet_and_Sour_Chicken = Recipe(
+    name='Sweet and Sour Chicken',
+    ingredients=[
+        Ingredient(name='Garlic', quantity=1, category='Veg'),
+        Ingredient(name='Rice Vinegar', quantity=1, category='Long-life'),
+        Ingredient(name='Red Onions', quantity=1, category='Veg'),
+        Ingredient(name='Cornflour', quantity=1, category='Long-life'),
+        Ingredient(name='Spring Onion', quantity=1, category='Veg'),
+        Ingredient(name='Vegetable Stock', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Rice', quantity=1, category='Long-life'),
+        Ingredient(name='Chicken', quantity=1, category='Meat'),
+        Ingredient(name='Ketjap Manis', quantity=1, category='Condiment'),
+        Ingredient(name='Peppers', quantity=1, category='Veg')
+        ],
+    type='Freya')
+
+Chicken_Chow_Mein = Recipe(
+    name='Chicken Chow Mein',
+    ingredients=[
+        Ingredient(name='Oyster Sauce', quantity=1, category='Long-life'),
+        Ingredient(name='Sesame Oil', quantity=1, category='Long-life'),
+        Ingredient(name='Green Beans', quantity=1, category='Frozen'),
+        Ingredient(name='Spring Onion', quantity=1, category='Veg'),
+        Ingredient(name='Noodles', quantity=1, category='Long-life'),
+        Ingredient(name='Chicken', quantity=1, category='Meat'),
+        Ingredient(name='Ketjap Manis', quantity=1, category='Condiment'),
+        Ingredient(name='Corn Starch', quantity=1, category='Long-life'),
+        Ingredient(name='Chicken Stock', quantity=1, category='Long-life'),
+        Ingredient(name='Sugar', quantity=1, category='Long-life'),
+        Ingredient(name='Peppers', quantity=1, category='Veg')
+        ],
+    type='Freya')
+
+Shepherds_Pie = Recipe(
+    name='Shepherds Pie',
+    ingredients=[
+        Ingredient(name='Potatoes', quantity=1, category='Veg'),
+        Ingredient(name='Lamb Mince', quantity=1, category='Meat'),
+        Ingredient(name='Tomato Puree', quantity=1, category='Long-life'),
+        Ingredient(name='Onions', quantity=1, category='Veg'),
+        Ingredient(name='Carrots', quantity=1, category='Long-life'),
+        Ingredient(name='Butter', quantity=1, category='Dairy'),
+        Ingredient(name='Worcestershire Sauce', quantity=1, category='Condiment'),
+        Ingredient(name='Milk', quantity=1, category='Milk'),
+        Ingredient(name='Beef Stock', quantity=1, category='Long-life'),
+        Ingredient(name='Cheddar', quantity=1, category='Dairy')
+        ],
+    type='Freya')
+
+Chicken_Fried_Rice = Recipe(
+    name='Chicken Fried Rice',
+    ingredients=[
+        Ingredient(name='Onions', quantity=1, category='Veg'),
+        Ingredient(name='Egg', quantity=1, category='Dairy'),
+        Ingredient(name='Garlic', quantity=1, category='Veg'),
+        Ingredient(name='Ginger', quantity=1, category='Veg'),
+        Ingredient(name='Carrots', quantity=1, category='Veg'),
+        Ingredient(name='Peas', quantity=1, category='Frozen'),
+        Ingredient(name='Spring Onion', quantity=1, category='Veg'),
+        Ingredient(name='Soy Sauce', quantity=1, category='Condiment'),
+        Ingredient(name='Rice', quantity=1, category='Long-life'),
+        Ingredient(name='Chicken Thighs', quantity=1, category='Meat'),
+        Ingredient(name='Sesame Oil', quantity=1, category='Long-life'),
+        Ingredient(name='Chinese 5 Spice', quantity=1, category='Herbs/Spices')
+        ],
+    type='Freya') 
 
 Mac_and_Cheese = Recipe(
     name='Mac & Cheese',
