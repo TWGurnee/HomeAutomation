@@ -18,11 +18,6 @@ plan = {
   'Sunday': 'Jumping lunges, Tricep dips, Box jumps, Superman plank, Bicycle crunches'
 }
 
-# Set up email and text message details
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
-EMAIL = "twgurnee@gmail.com"
-
 # Get current day of the week
 day = datetime.datetime.today().strftime('%A')
 

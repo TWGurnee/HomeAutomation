@@ -22,6 +22,12 @@ class Recipe:
     def __post_init__(self):
         self.__class__.All_Recipes.append(self)
 
+#### Food Ideas Section ####
+"""
+- Roast shrimp and veggie salad
+- More Salads & healthy options
+"""
+
 # Recipes list:
 
 # Tim's Meals
@@ -355,5 +361,17 @@ Greek_Salad = Recipe(
         Ingredient(name='Sundried Tomato', quantity=1, category='Veg'), 
         Ingredient(name='Olive Oil', quantity=1, category='Long-life'), 
         Ingredient(name='Balsamic Vinegar', quantity=1, category='Condiment')
+        ],
+    type='Healthy')
+
+CousCous_Honey_Garlic_Prawns = Recipe(
+    name='CousCous Honey Garlic Prawns',
+    ingredients=[
+        Ingredient(name='Prawns', quantity=1, category='Frozen'),
+        Ingredient(name='Honey', quantity=1, category='Long-life'),
+        Ingredient(name='Cous Cous', quantity=1, category='Long-life'),
+        Ingredient(name='Garlic', quantity=1, category='Veg'), 
+        Ingredient(name='Asparagus', quantity=1, category='Veg'),
+        Ingredient(name='Peppers', quantity=1, category='Veg')
         ],
     type='Healthy')
