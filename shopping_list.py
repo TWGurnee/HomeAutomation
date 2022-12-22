@@ -1,8 +1,11 @@
+### Imports ###
 import random
+import json
+
 import Data.recipes as r
 from Config.emails import send_email
 from Config.config import SMTP_EMAIL, TO_FREYA
-import json
+
 
 #### TO-DO ####
 """
@@ -62,8 +65,6 @@ def generate_ingredients_by_category(weekly_meal_plan: list[r.Recipe]) -> dict:
             if ingredient.category not in ingredients_by_category:
                 ingredients_by_category[ingredient.category] = {}
 
-            # TODO add if ingredient.choices: to add details for multiple choice options
-
             # If the ingredient name doesn't exist in the dictionary yet, add it
             if ingredient.name not in ingredients_by_category[ingredient.category]:
                 ingredients_by_category[ingredient.category][ingredient.name] = ingredient.quantity
@@ -73,13 +74,6 @@ def generate_ingredients_by_category(weekly_meal_plan: list[r.Recipe]) -> dict:
                 ingredients_by_category[ingredient.category][ingredient.name] += ingredient.quantity
 
     return ingredients_by_category
-
-
-def get_all_ingredients_by_category():
-    """Returns current list of Categories and Ingredients for helper methods"""
-    all_ingredients_by_category = generate_ingredients_by_category(
-        r.Recipe.All_Recipes)
-    return all_ingredients_by_category
 
 
 def generate_shopping_list(ingredients_by_category: dict) -> str:
@@ -113,11 +107,13 @@ MEAL_PLAN_FILE = r"HomeAutomation\Data\ingredients.json"
 
 ### Main ###
 if __name__ == "__main__":
-
+    # Get last plan for comparison
     last_weeks_data = get_last_weeks_data(MEAL_PLAN_FILE)
 
+    # Generate the meal plan
     weekly_meal_plan = generate_meal_plan(last_weeks_data)
 
+    # Create meal plan dict for shopping list generation
     ingredients_by_category = generate_ingredients_by_category(
         weekly_meal_plan)
 
