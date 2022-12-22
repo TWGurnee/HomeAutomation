@@ -4,6 +4,7 @@ from Config.config import SMTP_PASSWORD, SMTP_SERVER, SMTP_PORT, SMTP_EMAIL
 
 # Defines helper email functions for reminders.
 
+
 def send_email(subject: str, msg: str, send_to: str):
     # Convert text to gmail format
     msg = MIMEText(msg)
