@@ -1,7 +1,7 @@
 import random
 import Data.recipes as r
-#from Config.emails import send_email
-#from Config.config import SMTP_EMAIL, TO_FREYA
+from Config.emails import send_email
+from Config.config import SMTP_EMAIL, TO_FREYA
 import json
 
 #### TO-DO ####
@@ -72,6 +72,12 @@ def generate_ingredients_by_category(weekly_meal_plan: list[r.Recipe]) -> dict:
   return ingredients_by_category
 
 
+def get_all_ingredients_by_category():
+    """Returns current list of Categories and Ingredients for helper methods"""
+    all_ingredients_by_category = generate_ingredients_by_category(r.Recipe.All_Recipes)
+    return all_ingredients_by_category
+
+
 def generate_shopping_list(ingredients_by_category: dict) -> str:
   """Returns a nicely formatted shopping_list from a nested dict of unique ingredients"""
   # Create an empty string to hold the output
@@ -127,5 +133,5 @@ if __name__ == "__main__":
   print("This week's meal plan:\n" + meal_plan_string)
 
   # Send meal plan to emails
-  # send_email(subject, msg, SMTP_EMAIL)
-  # send_email(subject, msg, TO_FREYA)
+  send_email(subject, msg, SMTP_EMAIL)
+  send_email(subject, msg, TO_FREYA)

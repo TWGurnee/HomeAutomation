@@ -1,5 +1,6 @@
 import datetime
 from Config.emails import send_email
+from Config.config import SMTP_EMAIL
 
 
 # Updates:
@@ -26,4 +27,4 @@ msg = ("Today's bodyweight exercises: " + plan[day])
 subject = "Bodyweight Exercise Reminder"
 
 # Send reminder
-send_email(subject, msg)
+send_email(subject, msg, SMTP_EMAIL)

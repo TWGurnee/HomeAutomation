@@ -25,6 +25,6 @@ try:
     print('Scheduler running...')
     while True:
         schedule.run_pending()
-        time.sleep(60) # check for new tasks every minute
+        time.sleep(30) # check for new tasks every half-minute
 except Exception as e:
     print(f'Scheduler interrupted: {e}')
