@@ -91,6 +91,18 @@ class Recipe:
 
 # Tim's Meals
 
+Bacon_Broccoli_Fryup = Recipe(
+    name='Bacon Broccoli Fry-up',
+    ingredients=[
+        Ingredient(name='Bacon', quantity=1, category='Meat'),
+        Ingredient(name='Broccoli', quantity=1, category='Frozen'),
+        Ingredient(name='Olive Oil', quantity=1, category='Long-life'),
+        Ingredient(name='Mushrooms', quantity=1, category='Veg'),
+        Ingredient(name='Leeks', quantity=1, category='Veg'),
+        Ingredient(name='Parmesan/Halloumi', quantity=1, category='Dairy')
+        ],
+    type='Tim')
+
 Burritos = Recipe(
     name='Burritos',
     ingredients=[
@@ -576,3 +588,21 @@ CousCous_Honey_Garlic_Prawns = Recipe(
         Ingredient(name='Peppers', quantity=1, category='Veg')
     ],
     type='Healthy')
+
+
+Lentil_Feta_Salad = Recipe(
+    name='Lentil Feta Salad', 
+    ingredients=[
+        Ingredient(name='Green Lentils', quantity=1, category='Long-life'),
+        Ingredient(name='Spring Onion', quantity=1, category='Veg'), 
+        Ingredient(name='Feta', quantity=1, category='Dairy'),
+        Ingredient(name='Parsely', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Leaves', quantity=1, category='Veg'),
+        Ingredient(name='Thyme', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Oregano', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Chili Flakes', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Balsamic Vinegar', quantity=1, category='Condiment'),
+        Ingredient(name='Olive Oil', quantity=1, category='Long-life')
+        ],
+    type='Healthy')
+
