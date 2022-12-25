@@ -31,7 +31,7 @@ class Recipe:
 
     @staticmethod
     def generate_recipe(recipe_dict: dict):
-        """Helper method to generate recipes from a simple typed dict:
+        """Helper method to generate recipes from a simple typed input dict:
         For example: 
         `Test_Recipe = {('Tim', 'Steak'): ['Steak', 'Broccoli/Asparagus', 'Chips/Potatoes', 'Peppercorn Sauce']}`
         `generate_recipe(Test_Recipe)`
@@ -51,11 +51,8 @@ class Recipe:
             quantity = 1
 
             # To get categories we need all current ingredients and their category.
-            all_ingredients = Ingredient.All_Ingredients
-            all_ingredient_names = [
-                ingredient.name for ingredient in all_ingredients]
-            get_category_from_name = {
-                i.name: i.category for i in all_ingredients}
+            all_ingredient_names = [ingredient.name for ingredient in Ingredient.All_Ingredients]
+            get_category_from_name = {i.name: i.category for i in Ingredient.All_Ingredients}
 
             # Categorise ingredient
             if ingredient in all_ingredient_names:

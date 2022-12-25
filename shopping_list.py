@@ -43,6 +43,7 @@ def generate_meal_plan(last_weeks_data) -> list[r.Recipe]:
 
     # Meal types to ensure healthy plan and fair cooking responsibilities
     meal_types = ['Tim', 'Freya', 'Healthy']
+    #meal_types = {meal.type for meal in r.Recipe.All_Recipes}
 
     # randomly select 2 eligible recipe objects of each type to add to the weekly meal plan
     for type in meal_types:
