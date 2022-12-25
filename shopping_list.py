@@ -18,7 +18,7 @@ from Config.config import SMTP_EMAIL, TO_FREYA
 ########### Meal Plan Functions ############
 
 
-def get_last_weeks_data(MEAL_PLAN_FILE):
+def get_last_weeks_meal_plan(MEAL_PLAN_FILE):
     """Returns dict of last weeks meal plan and ingredients"""
     with open(MEAL_PLAN_FILE, 'r') as f:
         try:
@@ -33,8 +33,7 @@ def generate_meal_plan(last_weeks_data) -> list[r.Recipe]:
     """Generates a meal plan for the week, ensuring no meals from last week are included"""
     # Generate meals list without any of last weeks meals
     if last_weeks_data:
-        eligble_meals = [
-            meal for meal in r.Recipe.All_Recipes if meal.name not in last_weeks_data['Meal Plan']]
+        eligble_meals = [meal for meal in r.Recipe.All_Recipes if meal.name not in last_weeks_data['Meal Plan']]
     else:
         eligble_meals = r.Recipe.All_Recipes
 
@@ -47,8 +46,7 @@ def generate_meal_plan(last_weeks_data) -> list[r.Recipe]:
 
     # randomly select 2 eligible recipe objects of each type to add to the weekly meal plan
     for type in meal_types:
-        choices = random.sample(
-            [meal for meal in eligble_meals if meal.type == type], 2)
+        choices = random.sample([meal for meal in eligble_meals if meal.type == type], 2)
         weekly_meal_plan.extend(choices)
 
     return weekly_meal_plan
@@ -109,7 +107,7 @@ MEAL_PLAN_FILE = r"HomeAutomation\Data\ingredients.json"
 ### Main ###
 if __name__ == "__main__":
     # Get last plan for comparison
-    last_weeks_data = get_last_weeks_data(MEAL_PLAN_FILE)
+    last_weeks_data = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
 
     # Generate the meal plan
     weekly_meal_plan = generate_meal_plan(last_weeks_data)
@@ -128,7 +126,7 @@ if __name__ == "__main__":
 
     # Create email message
     msg = "This week's meal plan:\n" + meal_plan_string + \
-        '\nShopping list:\n' + shopping_list_string
+           '\nShopping list:\n' + shopping_list_string
     subject = "Meal Plan"
 
     # Log to CLI
