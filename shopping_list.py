@@ -93,11 +93,11 @@ def generate_shopping_list(ingredients_by_category: dict) -> str:
     return shopping_list_string
 
 
-def save_current_meal_plan(MEAL_PLAN_FILE, meal_plan_list: list[str], ingredients_by_category: dict):
+def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_category: dict):
     """Takes the meal plan and unique ingredients to over-write last weeks meal plan"""
     with open(MEAL_PLAN_FILE, 'w') as f:
         data = {
-            "Meal Plan": meal_plan_list,
+            "Meal Plan": meal_plan,
             "Shopping List": ingredients_by_category
         }
         json.dump(data, f)
@@ -115,14 +115,12 @@ if __name__ == "__main__":
     weekly_meal_plan = generate_meal_plan(last_weeks_data)
 
     # Create meal plan dict for shopping list generation
-    ingredients_by_category = generate_ingredients_by_category(
-        weekly_meal_plan)
+    ingredients_by_category = generate_ingredients_by_category(weekly_meal_plan)
 
     # Convert meal plan to strings for emailing and saving:
     meal_plan_list = [meal.name for meal in weekly_meal_plan]
 
-    save_current_meal_plan(MEAL_PLAN_FILE, meal_plan_list,
-                           ingredients_by_category)
+    save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
     # Convert plan and ingredients to strings for email
     shopping_list_string = generate_shopping_list(ingredients_by_category)
