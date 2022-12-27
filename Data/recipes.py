@@ -12,10 +12,26 @@ class Ingredient:
     def __post_init__(self):
         self.__class__.All_Ingredients.append(self)
 
-    def __hash__(self):
+    def __hash__(self): # Currently Unused
         # Create a hash value based on the name, quantity, and category of the ingredient
         # You could use any combination of these attributes or add more attributes to the hash if needed
         return hash((self.name, self.quantity, self.category))
+
+
+def categorise_ingredient(ingredient: Ingredient) -> str:
+    """Get or assign category for a ingredient.name or string"""
+    
+    # To get categories we need all current ingredients and their category.
+    all_ingredient_names = [ingredient.name for ingredient in Ingredient.All_Ingredients]
+    get_category_from_name = {i.name: i.category for i in Ingredient.All_Ingredients}
+    
+    # Categorise ingredient
+    if ingredient in all_ingredient_names:
+        category = get_category_from_name[ingredient]
+    else:
+        category = "UNCATEGORISED"
+    
+    return category
 
 
 @dataclass
@@ -50,15 +66,8 @@ class Recipe:
             # Generic quantity value
             quantity = 1
 
-            # To get categories we need all current ingredients and their category.
-            all_ingredient_names = [ingredient.name for ingredient in Ingredient.All_Ingredients]
-            get_category_from_name = {i.name: i.category for i in Ingredient.All_Ingredients}
-
-            # Categorise ingredient
-            if ingredient in all_ingredient_names:
-                category = get_category_from_name[ingredient]
-            else:
-                category = "UNCATEGORISED"
+            # Get category
+            category = categorise_ingredient(ingredient)
 
             # Add to list
             ingredient_objects.append(Ingredient(
@@ -84,7 +93,7 @@ class Recipe:
 # Bread
 # Herbs/Spices
 
-# Recipes list:
+### Recipes list: ###
 
 # Tim's Meals
 
