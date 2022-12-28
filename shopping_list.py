@@ -1,10 +1,11 @@
 ### Imports ###
 import random
 import json
+from pathlib import Path
 
 import Data.recipes as r
-from Config.emails import send_email
-from Config.config import SMTP_EMAIL, TO_FREYA
+# from Config.emails import send_email
+# from Config.config import SMTP_EMAIL, TO_FREYA
 
 
 #### TO-DO ####
@@ -16,7 +17,6 @@ from Config.config import SMTP_EMAIL, TO_FREYA
 """
 
 ########### Meal Plan Functions ############
-
 
 def get_last_weeks_meal_plan(MEAL_PLAN_FILE):
     """Returns dict of last weeks meal plan and ingredients"""
@@ -107,7 +107,7 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
 
 
 ### Constants ###
-MEAL_PLAN_FILE = r"Data\ingredients.json"
+MEAL_PLAN_FILE = Path.cwd() / r"Data\ingredients.json"
 
 ### Main ###
 if __name__ == "__main__":
@@ -138,5 +138,5 @@ if __name__ == "__main__":
     print("This week's meal plan:\n" + meal_plan_string)
 
     # Send meal plan to emails
-    send_email(subject, msg, SMTP_EMAIL)
-    send_email(subject, msg, TO_FREYA)
+    # send_email(subject, msg, SMTP_EMAIL)
+    # send_email(subject, msg, TO_FREYA)

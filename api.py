@@ -1,6 +1,7 @@
 from flask import Flask, request
 import requests as req
 import threading as td
+from pathlib import Path
 
 import shopping_list as shop_list
 import Data.recipes as meals
@@ -17,11 +18,12 @@ api = Flask(__name__)
 
 start_scheduler_thread()
 
-@api.route('/update-shopping-list', methods=['GET', 'POST'])
+@api.route('/update-shopping-list', methods=['GET', 'POST']) #type: ignore
 def update_shopping_list():
     """API endpoint for updating the shopping list"""
 
-    MEAL_PLAN_FILE = r"Data\ingredients.json"
+    MEAL_PLAN_FILE = Path.cwd() / r"Data\ingredients.json"
+    ALEXA_URL = 'insert URL'
     
     if request.method == 'POST': # Request from Alexa with list to update local list.
         
@@ -52,7 +54,18 @@ def update_shopping_list():
     
     if request.method == 'GET': # Request from Alexa to pull a new shopping list from the weekly meal plan.
 
-        data = shop_list.get_last_weeks_meal_plan()
+        data = shop_list.get_last_weeks_meal_plan(MEAL_PLAN_FILE)
+        
+        shopping_list = data['Shopping List']
+        items = []
+        for category in shopping_list:
+            items.extend(shopping_list[category].keys())
+
+        shopping_list = {'items': items}
+
+        response = req.post(ALEXA_URL, data=shopping_list)
+            
+
 
 
 
@@ -60,4 +73,4 @@ def update_shopping_list():
 
 ### run ###
 if __name__ == '__main__':
-    api.run(host='127.168.0.50')
+    api.run(host='192.168.0.50', port=80)
