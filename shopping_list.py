@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 
 import Data.recipes as r
-# from Config.emails import send_email
-# from Config.config import SMTP_EMAIL, TO_FREYA
+from Config.emails import send_email
+from Config.config import SMTP_EMAIL, TO_FREYA
 
 
 #### TO-DO ####
@@ -105,12 +105,41 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
         }
         json.dump(data, f)
 
+def send_current_shopping_list():
+    """Sends a copy of the current shopping list to email."""
+    current_meal_plan = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
+
+    meal_plan_list = current_meal_plan['Meal Plan']
+    ingredients_by_category = current_meal_plan['Shopping List']
+
+    # Convert plan and ingredients to strings for email
+    shopping_list_string = generate_shopping_list(ingredients_by_category)
+    meal_plan_string = ', '.join(meal_plan_list)
+
+    # Create email message
+    msg = "This week's meal plan:\n" + meal_plan_string + \
+           '\nShopping list:\n' + shopping_list_string
+    subject = "Meal Plan"
+
+    # Log to CLI
+    print("This week's meal plan:\n" + meal_plan_string)
+
+    # Send meal plan to emails
+    send_email(subject, msg, SMTP_EMAIL)
+    send_email(subject, msg, TO_FREYA)
+
+
+
+
 
 ### Constants ###
 MEAL_PLAN_FILE = Path.cwd() / r"Data\ingredients.json"
 
 ### Main ###
 if __name__ == "__main__":
+    """Main function is the generation of a new meal plan and resultant shopping list.
+    This is emailed to both parties. 
+    """
     # Get last plan for comparison
     last_weeks_data = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
 
@@ -138,5 +167,5 @@ if __name__ == "__main__":
     print("This week's meal plan:\n" + meal_plan_string)
 
     # Send meal plan to emails
-    # send_email(subject, msg, SMTP_EMAIL)
-    # send_email(subject, msg, TO_FREYA)
+    send_email(subject, msg, SMTP_EMAIL)
+    send_email(subject, msg, TO_FREYA)

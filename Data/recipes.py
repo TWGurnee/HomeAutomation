@@ -359,11 +359,11 @@ Shepherds_Pie = Recipe(
         Ingredient(name='Lamb Mince', quantity=1, category='Meat'),
         Ingredient(name='Tomato Puree', quantity=1, category='Long-life'),
         Ingredient(name='Onions', quantity=1, category='Veg'),
-        Ingredient(name='Carrots', quantity=1, category='Long-life'),
+        Ingredient(name='Carrots', quantity=1, category='Veg'),
         Ingredient(name='Butter', quantity=1, category='Dairy'),
         Ingredient(name='Worcestershire Sauce',
                    quantity=1, category='Condiment'),
-        Ingredient(name='Milk', quantity=1, category='Milk'),
+        Ingredient(name='Milk', quantity=1, category='Dairy'),
         Ingredient(name='Beef Stock', quantity=1, category='Long-life'),
         Ingredient(name='Cheddar', quantity=1, category='Dairy')
     ],
