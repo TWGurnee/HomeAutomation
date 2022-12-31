@@ -4,7 +4,7 @@ import threading as td
 from pathlib import Path
 
 import shopping_list as shop_list
-import Data.recipes as meals
+import Data.Mealplan.recipes as meals
 from scheduler import scheduler
 
 def start_scheduler_thread():
@@ -22,7 +22,7 @@ start_scheduler_thread()
 def update_shopping_list():
     """API endpoint for updating the shopping list"""
 
-    MEAL_PLAN_FILE = Path.cwd() / r"Data\ingredients.json"
+    MEAL_PLAN_FILE = Path.cwd() / r"Data\Mealplan\ingredients.json"
     ALEXA_URL = 'insert URL'
     
     if request.method == 'POST': # Request from Alexa with list to update local list.
@@ -65,9 +65,6 @@ def update_shopping_list():
 
         response = req.post(ALEXA_URL, data=shopping_list)
             
-
-
-
 
 
 

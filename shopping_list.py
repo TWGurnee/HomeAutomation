@@ -3,7 +3,7 @@ import random
 import json
 from pathlib import Path
 
-import Data.recipes as r
+import Data.Mealplan.recipes as r
 from Config.emails import send_email
 from Config.config import SMTP_EMAIL, TO_FREYA
 
@@ -18,14 +18,10 @@ from Config.config import SMTP_EMAIL, TO_FREYA
 
 ########### Meal Plan Functions ############
 
-def get_last_weeks_meal_plan(MEAL_PLAN_FILE):
+def get_last_weeks_meal_plan(MEAL_PLAN_FILE) -> dict:
     """Returns dict of last weeks meal plan and ingredients"""
     with open(MEAL_PLAN_FILE, 'r') as f:
-        try:
-            last_weeks_data = json.load(f)
-        except Exception as e:
-            last_weeks_data = None
-            print(e)
+        last_weeks_data = json.load(f)
         return last_weeks_data
 
 
@@ -129,11 +125,8 @@ def send_current_shopping_list():
     send_email(subject, msg, TO_FREYA)
 
 
-
-
-
 ### Constants ###
-MEAL_PLAN_FILE = Path.cwd() / r"Data\ingredients.json"
+MEAL_PLAN_FILE = Path.cwd() / r"Data\Mealplan\ingredients.json"
 
 ### Main ###
 if __name__ == "__main__":
@@ -141,10 +134,13 @@ if __name__ == "__main__":
     This is emailed to both parties. 
     """
     # Get last plan for comparison
-    last_weeks_data = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
+    try:
+        last_weeks_data = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
+    except:
+        last_weeks_data = None
 
     # Generate the meal plan
-    weekly_meal_plan = generate_meal_plan(last_weeks_data)
+    weekly_meal_plan = generate_meal_plan(last_weeks_data) #type: ignore
 
     # Create meal plan dict for shopping list generation
     ingredients_by_category = generate_ingredients_by_category(weekly_meal_plan)
