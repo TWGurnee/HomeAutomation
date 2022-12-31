@@ -9,6 +9,7 @@ class ExerciseType(Enum):
     LEGS = 3
     CARDIO = 4
     HIIT = 5
+    REST = 6
 
 
 class MuscleGroup(Enum):
@@ -19,13 +20,15 @@ class MuscleGroup(Enum):
     BICEP = 4
     TRICEP = 5
     #CHESTSHOULDERS
-    CHEST = 6
-    SHOULDERS = 7
+    CHEST_PRESS = 6
+    CHEST_FLY = 7
+    SHOULDER_PRESS = 8
+    SHOULDER_SIDE = 9
     #LEGS
-    QUADS = 8
-    HAMSSTRINGS = 9
-    GLUTES = 10
-    WHOLE_LEG = 11
+    QUADS = 10
+    HAMSSTRINGS = 11
+    GLUTES = 12
+    WHOLE_LEG = 13
 
 
 @dataclass
@@ -36,6 +39,7 @@ class Exercise:
     weight: int = field(default=None, metadata={"description": "Weight in Kg used for the exercise"})
     reps: int = field(default=None, metadata={"description": "Number of reps to perform for the exercise"})
     time: int = field(default=None, metadata={"description": "Field for the best time, target time, or input time. Measured in seconds"})
+    secondary_type: ExerciseType = field(default=None, metadata={"description": "The secondary type of an exercise. Current use cases are HIIT and 5K to allow for appropriate plan generation"})
     #sets: int = field(default_factory=lambda: 4)
 
     Back_Core_Arm_Day = []
@@ -43,6 +47,7 @@ class Exercise:
     Leg_Day = []
     Cardio = []
     HIIT = []
+    Rest = []
 
     @staticmethod 
     def init_lists(): # supposedly required to ensure only one copy of each list is stored in memory.
@@ -51,6 +56,7 @@ class Exercise:
         Exercise.Leg_Day = []
         Exercise.Cardio = []
         Exercise.HIIT = []
+        Exercise.Rest = []
 
     def __post_init__(self):
         if not Exercise.Back_Core_Arm_Day:
@@ -65,10 +71,11 @@ class Exercise:
             self.Cardio.append(self)
         elif self.type == ExerciseType.HIIT:
             self.HIIT.append(self)
+        elif self.type == ExerciseType.REST:
+            self.Rest.append(self)
 
 
 #TODO, write DB to add exercises to DB. Ideally will be able to track and change weight and time targets.
-
 
 #Seeding exercises:
 
@@ -94,19 +101,19 @@ tricep_pull_downs = Exercise("Tricep pull downs", ExerciseType.BACK_CORE_ARMS, M
 tricep_shoulder_lifts = Exercise("Tricep Shoulder Lifts", ExerciseType.BACK_CORE_ARMS, MuscleGroup.TRICEP, weight=20, reps=10)
 
 #Chest:
-bench_press = Exercise("Bench press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, weight=50, reps=10)
-press_ups = Exercise("Press ups", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, reps=15)
-incline_press = Exercise("Incline press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, weight=40, reps=10)
-decline_press = Exercise("Decline press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, weight=40, reps=10)
-seated_press = Exercise("Seated press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, weight=40, reps=10)
-freeweight_fly = Exercise("Freeweight Fly", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, weight=14, reps=10)
-cable_fly = Exercise("Cable fly", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST, weight=50, reps=10)
+bench_press = Exercise("Bench press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_PRESS, weight=50, reps=10)
+press_ups = Exercise("Press ups", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_PRESS, reps=15)
+incline_press = Exercise("Incline press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_PRESS, weight=40, reps=10)
+decline_press = Exercise("Decline press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_PRESS, weight=40, reps=10)
+seated_press = Exercise("Seated press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_PRESS, weight=40, reps=10)
+freeweight_fly = Exercise("Freeweight Fly", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_FLY, weight=14, reps=10)
+cable_fly = Exercise("Cable fly", ExerciseType.CHEST_SHOULDERS, MuscleGroup.CHEST_FLY, weight=50, reps=10)
 
 #Shoulders:
-side_shoulder_lifts = Exercise("Side shoulder lifts", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDERS, weight=6, reps=10)
-front_shoulder_lifts = Exercise("Front shoulder lifts", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDERS, weight=10, reps=10)
-standing_shoulder_press = Exercise("Standing Shoulder press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDERS, weight=30, reps=8)
-seated_shoulder_press = Exercise("Seated Shoulder press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDERS, weight=25, reps=8)
+side_shoulder_lifts = Exercise("Side shoulder lifts", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDER_SIDE, weight=6, reps=10)
+front_shoulder_lifts = Exercise("Front shoulder lifts", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDER_SIDE, weight=10, reps=10)
+standing_shoulder_press = Exercise("Standing Shoulder press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDER_PRESS, weight=30, reps=8)
+seated_shoulder_press = Exercise("Seated Shoulder press", ExerciseType.CHEST_SHOULDERS, MuscleGroup.SHOULDER_PRESS, weight=25, reps=8)
 
 #Legs:
 squats = Exercise("Squats", ExerciseType.LEGS, MuscleGroup.WHOLE_LEG, weight=80, reps=8)
@@ -121,7 +128,7 @@ hungarian_split_squats = Exercise("Hungarian split squats", ExerciseType.LEGS, M
 #HIIT:
 mountain_climbers = Exercise("Mountain climbers", ExerciseType.HIIT, MuscleGroup.CORE, time=30)
 plank = Exercise("Plank", ExerciseType.HIIT, MuscleGroup.CORE, time=60)
-interval_pressups = Exercise("Pressups", ExerciseType.HIIT, MuscleGroup.CHEST, time=30)
+interval_pressups = Exercise("Pressups", ExerciseType.HIIT, MuscleGroup.CHEST_PRESS, time=30)
 interval_situps = Exercise("Situps", ExerciseType.HIIT, MuscleGroup.CORE, time=30)
 box_jump = Exercise("boxjump", ExerciseType.HIIT, MuscleGroup.WHOLE_LEG, time=30)
 paratroopers = Exercise("Paratroopers", ExerciseType.HIIT, MuscleGroup.UPPER_BACK, time=30)
@@ -132,20 +139,31 @@ reverse_crunches = Exercise("Reverse crunches", ExerciseType.HIIT, MuscleGroup.C
 bicycles = Exercise("Bicycles", ExerciseType.HIIT, MuscleGroup.CORE, time=30)
 v_sits = Exercise("V-sits", ExerciseType.HIIT, MuscleGroup.CORE, time=30)
 leg_raises = Exercise("Leg raises", ExerciseType.HIIT, MuscleGroup.CORE, time=30)
-static_shoulder_lifts = Exercise("Static shoulder lifts", ExerciseType.HIIT, MuscleGroup.SHOULDERS, weight=4, time=30)
-mobile_shoulder_lifts = Exercise("Mobile shoulder lifts", ExerciseType.HIIT, MuscleGroup.SHOULDERS, weight=6, time=30)
+static_shoulder_lifts = Exercise("Static shoulder lifts", ExerciseType.HIIT, MuscleGroup.SHOULDER_SIDE, weight=4, time=30)
+mobile_shoulder_lifts = Exercise("Mobile shoulder lifts", ExerciseType.HIIT, MuscleGroup.SHOULDER_SIDE, weight=6, time=30)
 interval_bicep_curls = Exercise("Bicep curls", ExerciseType.HIIT, MuscleGroup.BICEP, weight=8, time=30)
 interval_tricep_lifts = Exercise("Tricep lifts", ExerciseType.HIIT, MuscleGroup.TRICEP, weight=16, time=30)
 interval_squats = Exercise("Squats", ExerciseType.HIIT, MuscleGroup.WHOLE_LEG, weight=40, time=30)
 jumping_lunges = Exercise("Jumping Lunges", ExerciseType.HIIT, MuscleGroup.QUADS, time=30)
 
+#Squats, Lunges, Push-ups, Plank, Sit-ups',
+#Dips, Inverted rows, Russian twists, Mountain climbers, Side plank',
+#Burpees, Single-leg squats, Close-grip push-ups, Bicycle crunches, Glute bridges',
+#Incline push-ups, Jumping jacks, Plank jacks, Jump squats, V-ups',
+#Rest day',
+#Jumping lunges, Tricep dips, Box jumps, Superman plank, Bicycle crunches'
+
+
 #Cardio:
-five_k = Exercise("5K", ExerciseType.CARDIO)
+five_k = Exercise("5K", ExerciseType.CARDIO, secondary_type=ExerciseType.REST)
 ten_k = Exercise("10K", ExerciseType.CARDIO)
-hiit_workout = Exercise("HIIT workout", ExerciseType.CARDIO)
+hiit_workout = Exercise("HIIT workout", ExerciseType.CARDIO, secondary_type=ExerciseType.HIIT)
 fartlek_5 = Exercise("FARTLEK 5k", ExerciseType.CARDIO)
 fartlek_10 = Exercise("FARTLEK 10k", ExerciseType.CARDIO)
 #half_maraton = Exercise("Half marathon", ExerciseType.CARDIO)
+
+#Rest:
+Rest_Day = Exercise("Rest Day", ExerciseType.REST)
 
 
 @dataclass

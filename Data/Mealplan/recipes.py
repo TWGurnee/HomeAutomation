@@ -556,7 +556,10 @@ Cod_Mango_Salad = Recipe(
         Ingredient(name='Cod', quantity=1, category='Meat'),
         Ingredient(name='Mango', quantity=1, category='Veg'),
         Ingredient(name='Leaves', quantity=1, category='Veg'),
-        Ingredient(name='Avocado', quantity=1, category='Veg')
+        Ingredient(name='Avocado', quantity=1, category='Veg'),
+        Ingredient(name='Cucumber', quantity=1, category='Veg'),
+        Ingredient(name='Cherry Tomato', quantity=1, category='Veg'),
+        Ingredient(name='Chili Flakes', quantity=1, category='Herbs/Spices'),
     ],
     type='Healthy')
 
