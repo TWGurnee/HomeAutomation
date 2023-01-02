@@ -174,6 +174,13 @@ class HIIT:
 
     @staticmethod
     def _get_plan():
-        HIIT.exercises = random.sample(Exercise.HIIT, 10)
-        plan = [exercise.name for exercise in HIIT.exercises]
-        return plan
+        prev_exercise_type = None
+        plan = []
+        while len(plan) != 15:
+            chosen_exercise = random.choice(Exercise.HIIT)
+            if chosen_exercise.type == prev_exercise_type:
+                continue
+            else:
+                plan.append(chosen_exercise.name)
+        
+        return {"HIIT workout": plan} #TODO - timings?
