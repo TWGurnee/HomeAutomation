@@ -155,11 +155,12 @@ jumping_lunges = Exercise("Jumping Lunges", ExerciseType.HIIT, MuscleGroup.QUADS
 
 
 #Cardio:
-five_k = Exercise("5K", ExerciseType.CARDIO, secondary_type=ExerciseType.REST)
-ten_k = Exercise("10K", ExerciseType.CARDIO)
-hiit_workout = Exercise("HIIT workout", ExerciseType.CARDIO, secondary_type=ExerciseType.HIIT)
-fartlek_5 = Exercise("FARTLEK 5k", ExerciseType.CARDIO)
 fartlek_10 = Exercise("FARTLEK 10k", ExerciseType.CARDIO)
+ten_k = Exercise("10K", ExerciseType.CARDIO)
+five_k = Exercise("5K", ExerciseType.CARDIO, secondary_type=ExerciseType.REST)
+hiit_workout = Exercise("HIIT workout", ExerciseType.CARDIO, secondary_type=ExerciseType.HIIT)
+fartlek_5 = Exercise("FARTLEK 5k", ExerciseType.CARDIO, secondary_type=ExerciseType.REST)
+
 #half_maraton = Exercise("Half marathon", ExerciseType.CARDIO)
 
 #Rest:
