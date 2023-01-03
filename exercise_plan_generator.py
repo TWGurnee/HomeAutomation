@@ -234,9 +234,8 @@ if __name__ == '__main__':
 
     exercise_plan = fill_weekly_plan(week_days, exercise_sessions)
 
-    # print(exercise_plan)
+    # Print checks:
 
-    # Print check
     # for j, i in zip(exercise_plan.keys(), exercise_plan.values()):
     #     print(f'{j}: {list(i.items())}')
 
