@@ -3,7 +3,7 @@ import requests as req
 import threading as td
 from pathlib import Path
 
-import shopping_list as shop_list
+import shopping_list_generator as shop_list
 import Data.Mealplan.recipes as meals
 from scheduler import scheduler
 
