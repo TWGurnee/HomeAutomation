@@ -3,9 +3,12 @@ import random
 import json
 from pathlib import Path
 
-import Data.Mealplan.recipes as r
 from Config.emails import send_email
 from Config.config import SMTP_EMAIL, TO_FREYA
+
+from Data.helpers import load_current_plan
+
+import Data.Mealplan.recipes as r
 
 
 #### TO-DO ####
@@ -17,13 +20,6 @@ from Config.config import SMTP_EMAIL, TO_FREYA
 """
 
 ########### Meal Plan Functions ############
-
-def get_last_weeks_meal_plan(MEAL_PLAN_FILE) -> dict:
-    """Returns dict of last weeks meal plan and ingredients"""
-    with open(MEAL_PLAN_FILE, 'r') as f:
-        last_weeks_data = json.load(f)
-        return last_weeks_data
-
 
 def generate_meal_plan(last_weeks_data: dict) -> list[r.Recipe]:
     """Generates a meal plan for the week, ensuring no meals from last week are included"""
@@ -103,7 +99,7 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
 
 def send_current_shopping_list():
     """Sends a copy of the current shopping list to email."""
-    current_meal_plan = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
+    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
 
     meal_plan_list = current_meal_plan['Meal Plan']
     ingredients_by_category = current_meal_plan['Shopping List']
@@ -135,7 +131,7 @@ if __name__ == "__main__":
     """
     # Get last plan for comparison
     try:
-        last_weeks_data = get_last_weeks_meal_plan(MEAL_PLAN_FILE)
+        last_weeks_data = load_current_plan(MEAL_PLAN_FILE)
     except:
         last_weeks_data = None
 
