@@ -90,8 +90,9 @@ class Exercise:
     def to_dict(exercise: "Exercise") -> dict:
         return asdict(exercise, dict_factory=Exercise.custom_asdict_factory)
 
-    @staticmethod
+    @staticmethod #TODO update to ensure works correctly
     def from_dict(data: dict) -> "Exercise":
+        # We require a convert function as per the to_dict function to ensure the Enums are correclty initisalised prior to replace function.
         return replace(Exercise, **data) #type: ignore
 
     @staticmethod
@@ -107,10 +108,16 @@ class Exercise:
         if exercise.reps: output += f'for {exercise.reps} reps.'
         if exercise.time: output += f'for {exercise.time} seconds'
         return output
-        # Filtering function required for removing unrequired info in instructions.
-        # 
 
-        # e = Exercise.to_dict(exercise)
+    @staticmethod
+    def from_dict_to_str(saved_json: "dict") -> str:
+        output = ""
+        output += f'\n- {saved_json["name"]}\n'
+        if saved_json["weight"]: output += f'{saved_json["weight"]}kg,'
+        if saved_json["reps"]: output += f' for {saved_json["reps"]} reps.'
+        if saved_json["time"]: output += f' for {saved_json["time"]} seconds'
+        return output
+
 
 
 @dataclass

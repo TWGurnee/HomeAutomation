@@ -32,22 +32,24 @@ plan = load_current_plan(SAVE_LOCATION) # TODO: update loading function so Exerc
 # Get current day of the week
 day = datetime.datetime.today().strftime('%A')
 
+# Get current days session from the saved plan
 current_days_session = plan[day]
 current_days_session = current_days_session[0]
 
+# Extract session info from session.
+# Session is dict format: {session : [Exercise.to_dict]}
 day_type = list(current_days_session.keys())[0]
-
 exercises = list(current_days_session.values())[0]
-print(exercises)
 
 # Build email info
 msg = ("Today's exercise session: " + day_type)
 if exercises:
-    msg+=[Exercise.to_str(exercise) for exercise in exercises]
-
-print(msg)
+    exercises_string = '\n'.join([Exercise.from_dict_to_str(exercise) for exercise in exercises])
+    msg += exercises_string
 
 subject = "Exercise Reminder"
 
+print(msg)
+
 # Send reminder
-# send_email(subject, msg, SMTP_EMAIL)
+send_email(subject, msg, SMTP_EMAIL)
