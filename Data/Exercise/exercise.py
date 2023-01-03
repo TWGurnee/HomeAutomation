@@ -109,7 +109,9 @@ class WorkoutSession:
         return WorkoutSession(name, exercises=exercises, exercise_type=exercise_type)
 
     ### Workout Generation Methods ###
-
+    @staticmethod
+    def grab_selection(exercise_list: list[Exercise], muscle_group: MuscleGroup, number: int) -> list[Exercise]:
+        return random.sample([e for e in exercise_list if e.muscle_group == muscle_group], number)
 
 
     ### Helper methods ###
@@ -187,15 +189,15 @@ ALL_EXERCISES = WorkoutSession.init_all_exercises([
     #HIIT:
     Exercise("Mountain climbers", SessionType.HIIT, MuscleGroup.CORE, time=30),
     Exercise("Plank", SessionType.HIIT, MuscleGroup.CORE, time=60),
-    Exercise("Pressups", SessionType.HIIT, MuscleGroup.CHEST_PRESS, time=30),
-    Exercise("Situps", SessionType.HIIT, MuscleGroup.CORE, time=30),
-    Exercise("boxjump", SessionType.HIIT, MuscleGroup.WHOLE_LEG, time=30),
+    Exercise("Press-ups", SessionType.HIIT, MuscleGroup.CHEST_PRESS, time=30),
+    Exercise("Sit-ups", SessionType.HIIT, MuscleGroup.CORE, time=30),
+    Exercise("Box-jump", SessionType.HIIT, MuscleGroup.WHOLE_LEG, time=30),
     Exercise("Paratroopers", SessionType.HIIT, MuscleGroup.UPPER_BACK, time=30),
     Exercise("Side plank", SessionType.HIIT, MuscleGroup.CORE, time=30),
     Exercise("Raised plank", SessionType.HIIT, MuscleGroup.CORE, time=60),
     Exercise("Shoulder taps", SessionType.HIIT, MuscleGroup.CORE, time=45),
     Exercise("Reverse crunches", SessionType.HIIT, MuscleGroup.CORE, time=30),
-    Exercise("Bicycles", SessionType.HIIT, MuscleGroup.CORE, time=30),
+    Exercise("Bicycle Crunches", SessionType.HIIT, MuscleGroup.CORE, time=30),
     Exercise("V-sits", SessionType.HIIT, MuscleGroup.CORE, time=30),
     Exercise("Leg raises", SessionType.HIIT, MuscleGroup.CORE, time=30),
     Exercise("Static shoulder lifts", SessionType.HIIT, MuscleGroup.SHOULDER_SIDE, weight=4, time=30),
@@ -204,12 +206,20 @@ ALL_EXERCISES = WorkoutSession.init_all_exercises([
     Exercise("Tricep lifts", SessionType.HIIT, MuscleGroup.TRICEP, weight=16, time=30),
     Exercise("Squats", SessionType.HIIT, MuscleGroup.WHOLE_LEG, weight=40, time=30),
     Exercise("Jumping Lunges", SessionType.HIIT, MuscleGroup.QUADS, time=30),
-    #Squats, Lunges, Push-ups, Plank, Sit-ups',
-    #Dips, Inverted rows, Russian twists, Mountain climbers, Side plank',
-    #Burpees, Single-leg squats, Close-grip push-ups, Bicycle crunches, Glute bridges',
-    #Incline push-ups, Jumping jacks, Plank jacks, Jump squats, V-ups',
-    #Rest day',
-    #Jumping lunges, Tricep dips, Box jumps, Superman plank, Bicycle crunches'
+    # Lunges,
+    # Inverted rows,
+    # Russian twists,
+    # Burpees,
+    # Single-leg squats,
+    # Close-grip push-ups,
+    # Glute bridges,
+    # Incline push-ups,
+    # Jumping jacks,
+    # Plank jacks
+    # Jump squats,
+    # V-ups,
+    # Jumping lunges,
+    # Superman plank,
     
     #Cardio:
     Exercise("FARTLEK 10k", SessionType.CARDIO),
@@ -239,7 +249,7 @@ def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore #
         exercises = []
         
         #back
-        exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.UPPER_BACK], 2))
+        exercises.extend(WorkoutSession.grab_selection(BACK_CORE_ARM_EXERCISES, MuscleGroup.UPPER_BACK, 2))
         exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.LOWER_BACK], 1))
         #core
         exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.CORE], 1))

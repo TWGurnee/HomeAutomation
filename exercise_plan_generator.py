@@ -5,7 +5,6 @@ from pathlib import Path
 
 from Data.Exercise.exercise import SessionType, Exercise, HIIT, get_exercise_session_by_type
 
-
 ### Functions ###
 
 def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
@@ -25,6 +24,7 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
 
 
 def fill_weekly_plan(week_template: dict, exercise_sessions: list[dict]) -> dict:
+    """fills with a weekly template with a randomised weekly exercise plan"""
 
     # To allow for a day gap between each gym session, below are all possible configurations indexes of the week.
     gym_indexes = [
