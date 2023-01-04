@@ -16,21 +16,21 @@ class SessionType(Enum):
 
 class MuscleGroup(Enum):
     # BACK_CORE_ARMS
-    LOWER_BACK = 1
-    UPPER_BACK = 2
-    CORE = 3
-    BICEP = 4
-    TRICEP = 5
+    LOWER_BACK = "Lower Back"
+    UPPER_BACK = "Upper Back"
+    CORE = "Core"
+    BICEP = "Bicep"
+    TRICEP = "Tricep"
     #CHESTSHOULDERS
-    CHEST_PRESS = 6
-    CHEST_FLY = 7
-    SHOULDER_PRESS = 8
-    SHOULDER_SIDE = 9
+    CHEST_PRESS = "Chest Press"
+    CHEST_FLY = "Chest Fly"
+    SHOULDER_PRESS = "Shoulder Press"
+    SHOULDER_SIDE = "Shoulder Side"
     #LEGS
-    QUADS = 10
-    HAMSSTRINGS = 11
-    GLUTES = 12
-    WHOLE_LEG = 13
+    QUADS = "Quads"
+    HAMSTRINGS = "Hamstrings"
+    GLUTES = "Glutes"
+    WHOLE_LEG = "Whole Leg"
 
 
 @dataclass
@@ -92,6 +92,7 @@ class WorkoutSession:
     name: str
     exercises: list[Exercise] = field(default_factory=list)
     exercise_type: SessionType = field(default=None)
+    muscle_groups: list[MuscleGroup] = field(default=None)
 
     ### Init methods ###
     @staticmethod
@@ -143,6 +144,7 @@ class WorkoutSession:
 ALL_EXERCISES = WorkoutSession.init_all_exercises([
     #Back:
     Exercise("Deadlifts", SessionType.BACK_CORE_ARMS, MuscleGroup.LOWER_BACK, weight=100, reps=5),
+    Exercise("Romanian deadlifts", SessionType.BACK_CORE_ARMS, MuscleGroup.LOWER_BACK, weight=30, time=30),
     Exercise("Bent over rows", SessionType.BACK_CORE_ARMS, MuscleGroup.UPPER_BACK, weight=40, reps=10),
     Exercise("Isolated rows", SessionType.BACK_CORE_ARMS, MuscleGroup.UPPER_BACK, weight=24, reps=8),
     Exercise("Reverse fly", SessionType.BACK_CORE_ARMS, MuscleGroup.UPPER_BACK, weight=25, reps=10),
@@ -180,7 +182,7 @@ ALL_EXERCISES = WorkoutSession.init_all_exercises([
     #Legs:
     Exercise("Squats", SessionType.LEGS, MuscleGroup.WHOLE_LEG, weight=80, reps=8),
     Exercise("Wall sits", SessionType.LEGS, MuscleGroup.WHOLE_LEG, time=30),
-    Exercise("Leg Curls", SessionType.LEGS, MuscleGroup.HAMSSTRINGS, weight=45, reps=10),
+    Exercise("Leg Curls", SessionType.LEGS, MuscleGroup.HAMSTRINGS, weight=45, reps=10),
     Exercise("Leg extensions", SessionType.LEGS, MuscleGroup.QUADS, weight=55, reps=10),
     Exercise("Leg press", SessionType.LEGS, MuscleGroup.WHOLE_LEG, weight=120, reps=10),
     Exercise("Lunges", SessionType.LEGS, MuscleGroup.GLUTES, weight=10, reps=12),
@@ -206,20 +208,18 @@ ALL_EXERCISES = WorkoutSession.init_all_exercises([
     Exercise("Tricep lifts", SessionType.HIIT, MuscleGroup.TRICEP, weight=16, time=30),
     Exercise("Squats", SessionType.HIIT, MuscleGroup.WHOLE_LEG, weight=40, time=30),
     Exercise("Jumping Lunges", SessionType.HIIT, MuscleGroup.QUADS, time=30),
-    # Lunges,
-    # Inverted rows,
-    # Russian twists,
-    # Burpees,
-    # Single-leg squats,
-    # Close-grip push-ups,
-    # Glute bridges,
-    # Incline push-ups,
-    # Jumping jacks,
-    # Plank jacks
-    # Jump squats,
-    # V-ups,
-    # Jumping lunges,
-    # Superman plank,
+    Exercise("Lunges", SessionType.HIIT, MuscleGroup.QUADS, weight=20, time=30),
+    Exercise("Romanian deadlifts", SessionType.HIIT, MuscleGroup.LOWER_BACK, weight=20, time=30),
+    Exercise("Russian twists", SessionType.HIIT, MuscleGroup.CORE, weight=10, time=30),
+    Exercise("Burpees", SessionType.HIIT, MuscleGroup.WHOLE_LEG, time=45),
+    Exercise("Single-leg squats", SessionType.HIIT, MuscleGroup.GLUTES, time=30),
+    Exercise("Close-grip push-ups", SessionType.HIIT, MuscleGroup.CHEST_PRESS, time=30),
+    Exercise("Glute bridges", SessionType.HIIT, MuscleGroup.GLUTES, weight=30, time=30),
+    Exercise("Incline push-ups", SessionType.HIIT, MuscleGroup.CHEST_PRESS, weight=20, time=30),
+    Exercise("Jumping jacks", SessionType.HIIT, MuscleGroup.SHOULDER_SIDE, weight=6, time=30),
+    Exercise("Plank jacks", SessionType.HIIT, MuscleGroup.CORE, time=30),
+    Exercise("Jump squats", SessionType.HIIT, MuscleGroup.QUADS, time=30),
+    Exercise("Superman plank", SessionType.HIIT, MuscleGroup.CORE, time=30),
     
     #Cardio:
     Exercise("FARTLEK 10k", SessionType.CARDIO),
@@ -250,12 +250,12 @@ def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore #
         
         #back
         exercises.extend(WorkoutSession.grab_selection(BACK_CORE_ARM_EXERCISES, MuscleGroup.UPPER_BACK, 2))
-        exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.LOWER_BACK], 1))
+        exercises.extend(WorkoutSession.grab_selection(BACK_CORE_ARM_EXERCISES, MuscleGroup.LOWER_BACK, 1))
         #core
-        exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.CORE], 1))
+        exercises.extend(WorkoutSession.grab_selection(BACK_CORE_ARM_EXERCISES, MuscleGroup.CORE, 1))
         #arms
-        exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.BICEP], 2))
-        exercises.extend(random.sample([e for e in BACK_CORE_ARM_EXERCISES if e.muscle_group == MuscleGroup.TRICEP], 2))
+        exercises.extend(WorkoutSession.grab_selection(BACK_CORE_ARM_EXERCISES, MuscleGroup.BICEP, 2))
+        exercises.extend(WorkoutSession.grab_selection(BACK_CORE_ARM_EXERCISES, MuscleGroup.TRICEP, 2))
         
         return {day_type.value: exercises}
 
@@ -263,11 +263,11 @@ def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore #
         exercises = []
         
         #chest
-        exercises.extend(random.sample([e for e in CHEST_SHOULDER_EXERCISES if e.muscle_group == MuscleGroup.CHEST_PRESS], 3))
-        exercises.extend(random.sample([e for e in CHEST_SHOULDER_EXERCISES if e.muscle_group == MuscleGroup.CHEST_FLY], 1))
+        exercises.extend(WorkoutSession.grab_selection(CHEST_SHOULDER_EXERCISES, MuscleGroup.CHEST_PRESS, 3))
+        exercises.extend(WorkoutSession.grab_selection(CHEST_SHOULDER_EXERCISES, MuscleGroup.CHEST_FLY, 1))
         #shoulder
-        exercises.extend(random.sample([e for e in CHEST_SHOULDER_EXERCISES if e.muscle_group == MuscleGroup.SHOULDER_PRESS], 2))
-        exercises.extend(random.sample([e for e in CHEST_SHOULDER_EXERCISES if e.muscle_group == MuscleGroup.SHOULDER_SIDE], 2))
+        exercises.extend(WorkoutSession.grab_selection(CHEST_SHOULDER_EXERCISES, MuscleGroup.SHOULDER_PRESS, 2))
+        exercises.extend(WorkoutSession.grab_selection(CHEST_SHOULDER_EXERCISES, MuscleGroup.SHOULDER_SIDE, 2))
         
         return {day_type.value: exercises}
     
@@ -275,13 +275,13 @@ def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore #
         exercises = []
 
         #whole leg
-        exercises.extend(random.sample([e for e in LEG_EXERCISES if e.muscle_group == MuscleGroup.WHOLE_LEG], 3))
+        exercises.extend(WorkoutSession.grab_selection(LEG_EXERCISES, MuscleGroup.WHOLE_LEG, 3))
         #quads
-        exercises.extend(random.sample([e for e in LEG_EXERCISES if e.muscle_group == MuscleGroup.QUADS], 1))
+        exercises.extend(WorkoutSession.grab_selection(LEG_EXERCISES, MuscleGroup.QUADS, 1))
         #hammys
-        exercises.extend(random.sample([e for e in LEG_EXERCISES if e.muscle_group == MuscleGroup.HAMSSTRINGS], 1))
+        exercises.extend(WorkoutSession.grab_selection(LEG_EXERCISES, MuscleGroup.HAMSTRINGS, 1))
         #glutes
-        exercises.extend(random.sample([e for e in LEG_EXERCISES if e.muscle_group == MuscleGroup.GLUTES], 1))
+        exercises.extend(WorkoutSession.grab_selection(LEG_EXERCISES, MuscleGroup.GLUTES, 1))
 
         return {day_type.value: exercises}
 
