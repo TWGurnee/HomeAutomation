@@ -19,7 +19,7 @@ def send_workout_reminder():
     print('workout reminder sent')
 
 def create_meal_plan():
-    subprocess.call(['python', 'shopping_list.py'])
+    subprocess.call(['python', 'shopping_list_generator.py'])
     print("week's meal plan created")
 
 
