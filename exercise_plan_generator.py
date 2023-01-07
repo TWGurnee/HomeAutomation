@@ -172,7 +172,7 @@ WEEK_ALLOWANCES = {
     SessionType.REST: 2
 }
 
-SAVE_LOCATION = Path.cwd() / r"Data\Exercise\workouts.json"
+SAVE_LOCATION = Path(r"Data\Exercise\workouts.json")
 
 
 if __name__ == '__main__':
@@ -180,6 +180,7 @@ if __name__ == '__main__':
     exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, exercise_sessions)
     save_new_plan(exercise_plan, SAVE_LOCATION)
 
-    #Print checks:
+
+
     # for i, j in zip(exercise_plan, exercise_plan.values()):
     #     print(f'{i}: {list(j.items())}')

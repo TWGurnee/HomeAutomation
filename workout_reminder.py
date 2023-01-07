@@ -9,7 +9,7 @@ from Data.Exercise.exercise import Exercise
 
 ### Constants ###
 
-SAVE_LOCATION = Path.cwd() / r"Data\Exercise\workouts.json"
+SAVE_LOCATION = Path(r"Data\Exercise\workouts.json")
 
 ### Main() ###
 

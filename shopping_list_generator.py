@@ -122,7 +122,7 @@ def send_current_shopping_list():
 
 
 ### Constants ###
-MEAL_PLAN_FILE = Path.cwd() / r"Data\Mealplan\ingredients.json"
+MEAL_PLAN_FILE = (r"Data\Mealplan\ingredients.json")
 
 ### Main ###
 if __name__ == "__main__":
