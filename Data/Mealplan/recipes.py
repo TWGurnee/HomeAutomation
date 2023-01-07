@@ -75,6 +75,11 @@ class Recipe:
 
         return Recipe(name=name, ingredients=ingredient_objects, type=meal_type)
 
+    @staticmethod
+    def get_recipe_from_name(name: str):
+        get_meal = {meal.name: meal for meal in Recipe.All_Recipes}
+        return get_meal[name]
+
 
 #### Food Ideas ####
 """

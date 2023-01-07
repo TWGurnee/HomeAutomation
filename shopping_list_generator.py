@@ -11,13 +11,11 @@ from Data.helpers import load_current_plan
 import Data.Mealplan.recipes as r
 
 
-#### TO-DO ####
-"""
-- Look into adding Alexa functionality to allow additions to the shopping list and/or meal plan.
-- Re-rolling the whole plan.
-- Re-rolling just one item.
-- Look into receiving emails via the script.
-"""
+#### TODO ####
+# Look into adding Alexa functionality to allow additions to the shopping list and/or meal plan.
+
+# Add constants including current meal plan at top of page?
+# Would have to rejig arguments for a few functions.
 
 ########### Meal Plan Functions ############
 
@@ -97,6 +95,7 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
         }
         json.dump(data, f)
 
+
 def send_current_shopping_list():
     """Sends a copy of the current shopping list to email."""
     current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
@@ -117,12 +116,60 @@ def send_current_shopping_list():
     print("This week's meal plan:\n" + meal_plan_string)
 
     # Send meal plan to emails
-    send_email(subject, msg, SMTP_EMAIL)
-    send_email(subject, msg, TO_FREYA)
+    #send_email(subject, msg, SMTP_EMAIL)
+    #send_email(subject, msg, TO_FREYA)
+
+
+### Return the meal plan as a list of 6 variables
+# in the form [(category, name, [ingredients])]
+# This will be used in the table
+
+def current_meal_plan_for_table() -> list[tuple[str, str, list[str]]]: #MESSY but accurate
+    """Returns a list of packed meal-strings to be shown in a table.
+    Table headers are:
+    Category, Meal, Ingredients
+    Returns (meal type, meal name, [ingredients])"""
+    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
+
+    meal_plan_list = current_meal_plan['Meal Plan']
+
+    def pack_meal_info(meal_name):
+        recipe = r.Recipe.get_recipe_from_name(meal_name)
+        return (recipe.type, meal_name, [i.name for i in recipe.ingredients])
+
+    return [pack_meal_info(meal) for meal in meal_plan_list]
+
+
+### Reroll entire meal:
+## TODO Can be done by select all button and reroll selection of meals
+
+
+### Reroll single meal:
+def re_roll_meal(meal_name: str):
+    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
+    
+    meal_plan_list = current_meal_plan['Meal Plan']
+
+    old_meal = r.Recipe.get_recipe_from_name(meal_name)
+
+    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list])
+
+    meal_plan_list[meal_plan_list.index(meal_name)] = new_meal
+
+    recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
+
+    ingredients_by_category = generate_ingredients_by_category(recipe_list)
+
+    save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
+
+    return current_meal_plan_for_table()
+
+### Reroll selection of meals (for check box)
+
 
 
 ### Constants ###
-MEAL_PLAN_FILE = (r"Data\Mealplan\ingredients.json")
+MEAL_PLAN_FILE = Path(r"Data\Mealplan\ingredients.json")
 
 ### Main ###
 if __name__ == "__main__":
