@@ -10,6 +10,8 @@ from Data.helpers import load_current_plan
 
 import Data.Mealplan.recipes as r
 
+### Constants ###
+MEAL_PLAN_FILE = Path(r"Data\Mealplan\ingredients.json")
 
 #### TODO ####
 # Look into adding Alexa functionality to allow additions to the shopping list and/or meal plan.
@@ -17,13 +19,33 @@ import Data.Mealplan.recipes as r
 # Add constants including current meal plan at top of page?
 # Would have to rejig arguments for a few functions.
 
+### Helper methods
+
+def unpack_saved_meal_plan(MEAL_PLAN_FILE):
+    """Load the JSON file with saved meal plan and ingredients by category and unpack"""
+    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
+    meal_plan_list = current_meal_plan['Meal Plan']
+    ingredients_by_category = current_meal_plan['Shopping List']
+    return (meal_plan_list, ingredients_by_category)
+
+
+def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_category: dict):
+    """Takes the meal plan and unique ingredients to over-write last weeks meal plan"""
+    with open(MEAL_PLAN_FILE, 'w') as f:
+        data = {
+            "Meal Plan": meal_plan,
+            "Shopping List": ingredients_by_category
+        }
+        json.dump(data, f)
+
+
 ########### Meal Plan Functions ############
 
-def generate_meal_plan(last_weeks_data: dict) -> list[r.Recipe]:
+def generate_meal_plan(last_weeks_meals=None) -> list[r.Recipe]:
     """Generates a meal plan for the week, ensuring no meals from last week are included"""
     # Generate meals list without any of last weeks meals
-    if last_weeks_data:
-        eligble_meals = [meal for meal in r.Recipe.All_Recipes if meal.name not in last_weeks_data['Meal Plan']]
+    if last_weeks_meals:
+        eligble_meals = [meal for meal in r.Recipe.All_Recipes if meal.name not in last_weeks_meals]
     else:
         eligble_meals = r.Recipe.All_Recipes
 
@@ -86,22 +108,10 @@ def generate_shopping_list(ingredients_by_category: dict) -> str:
     return shopping_list_string
 
 
-def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_category: dict):
-    """Takes the meal plan and unique ingredients to over-write last weeks meal plan"""
-    with open(MEAL_PLAN_FILE, 'w') as f:
-        data = {
-            "Meal Plan": meal_plan,
-            "Shopping List": ingredients_by_category
-        }
-        json.dump(data, f)
-
-
 def send_current_shopping_list():
     """Sends a copy of the current shopping list to email."""
-    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
 
-    meal_plan_list = current_meal_plan['Meal Plan']
-    ingredients_by_category = current_meal_plan['Shopping List']
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     # Convert plan and ingredients to strings for email
     shopping_list_string = generate_shopping_list(ingredients_by_category)
@@ -116,62 +126,71 @@ def send_current_shopping_list():
     print("This week's meal plan:\n" + meal_plan_string)
 
     # Send meal plan to emails
-    #end_email(subject, msg, SMTP_EMAIL)
-    #send_email(subject, msg, TO_FREYA)
+    send_email(subject, msg, SMTP_EMAIL)
+    send_email(subject, msg, TO_FREYA)
 
 
-### Return the meal plan as a list of 6 variables
-# in the form [(category, name, [ingredients])]
-# This will be used in the table
+####### Dashboard functions ###########
 
 def current_meal_plan_for_table() -> list[tuple[str, str, list[str]]]: #MESSY but accurate
     """Returns a list of packed meal-strings to be shown in a table.
     Table headers are:
     Category, Meal, Ingredients
     Returns (meal type, meal name, [ingredients])"""
-    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
 
-    meal_plan_list = current_meal_plan['Meal Plan']
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     def pack_meal_info(meal_name):
         recipe = r.Recipe.get_recipe_from_name(meal_name)
-        return (recipe.type, meal_name, [i.name for i in recipe.ingredients])
+        return (recipe.type, meal_name, [i.name for i in recipe.ingredients]) #type: ignore
 
     return [pack_meal_info(meal) for meal in meal_plan_list]
 
 
-### Reroll entire meal:
-## TODO Can be done by select all button and reroll selection of meals
-
-
-### Reroll single meal:
-def re_roll_meal(meal_name: str):
-    current_meal_plan = load_current_plan(MEAL_PLAN_FILE)
-    
-    meal_plan_list = current_meal_plan['Meal Plan']
+def re_roll_meal(meal_name: str): ## DEPRECIATED, will not be used in dashboard
+    """Rerolls a single named meal in the meal plan"""
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     old_meal = r.Recipe.get_recipe_from_name(meal_name)
 
-    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list])
+    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list]) #type: ignore
 
     meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
 
     recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
 
-    ingredients_by_category = generate_ingredients_by_category(recipe_list)
+    ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
 
     save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
     return current_meal_plan_for_table()
 
-### Reroll selection of meals (for check box)
+
+def re_roll_selection(meal_name_list: list["str"]):
+    """Rerolls a list of meals chosen in the dashboard mealplan table"""
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
+
+    replaced_meals = [r.Recipe.get_recipe_from_name(meal_name) for meal_name in meal_name_list]
+
+    for meal in replaced_meals:
+        new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe not in meal_plan_list])) #type: ignore
+        meal_plan_list[meal_plan_list.index(meal.name)] = new_meal.name #type: ignore
+
+    recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
+
+    ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
+
+    save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
+
+    return current_meal_plan_for_table()
+
 
 ### Replace meal with specific choice
+# TODO dropdown menu showing all mealsto specifically replace a meal with? Perhaps a popup with a dropdown list?
 
 
 
-### Constants ###
-MEAL_PLAN_FILE = Path(r"Data\Mealplan\ingredients.json")
+
 
 ### Main ###
 if __name__ == "__main__":
@@ -179,13 +198,10 @@ if __name__ == "__main__":
     This is emailed to both parties. 
     """
     # Get last plan for comparison
-    try:
-        last_weeks_data = load_current_plan(MEAL_PLAN_FILE)
-    except:
-        last_weeks_data = None
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     # Generate the meal plan
-    weekly_meal_plan = generate_meal_plan(last_weeks_data) #type: ignore
+    weekly_meal_plan = generate_meal_plan(meal_plan_list) #type: ignore
 
     # Create meal plan dict for shopping list generation
     ingredients_by_category = generate_ingredients_by_category(weekly_meal_plan)
