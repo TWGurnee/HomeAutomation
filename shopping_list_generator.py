@@ -116,7 +116,7 @@ def send_current_shopping_list():
     print("This week's meal plan:\n" + meal_plan_string)
 
     # Send meal plan to emails
-    #send_email(subject, msg, SMTP_EMAIL)
+    #end_email(subject, msg, SMTP_EMAIL)
     #send_email(subject, msg, TO_FREYA)
 
 
@@ -154,7 +154,7 @@ def re_roll_meal(meal_name: str):
 
     new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list])
 
-    meal_plan_list[meal_plan_list.index(meal_name)] = new_meal
+    meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
 
     recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
 
@@ -165,6 +165,8 @@ def re_roll_meal(meal_name: str):
     return current_meal_plan_for_table()
 
 ### Reroll selection of meals (for check box)
+
+### Replace meal with specific choice
 
 
 

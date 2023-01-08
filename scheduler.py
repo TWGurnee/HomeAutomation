@@ -6,7 +6,9 @@ import subprocess
 # Set the time for the reminder to be sent (in 24-hour format)
 WORKOUT_GENERATION_TIME = "00:01"
 WORKOUT_REMINDER_TIME = "10:59"
-MEALPLAN_TIME = "16:00"
+MEALPLAN_TIME = "09:00"
+
+### TODO Helper functions could be implemented to change the scheduled time.
 
 
 ### Scheduled functions ###
@@ -28,7 +30,7 @@ def scheduler():
     # Schedule the reminder to be sent at the specified time each day
     schedule.every().day.at(WORKOUT_REMINDER_TIME).do(send_workout_reminder)
     schedule.every().monday.at(WORKOUT_GENERATION_TIME).do(create_workout_plan)
-    schedule.every().monday.at(MEALPLAN_TIME).do(create_meal_plan)
+    schedule.every().sunday.at(MEALPLAN_TIME).do(create_meal_plan)
 
     print('Starting Scheduler')
     # Loop to check for scheduled tasks

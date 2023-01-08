@@ -34,7 +34,7 @@ def categorise_ingredient(ingredient: Ingredient) -> str:
     return category
 
 
-@dataclass
+@dataclass(frozen=True)
 class Recipe:
     name: str
     ingredients: list[Ingredient]
@@ -78,7 +78,7 @@ class Recipe:
     @staticmethod
     def get_recipe_from_name(name: str):
         get_meal = {meal.name: meal for meal in Recipe.All_Recipes}
-        return get_meal[name]
+        return get_meal.get(name)
 
 
 #### Food Ideas ####

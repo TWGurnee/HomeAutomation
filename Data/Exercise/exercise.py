@@ -140,7 +140,7 @@ class WorkoutSession:
 
 
 
-### Init all Exercises ###
+### Init db seeding Exercises ###
 ALL_EXERCISES = WorkoutSession.init_all_exercises([
     #Back:
     Exercise("Deadlifts", SessionType.BACK_CORE_ARMS, MuscleGroup.LOWER_BACK, weight=100, reps=5),
