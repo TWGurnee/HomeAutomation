@@ -108,7 +108,7 @@ def generate_shopping_list(ingredients_by_category: dict) -> str:
     return shopping_list_string
 
 
-def send_current_shopping_list():
+def send_current_shopping_list(MEAL_PLAN_FILE):
     """Sends a copy of the current shopping list to email."""
 
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
@@ -132,7 +132,7 @@ def send_current_shopping_list():
 
 ####### Dashboard functions ###########
 
-def current_meal_plan_for_table() -> list[tuple[str, str, list[str]]]: #MESSY but accurate
+def current_meal_plan_for_table(MEAL_PLAN_FILE) -> list[tuple[str, str, str]]: #MESSY but accurate
     """Returns a list of packed meal-strings to be shown in a table.
     Table headers are:
     Category, Meal, Ingredients
@@ -142,47 +142,64 @@ def current_meal_plan_for_table() -> list[tuple[str, str, list[str]]]: #MESSY bu
 
     def pack_meal_info(meal_name):
         recipe = r.Recipe.get_recipe_from_name(meal_name)
-        return (recipe.type, meal_name, [i.name for i in recipe.ingredients]) #type: ignore
+        return (recipe.type, meal_name, ', '.join([i.name for i in recipe.ingredients]))
+
+    # week_meal_plan_info = current_meal_plan_for_table()
+    # {% for meal in week_plan_meal_info %}
+    """
+    <tr>
+        <td>
+            {{meal[0]}}
+        </td>
+        <td>
+            {{meal[1]}}
+        </td>
+        <td>
+            {{meal[2]}}
+        </td>
+    </tr>
+    """
+    # {% endfor %}
 
     return [pack_meal_info(meal) for meal in meal_plan_list]
 
 
-def re_roll_meal(meal_name: str): ## DEPRECIATED, will not be used in dashboard
+def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be used in dashboard
     """Rerolls a single named meal in the meal plan"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     old_meal = r.Recipe.get_recipe_from_name(meal_name)
 
-    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list]) #type: ignore
+    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list])
 
     meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
 
     recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
 
-    ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
+    ingredients_by_category = generate_ingredients_by_category(recipe_list)
 
     save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
-    return current_meal_plan_for_table()
+    return current_meal_plan_for_table(MEAL_PLAN_FILE)
 
 
-def re_roll_selection(meal_name_list: list["str"]):
+def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
     """Rerolls a list of meals chosen in the dashboard mealplan table"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     replaced_meals = [r.Recipe.get_recipe_from_name(meal_name) for meal_name in meal_name_list]
 
     for meal in replaced_meals:
-        new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe not in meal_plan_list])) #type: ignore
-        meal_plan_list[meal_plan_list.index(meal.name)] = new_meal.name #type: ignore
+        new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe not in meal_plan_list]))
+        meal_plan_list[meal_plan_list.index(meal.name)] = new_meal.name
 
     recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
 
-    ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
+    ingredients_by_category = generate_ingredients_by_category(recipe_list)
 
     save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
-    return current_meal_plan_for_table()
+    return current_meal_plan_for_table(MEAL_PLAN_FILE)
 
 
 ### Replace meal with specific choice
