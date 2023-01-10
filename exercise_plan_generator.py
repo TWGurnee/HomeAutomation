@@ -172,14 +172,13 @@ WEEK_ALLOWANCES = {
     SessionType.REST: 2
 }
 
-SAVE_LOCATION = Path(r"Data\Exercise\workouts.json")
+SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 
 
 if __name__ == '__main__':
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
     exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, exercise_sessions)
     save_new_plan(exercise_plan, SAVE_LOCATION)
-
 
 
     # for i, j in zip(exercise_plan, exercise_plan.values()):
