@@ -1,34 +1,3 @@
     NOTES:
 
-Exercise Weekly Plan:
-
-Want to generate a weekly exercise plan that includes Cardio and Weight Training.
-
-5-6 days of exercise a week. 1 - 2 rest days.
-5k on its own can be a quasi-rest day.
-
-Need to write algorith to generate weekly exercise plan based on previous data.
-Should have a database for each weeks inputs and plans. (At least 1 - 2 seeded)
-
-Cardio:
-Schedule requirements:
-3x a week
-Mix of 5k and 10 k runs (perhaps FARTLEK and HIIT)
-5K can be on gym days.
-Logging the total time and pace?
-
-Weights:
-Split by muscle group. 
-
-Schedule requirements:
-Shouldn't overload certain muscle groups: Legs then back // Shoulders then Chest. Perhaps keep these together?
-3-4 days a week.
-
-Build requirements:
-Need list of muscle groups (and relevant exercise and warm ups)
-Classes for exercises (& perhaps muscle groups)
-Classes would contain self.reps and self.kg
-
-
 DB: Storage of weekly plans and relevant reps/weights.
-GUI: Input for logging. (Watch app?!?)

@@ -16,7 +16,6 @@ SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 def todays_workout_to_string(SAVE_LOCATION):
     plan = load_current_plan(SAVE_LOCATION) # TODO: update loading function so Exercise Objexts are made.
 
-    # Get current day of the week
     day = datetime.datetime.today().strftime('%A')
 
     # Get current days session from the saved plan

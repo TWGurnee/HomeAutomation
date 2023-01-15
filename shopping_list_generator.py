@@ -11,13 +11,8 @@ from Data.helpers import load_current_plan
 import Data.Mealplan.recipes as r
 
 ### Constants ###
-MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json")
+MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json") ##TODO perhaps move to config file?
 
-#### TODO ####
-# Look into adding Alexa functionality to allow additions to the shopping list and/or meal plan.
-
-# Add constants including current meal plan at top of page?
-# Would have to rejig arguments for a few functions.
 
 ### Helper methods
 
@@ -206,8 +201,6 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
 
 ### Replace meal with specific choice
 # TODO dropdown menu showing all mealsto specifically replace a meal with? Perhaps a popup with a dropdown list?
-
-
 
 
 
