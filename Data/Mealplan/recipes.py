@@ -574,7 +574,9 @@ Halloumi_Mango_Salad = Recipe(
         Ingredient(name='Halloumi', quantity=1, category='Dairy'),
         Ingredient(name='Mango', quantity=1, category='Veg'),
         Ingredient(name='Rocket', quantity=1, category='Veg'),
-        Ingredient(name='Cherry Tomato', quantity=1, category='Veg')
+        Ingredient(name='Cherry Tomato', quantity=1, category='Veg'),
+        Ingredient(name='Avocado', quantity=1, category='Veg')
+
     ],
     type='Healthy')
 
