@@ -170,13 +170,15 @@ def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be us
 
     old_meal = r.Recipe.get_recipe_from_name(meal_name)
 
-    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal not in meal_plan_list]) #type: ignore
+    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
 
     meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
 
     recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
 
     ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
+
+    print(meal_plan_list)
 
     save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
@@ -190,7 +192,7 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
     replaced_meals = [r.Recipe.get_recipe_from_name(meal_name) for meal_name in meal_name_list]
 
     for meal in replaced_meals:
-        new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe not in meal_plan_list])) #type: ignore
+        new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe.name not in meal_plan_list])) #type: ignore
         meal_plan_list[meal_plan_list.index(meal.name)] = new_meal.name #type: ignore
 
     recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]

@@ -5,7 +5,7 @@ import subprocess
 ### Constants ###
 # Set the time for the reminder to be sent (in 24-hour format)
 WORKOUT_GENERATION_TIME = "00:01"
-WORKOUT_REMINDER_TIME = "10:59"
+WORKOUT_REMINDER_TIME = "09:59"
 MEALPLAN_TIME = "09:00"
 
 ### TODO Helper functions could be implemented to change the scheduled time.
