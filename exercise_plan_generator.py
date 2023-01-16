@@ -4,6 +4,7 @@ import random
 from pathlib import Path
 
 from Data.Exercise.exercise import SessionType, Exercise, HIIT, get_exercise_session_by_type
+from Data.helpers import load_current_plan
 
 ### Functions ###
 
@@ -23,7 +24,26 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
     return exercise_sessions
 
 
-def fill_weekly_plan(week_template: dict, exercise_sessions: list[dict]) -> dict:
+def prev_weeks_last_gym_session(SAVE_LOCATION) -> str:
+    plan = load_current_plan(SAVE_LOCATION)
+    sessions = list(plan.values())
+    sessions.reverse()
+
+    gym_pass = [
+        "Back Core Arm day",
+        "Chest Shoulder day",
+        "Leg day"
+    ]
+
+    for session in sessions:
+        session = session[0]
+        session_title = list(session.keys())[0] 
+        if session_title in gym_pass:
+            return session_title
+
+
+
+def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessions: list[dict]) -> dict:
     """fills with a weekly template with a randomised weekly exercise plan"""
 
     # To allow for a day gap between each gym session, below are all possible configurations indexes of the week.
@@ -53,14 +73,27 @@ def fill_weekly_plan(week_template: dict, exercise_sessions: list[dict]) -> dict
     # Create list of the randomised gym days from all of the weekly plan
     gym_sessions = [session for session in exercise_sessions if list(session.keys())[0] in gym_pass]
 
-    # Shuffle the list to ensure variety #TODO: Consider if stability in muscle groups is better for rest/recovery.
+    # Shuffle the list to ensure variety
     random.shuffle(gym_sessions)
+
+    #Helper function in-case we have back to back gym sessions of the same type.
+    def replace_first_session(gym_sessions):
+        first_session = gym_sessions[0]
+        x = len(gym_sessions)
+        gym_sessions.remove(first_session)
+        gym_sessions.insert(random.choice([x-1, x-2], first_session))
+
+    # Check if first in sessions is same as last gym session completed, and if so alter list
+    first_session = gym_sessions[0]
+    first_session_title = list(first_session.keys())[0]
+    if first_session_title == last_gym_session:
+        replace_first_session(gym_sessions)
 
     ### Pass one: Assigning gym days 
     for index, session in zip(gym_day_indexes, gym_sessions):
         # Select the day of the week
         chosen_day = list(week_template)[index]
-        # Inert into exercise_plan dict
+        # Insert into exercise_plan dict
         week_template[chosen_day] = session
 
 
@@ -177,7 +210,8 @@ SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 
 if __name__ == '__main__':
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
-    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, exercise_sessions)
+    last_gym_session = prev_weeks_last_gym_session
+    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, last_gym_session, exercise_sessions)
     save_new_plan(exercise_plan, SAVE_LOCATION)
 
 

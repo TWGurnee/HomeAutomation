@@ -34,7 +34,7 @@ class MuscleGroup(Enum):
 
 
 @dataclass
-class Exercise: #### TODO, write DB to add exercises to DB. Ideally will be able to track and change weight and time targets.
+class Exercise:
     name: str
     type: SessionType
     muscle_group: MuscleGroup = field(default=None, metadata={"description": "The group of muscles used in the exercise. Required to ensure a balanced workout"})
@@ -144,7 +144,7 @@ class WorkoutSession:
 ALL_EXERCISES = WorkoutSession.init_all_exercises([
     #Back:
     Exercise("Deadlifts", SessionType.BACK_CORE_ARMS, MuscleGroup.LOWER_BACK, weight=100, reps=5),
-    Exercise("Romanian deadlifts", SessionType.BACK_CORE_ARMS, MuscleGroup.LOWER_BACK, weight=30, time=30),
+    Exercise("Romanian deadlifts", SessionType.BACK_CORE_ARMS, MuscleGroup.LOWER_BACK, weight=30, reps=10),
     Exercise("Bent over rows", SessionType.BACK_CORE_ARMS, MuscleGroup.UPPER_BACK, weight=40, reps=10),
     Exercise("Isolated rows", SessionType.BACK_CORE_ARMS, MuscleGroup.UPPER_BACK, weight=24, reps=8),
     Exercise("Reverse fly", SessionType.BACK_CORE_ARMS, MuscleGroup.UPPER_BACK, weight=25, reps=10),
@@ -243,7 +243,7 @@ HIIT_EXERCISES = WorkoutSession.get_exercises_by_type(ALL_EXERCISES, SessionType
 
 
 ### randomised Generation function function ###
-def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore #TODO refactor list comprehensions into WorkoutSession staticmethod to simplify look
+def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore
     """Returns a set of random exercises depending on the SessionType given."""
     if day_type == SessionType.BACK_CORE_ARMS:
         exercises = []

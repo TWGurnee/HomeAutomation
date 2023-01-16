@@ -27,7 +27,7 @@ class Database(object):
 
 
 
-from sqlalchemy import Column, Integer, String, ForeignKey, Table, create_engine
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table, create_engine
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -56,7 +56,9 @@ class Exercise(Base):
     name = Column(String)
     type = Column(String, ForeignKey('session_type.name'))
     muscle_group = Column(String, ForeignKey('muscle_group.name'))
-    weight = Column(Integer)
+    weight = Column(Float)
+    #weight_increment = Column(Float)
+    #weeks_target_reached = Column(Integer)
     reps = Column(Integer)
     time = Column(Integer)
     secondary_type = Column(String, ForeignKey('session_type.name'))
@@ -79,9 +81,30 @@ class WorkoutSession(Base):
     muscle_groups = relationship("MuscleGroupModel")
 
 
-""" Need to design db structure wrt ORM. """
+ 
+# To create a interactive db with front end inputs we need a bool check to see if all sets were completed at the target weight. 
+# If weight drops then we keep the same weight. 
+# If reps drop we keep the same weight.
+# If target is hit for 2/3/4 weeks then we add some weight.
 
-  
+# Therefore, variables needed for exercise:
+    # target_hit: boolean - replace with backend function to update DB weeks_target_reached.
+    # weight_increment: float
+
+# Questions:
+    # Do we save a completed workout as a single instance separate to the relational DB Exercise?
+    # If so each completed would have the target reached tickbox, whereas the actual excercise may not
+    # Can have a function to (batch?) check the DB to ensure if completed workouts have checked targets that the DB field in exercise is upped by the weight increment.
+    # Can save the need for multiple weeks to be saved if this DB saves the number of weeks hit the target in a row
+    # This would then be included within the Exercise table?
+
+# DB model needed to save all data from completed workout:
+    # class CompletedWorkouts(Base):
+        # __tablename__ = 'completed workouts'
+        # date = Column(datetime)
+        # workoutsession = relationship("WorkoutSession") #TODO decidce which is needed this or below VV
+        # exercises = relationship("Exercise") **** Here would we create a snapshot of the weights completed at the time - could use for stats and progression. 
+
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
