@@ -37,11 +37,11 @@ class MuscleGroup(Enum):
 class Exercise:
     name: str
     type: SessionType
-    muscle_group: MuscleGroup = field(default=None, metadata={"description": "The group of muscles used in the exercise. Required to ensure a balanced workout"})
-    weight: int = field(default=None, metadata={"description": "Weight in Kg used for the exercise"})
-    reps: int = field(default=None, metadata={"description": "Number of reps to perform for the exercise"})
-    time: int = field(default=None, metadata={"description": "Field for the best time, target time, or input time. Measured in seconds"})
-    secondary_type: SessionType = field(default=None, metadata={"description": "The secondary type of an exercise. Current use cases are HIIT and 5K to allow for appropriate plan generation"})
+    muscle_group: MuscleGroup = field(default=None, metadata={"description": "The group of muscles used in the exercise. Required to ensure a balanced workout"}) #type: ignore
+    weight: int = field(default=None, metadata={"description": "Weight in Kg used for the exercise"}) #type: ignore
+    reps: int = field(default=None, metadata={"description": "Number of reps to perform for the exercise"}) #type: ignore
+    time: int = field(default=None, metadata={"description": "Field for the best time, target time, or input time. Measured in seconds"}) #type: ignore
+    secondary_type: SessionType = field(default=None, metadata={"description": "The secondary type of an exercise. Current use cases are HIIT and 5K to allow for appropriate plan generation"}) #type: ignore
     #sets: int = field(default_factory=lambda: 4)
 
     @staticmethod
@@ -91,8 +91,8 @@ class Exercise:
 class WorkoutSession:
     name: str
     exercises: list[Exercise] = field(default_factory=list)
-    exercise_type: SessionType = field(default=None)
-    muscle_groups: list[MuscleGroup] = field(default=None)
+    exercise_type: SessionType = field(default=None) #type: ignore
+    muscle_groups: list[MuscleGroup] = field(default=None) #type: ignore
 
     ### Init methods ###
     @staticmethod
@@ -132,7 +132,7 @@ class WorkoutSession:
         ...
         
     @staticmethod
-    def move_exercise(self, exercise: Exercise, from_workout_type, to_workout_type):
+    def move_exercise(exercise: Exercise, from_workout_type, to_workout_type): 
         """Function for moving an exercise between workouts"""
         # Ideally this could be utilised within the front end; once the database is in use.
         # This may not be needed as the schema can just be updated backend in the construction of the backed datatypes

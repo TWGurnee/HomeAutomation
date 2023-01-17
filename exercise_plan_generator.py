@@ -24,7 +24,7 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
     return exercise_sessions
 
 
-def prev_weeks_last_gym_session(SAVE_LOCATION) -> str:
+def prev_weeks_last_gym_session(SAVE_LOCATION) -> str: #type: ignore
     plan = load_current_plan(SAVE_LOCATION)
     sessions = list(plan.values())
     sessions.reverse()
@@ -40,6 +40,7 @@ def prev_weeks_last_gym_session(SAVE_LOCATION) -> str:
         session_title = list(session.keys())[0] 
         if session_title in gym_pass:
             return session_title
+
 
 
 
@@ -81,7 +82,7 @@ def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessio
         first_session = gym_sessions[0]
         x = len(gym_sessions)
         gym_sessions.remove(first_session)
-        gym_sessions.insert(random.choice([x-1, x-2], first_session))
+        gym_sessions.insert(random.choice([x-1, x-2]), first_session)
 
     # Check if first in sessions is same as last gym session completed, and if so alter list
     first_session = gym_sessions[0]
@@ -211,7 +212,7 @@ SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 if __name__ == '__main__':
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
     last_gym_session = prev_weeks_last_gym_session
-    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, last_gym_session, exercise_sessions)
+    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, last_gym_session, exercise_sessions) #type: ignore
     save_new_plan(exercise_plan, SAVE_LOCATION)
 
 
