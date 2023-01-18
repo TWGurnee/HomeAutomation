@@ -25,6 +25,7 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
 
 
 def prev_weeks_last_gym_session(SAVE_LOCATION) -> str: #type: ignore
+    """Return the name of the last gym workout in the previous week"""
     plan = load_current_plan(SAVE_LOCATION)
     sessions = list(plan.values())
     sessions.reverse()
@@ -40,8 +41,6 @@ def prev_weeks_last_gym_session(SAVE_LOCATION) -> str: #type: ignore
         session_title = list(session.keys())[0] 
         if session_title in gym_pass:
             return session_title
-
-
 
 
 def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessions: list[dict]) -> dict:
@@ -74,11 +73,11 @@ def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessio
     # Create list of the randomised gym days from all of the weekly plan
     gym_sessions = [session for session in exercise_sessions if list(session.keys())[0] in gym_pass]
 
-    # Shuffle the list to ensure variety
     random.shuffle(gym_sessions)
 
     #Helper function in-case we have back to back gym sessions of the same type.
     def replace_first_session(gym_sessions):
+        """Moves first session to a random other position in the list."""
         first_session = gym_sessions[0]
         x = len(gym_sessions)
         gym_sessions.remove(first_session)

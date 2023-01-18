@@ -1,7 +1,7 @@
 import json
 import random
 from copy import deepcopy
-from dataclasses import dataclass, field, asdict, replace
+from dataclasses import dataclass, field, asdict, astuple, replace
 from enum import Enum
 
 
@@ -44,6 +44,8 @@ class Exercise:
     secondary_type: SessionType = field(default=None, metadata={"description": "The secondary type of an exercise. Current use cases are HIIT and 5K to allow for appropriate plan generation"}) #type: ignore
     #sets: int = field(default_factory=lambda: 4)
 
+
+
     @staticmethod
     def custom_asdict_factory(data):
 
@@ -54,14 +56,31 @@ class Exercise:
 
         return dict((k, convert_value(v)) for k, v in data)
 
-    @staticmethod
-    def to_dict(exercise: "Exercise") -> dict:
-        return asdict(exercise, dict_factory=Exercise.custom_asdict_factory)
+    def to_dict(self) -> dict:
+        return asdict(self, dict_factory=Exercise.custom_asdict_factory)
 
     @staticmethod #TODO update to ensure works correctly
     def from_dict(data: dict) -> "Exercise":
         # We require a convert function as per the to_dict function to ensure the Enums are correclty initisalised prior to replace function.
         return replace(Exercise, **data) #type: ignore
+
+
+    @staticmethod
+    def custom_astuple_factory(data):
+
+        def convert_value(obj):
+            if isinstance(obj, Enum):
+                return obj.value
+            return obj
+
+        return tuple(convert_value(i) for i in data)
+
+    def to_tuple(self) -> tuple:
+        return astuple(self, tuple_factory=Exercise.custom_astuple_factory)
+
+    @staticmethod
+    def from_tuple(): ...
+
 
     @staticmethod
     def to_json(exercise: "Exercise") -> str:
