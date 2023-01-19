@@ -22,6 +22,6 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 # for item in ALL_EXERCISES.exercises: #PASSES
 #     print(Exercise.to_tuple(item))
 
-for i in Ingredient.All_Ingredients:
-    values = astuple(i)
-    print(values)
+# for i in Ingredient.All_Ingredients: #PASSES
+#     values = astuple(i)
+#     print(values)
