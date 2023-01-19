@@ -2,8 +2,8 @@ import sqlite3 as db
 from pathlib import Path
 from dataclasses import astuple
 
-import Exercise.exercise as e
-import Mealplan.recipes as r
+from Exercise.exercise import *
+from Mealplan.recipes import *
 
 
 class Database(object):
@@ -25,10 +25,27 @@ class Database(object):
             self.conn.commit()
         self.conn.close()
 
-
-    def init_tables(self):
+    @classmethod
+    def init_tables(cls):
         with open('schema.sql') as f:
-            self.conn.executescript(f.read())
+            script = f.read()
+            cls.conn.executescript(script)
+
+    @classmethod
+    def fill_ingredients(cls):
+        for ingredient in Ingredient.All_Ingredients:
+            name, quantity, category = astuple(ingredient)
+            base.conn.execute("""
+                INSERT INTO ingredients (ingredient_name,ingredient_shopping_category)
+                VALUES (?, ?)""", (name, category,))
+
+# Database.init_tables()
+
+with Database() as base:
+    res = base.conn.execute("SELECT ingredient_name FROM ingredients")
+    print(res.fetchall())
+
+
 
 
     # TODO

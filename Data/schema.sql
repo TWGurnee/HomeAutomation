@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS ingredients;
-DROP TABLE IF EXISTS recipes;
-DROP TABLE IF EXISTS recipe_ingredients;
-DROP TABLE IF EXISTS exercises;
+-- DROP TABLE IF EXISTS ingredients;
+-- DROP TABLE IF EXISTS recipes;
+-- DROP TABLE IF EXISTS recipe_ingredients;
+-- DROP TABLE IF EXISTS exercises;
 
 
 CREATE TABLE IF NOT EXISTS ingredients (
@@ -16,18 +16,19 @@ CREATE TABLE IF NOT EXISTS recipes (
     recipe_id INTEGER,
     ingredient_id
     recipe_name TEXT NOT NULL,
-    recipe_type TEXT NOT NULL,
+    recipe_type TEXT NOT NULL
 );
 
 
 
 CREATE TABLE IF NOT EXISTS recipe_ingredients (
-    id INTERGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ingredient_quantity INTEGER,
     recipe_id INTEGER,
     ingredient_id INTEGER,
     FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id),
-    FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id),
-    ingredient_quantity INTEGER,
+    FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
+
 );
 
 

@@ -10,7 +10,8 @@ class Ingredient:
     All_Ingredients = []
 
     def __post_init__(self):
-        self.__class__.All_Ingredients.append(self)
+        if self not in self.__class__.All_Ingredients:
+            self.__class__.All_Ingredients.append(self)
 
     def __hash__(self): # Currently Unused
         # Create a hash value based on the name, quantity, and category of the ingredient
@@ -150,7 +151,7 @@ Arrabiata = Recipe(
         Ingredient(name='Chopped Tomatoes', quantity=1, category='Veg'),
         Ingredient(name='Penne', quantity=1, category='Long-life'),
         Ingredient(name='Basil', quantity=1, category='Herbs/Spices'),
-        Ingredient(name='Chili', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Chilli Powder', quantity=1, category='Herbs/Spices'),
         Ingredient(name='Onions', quantity=1, category='Veg'),
         Ingredient(name='Peppers', quantity=1, category='Veg'),
         Ingredient(name='Mushrooms', quantity=1, category='Veg'),
@@ -414,7 +415,7 @@ Sausage_Pasta_Bake = Recipe(
         Ingredient(name='Veg Stock', quantity=1, category='Long-life'),
         Ingredient(name='Milk', quantity=1, category='Dairy'),
         Ingredient(name='Flour', quantity=1, category='Long-life'),
-        Ingredient(name='Cheese', quantity=1, category='Dairy'),
+        Ingredient(name='Cheddar', quantity=1, category='Dairy'),
         Ingredient(name='Rosemary', quantity=1, category='Herbs/Spices'),
         Ingredient(name='Basil', quantity=1, category='Herbs/Spices')
     ],
@@ -486,7 +487,7 @@ Salmon_Fillet = Recipe(
         Ingredient(name='Broccoli/Asparagus', quantity=1, category='Veg'),
         Ingredient(name='Butter', quantity=1, category='Dairy'),
         Ingredient(name='Oregano', quantity=1, category='Herbs/Spices'),
-        Ingredient(name='Chili Flakes', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Chilli Flakes', quantity=1, category='Herbs/Spices'),
         Ingredient(name='Garlic', quantity=1, category='Veg')
     ],
     type='Freya')
@@ -564,7 +565,7 @@ Cod_Mango_Salad = Recipe(
         Ingredient(name='Avocado', quantity=1, category='Veg'),
         Ingredient(name='Cucumber', quantity=1, category='Veg'),
         Ingredient(name='Cherry Tomato', quantity=1, category='Veg'),
-        Ingredient(name='Chili Flakes', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Chilli Flakes', quantity=1, category='Herbs/Spices'),
     ],
     type='Healthy')
 
@@ -616,7 +617,7 @@ Lentil_Feta_Salad = Recipe(
         Ingredient(name='Leaves', quantity=1, category='Veg'),
         Ingredient(name='Thyme', quantity=1, category='Herbs/Spices'),
         Ingredient(name='Oregano', quantity=1, category='Herbs/Spices'),
-        Ingredient(name='Chili Flakes', quantity=1, category='Herbs/Spices'),
+        Ingredient(name='Chilli Flakes', quantity=1, category='Herbs/Spices'),
         Ingredient(name='Balsamic Vinegar', quantity=1, category='Condiment'),
         Ingredient(name='Olive Oil', quantity=1, category='Long-life')
         ],

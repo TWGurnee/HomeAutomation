@@ -1,1 +1,72 @@
-{"Meal Plan": ["Arrabiata", "Prawn Chorizo Rice", "Sausage Pasta Bake", "Chicken Pie", "Cod Mango Salad", "Chicken Avocado Salad"], "Shopping List": {"Veg": {"Chopped Tomatoes": 1, "Onions": 4, "Peppers": 3, "Mushrooms": 1, "Plum Tomatoes": 1, "Garlic": 1, "Carrots": 1, "Potatoes": 1, "Leeks": 1, "Mango": 1, "Leaves": 2, "Avocado": 2, "Cucumber": 2, "Cherry Tomato": 1}, "Long-life": {"Penne": 1, "Tomato Puree": 2, "Rice": 1, "Rigatoni": 1, "Veg Stock": 1, "Flour": 2, "Pastry": 1, "Chicken Stock": 1}, "Herbs/Spices": {"Basil": 3, "Chili": 1, "Oregano": 1, "Parsely": 1, "Paprika": 1, "Rosemary": 1, "Thyme": 1, "Chili Flakes": 1}, "Bread": {"Ciabatta": 1}, "Meat": {"Chorizo": 1, "Sausages": 1, "Chicken": 2, "Cod": 1}, "Frozen": {"Prawns": 1}, "Dairy": {"Cheddar": 1, "Milk": 2, "Cheese": 1}, "Beverages": {"Red Wine": 1, "White Wine": 1}, "Condiment": {"Honey Mustard Dressing": 1}}}
+{
+    "Meal Plan": [
+        "Arrabiata",
+        "Prawn Chorizo Rice",
+        "Sausage Pasta Bake",
+        "Chicken Pie",
+        "Cod Mango Salad",
+        "Chicken Avocado Salad"
+    ],
+    "Shopping List": {
+        "Veg": {
+            "Chopped Tomatoes": 1,
+            "Onions": 4,
+            "Peppers": 3,
+            "Mushrooms": 1,
+            "Plum Tomatoes": 1,
+            "Garlic": 1,
+            "Carrots": 1,
+            "Potatoes": 1,
+            "Leeks": 1,
+            "Mango": 1,
+            "Leaves": 2,
+            "Avocado": 2,
+            "Cucumber": 2,
+            "Cherry Tomato": 1
+        },
+        "Long-life": {
+            "Penne": 1,
+            "Tomato Puree": 2,
+            "Rice": 1,
+            "Rigatoni": 1,
+            "Veg Stock": 1,
+            "Flour": 2,
+            "Pastry": 1,
+            "Chicken Stock": 1
+        },
+        "Herbs/Spices": {
+            "Basil": 3,
+            "Chili": 1,
+            "Oregano": 1,
+            "Parsely": 1,
+            "Paprika": 1,
+            "Rosemary": 1,
+            "Thyme": 1,
+            "Chili Flakes": 1
+        },
+        "Bread": {
+            "Ciabatta": 1
+        },
+        "Meat": {
+            "Chorizo": 1,
+            "Sausages": 1,
+            "Chicken": 2,
+            "Cod": 1
+        },
+        "Frozen": {
+            "Prawns": 1
+        },
+        "Dairy": {
+            "Cheddar": 1,
+            "Milk": 2,
+            "Cheese": 1
+        },
+        "Beverages": {
+            "Red Wine": 1,
+            "White Wine": 1
+        },
+        "Condiment": {
+            "Honey Mustard Dressing": 1
+        }
+    }
+}
