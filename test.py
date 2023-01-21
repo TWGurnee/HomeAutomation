@@ -25,3 +25,7 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 # for i in Ingredient.All_Ingredients: #PASSES
 #     values = astuple(i)
 #     print(values)
+
+# for r in Recipe.All_Recipes: #PASSES
+#     print(astuple(r))
+

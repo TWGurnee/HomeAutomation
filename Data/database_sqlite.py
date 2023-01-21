@@ -1,4 +1,4 @@
-import sqlite3 as db
+import sqlite3 as sql
 from pathlib import Path
 from dataclasses import astuple
 
@@ -10,7 +10,7 @@ class Database(object):
     """sqlite3 database class for mealplan and exercise manipulation"""
 
     DB_NAME = Path(r"database.db") #TODO Move to `YAML` config file to ensure secure.
-    conn = db.connect(DB_NAME)
+    conn = sql.connect(DB_NAME)
     cursor = conn.cursor()
 
     ### Context manager functions ###
@@ -38,22 +38,41 @@ class Database(object):
             cls.conn.execute("""
                 INSERT INTO ingredients (ingredient_name,ingredient_shopping_category)
                 VALUES (?, ?)""", (name, category,))
-            
+        cls.conn.commit()
+
+
+    @classmethod
+    def fill_recipes(cls):
+        for recipe in Recipe.All_Recipes:
+            name, ingredients, type = astuple(recipe)
+            cls.conn.execute("""
+                INSERT INTO recipes (recipe_name, recipe_type)
+                VALUES (?, ?)""", (name, type,))
+        cls.conn.commit()
+
+    @classmethod
+    def fill_recipe_ingredients(cls):
+        recipes = cls.cursor.execute("SELECT * FROM recipes")
+        for i in recipes: print(i)
+
+
     @classmethod
     def fill_exercises(cls):
         for exercise in ALL_EXERCISES.exercises:
             name, type, muscle_group, weight, reps, time, secondary_type = exercise.to_tuple()
             cls.conn.execute("""
                 INSERT INTO exercises (exercise_name,exercise_type,exercise_secondary_type,exercise_musclegroup,exercise_weight,exercise_reps,exercise_time)
-                VALUES (?, ?)""", (name, type, secondary_type, muscle_group, weight, reps, time))
+                VALUES (?, ?, ?, ?, ?, ?, ?)""", (name, type, secondary_type, muscle_group, weight, reps, time,))
+        cls.conn.commit()
+
 
 # Database.init_tables()
 
-with Database() as base:
-    res = base.conn.execute("SELECT ingredient_name FROM ingredients")
-    print(res.fetchall())
+Database.fill_recipe_ingredients()
 
-# Database.fill_exercises()
+# with Database() as base:
+#     res = base.conn.execute("SELECT ingredient_name FROM ingredients")
+#     print(res.fetchall())
 
 
     # TODO
