@@ -622,4 +622,3 @@ Lentil_Feta_Salad = Recipe(
         Ingredient(name='Olive Oil', quantity=1, category='Long-life')
         ],
     type='Healthy')
-

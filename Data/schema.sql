@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS recipe_ingredients (
     ingredient_id INTEGER,
     FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id),
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
-
 );
 
 
