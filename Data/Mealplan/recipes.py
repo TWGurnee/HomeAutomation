@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from ..database_sqlite import *
+# from ..database_sqlite import *
 
 
 @dataclass(frozen=True)

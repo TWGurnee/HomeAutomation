@@ -36,7 +36,7 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
 
 
 def get_recipe_from_name(name: str):
-    get_meal = {meal.name: meal for meal in Database.get_recipes()}
+    get_meal = {meal.name: meal for meal in Database.get_recipes()} #type: ignore
     return get_meal.get(name)
 
 ########### Meal Plan Functions ############
