@@ -38,49 +38,49 @@ class Database(object):
 
     ### Filling Tables ###
 
-    @classmethod
-    def fill_ingredients(cls):
-        for ingredient in Ingredient.All_Ingredients:
-            name, quantity, category = astuple(ingredient)
-            cls.cursor.execute("""
-                INSERT INTO ingredients (ingredient_name,ingredient_shopping_category)
-                VALUES (?, ?)""", (name, category,))
-        cls.conn.commit()
+    # @classmethod
+    # def fill_ingredients(cls):
+    #     for ingredient in Ingredient.All_Ingredients:
+    #         name, quantity, category = astuple(ingredient)
+    #         cls.cursor.execute("""
+    #             INSERT INTO ingredients (ingredient_name,ingredient_shopping_category)
+    #             VALUES (?, ?)""", (name, category,))
+    #     cls.conn.commit()
 
 
-    @classmethod
-    def fill_recipes(cls):
-        for recipe in Recipe.All_Recipes:
-            name, ingredients, type = astuple(recipe)
-            cls.cursor.execute("""
-                INSERT INTO recipes (recipe_name, recipe_type)
-                VALUES (?, ?)""", (name, type,))
-        cls.conn.commit()
+    # @classmethod
+    # def fill_recipes(cls):
+    #     for recipe in Recipe.All_Recipes:
+    #         name, ingredients, type = astuple(recipe)
+    #         cls.cursor.execute("""
+    #             INSERT INTO recipes (recipe_name, recipe_type)
+    #             VALUES (?, ?)""", (name, type,))
+    #     cls.conn.commit()
 
 
-    @classmethod
-    def fill_recipe_ingredients(cls):
-        recipes_table = list(cls.cursor.execute("SELECT * FROM recipes"))
-        ingredients_table = list(cls.cursor.execute("SELECT * FROM ingredients"))
+    # @classmethod
+    # def fill_recipe_ingredients(cls):
+    #     recipes_table = list(cls.cursor.execute("SELECT * FROM recipes"))
+    #     ingredients_table = list(cls.cursor.execute("SELECT * FROM ingredients"))
 
-        def get_ingredient_id_from_name(name):
-            id = {i[1]: i[0] for i in ingredients_table}
-            return id.get(name)
+    #     def get_ingredient_id_from_name(name):
+    #         id = {i[1]: i[0] for i in ingredients_table}
+    #         return id.get(name)
 
-        for id, name, category in recipes_table:
-            # get ingredients from recipe
-            recipe = Recipe.get_recipe_from_name(name)
-            recipe_id = id
-            recipe_ingredient_ids = [get_ingredient_id_from_name(i.name) for i in recipe.ingredients] # type: ignore
+    #     for id, name, category in recipes_table:
+    #         # get ingredients from recipe
+    #         recipe = Recipe.get_recipe_from_name(name)
+    #         recipe_id = id
+    #         recipe_ingredient_ids = [get_ingredient_id_from_name(i.name) for i in recipe.ingredients] # type: ignore
 
-            for ing_id in recipe_ingredient_ids:
+    #         for ing_id in recipe_ingredient_ids:
 
-                cls.cursor.execute("""
-                    INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
-                    VALUES (?, ?, ?)""",
-                    (1, recipe_id, ing_id)
-                )
-        cls.conn.commit()
+    #             cls.cursor.execute("""
+    #                 INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
+    #                 VALUES (?, ?, ?)""",
+    #                 (1, recipe_id, ing_id)
+    #             )
+    #     cls.conn.commit()
 
 
     @classmethod
@@ -154,6 +154,8 @@ class Database(object):
                 if type == selection.value
             ]
     
+
+
     
 # Database.init_tables()
 

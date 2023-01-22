@@ -7,8 +7,9 @@ from Config.emails import send_email
 from Config.config import SMTP_EMAIL, TO_FREYA
 
 from Data.helpers import load_current_plan
+from Data.database_sqlite import Database
 
-import Data.Mealplan.recipes as r
+from Data.Mealplan.recipes import Ingredient, Recipe
 
 ### Constants ###
 MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json") ##TODO perhaps move to config file?
@@ -34,15 +35,19 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
         json.dump(data, f)
 
 
+def get_recipe_from_name(name: str):
+    get_meal = {meal.name: meal for meal in Database.get_recipes()}
+    return get_meal.get(name)
+
 ########### Meal Plan Functions ############
 
-def generate_meal_plan(last_weeks_meals=None) -> list[r.Recipe]:
+def generate_meal_plan(last_weeks_meals=None) -> list[Recipe]:
     """Generates a meal plan for the week, ensuring no meals from last week are included"""
     # Generate meals list without any of last weeks meals
     if last_weeks_meals:
-        eligble_meals = [meal for meal in r.Recipe.All_Recipes if meal.name not in last_weeks_meals]
+        eligble_meals = [meal for meal in Database.get_recipes() if meal.name not in last_weeks_meals] # type: ignore
     else:
-        eligble_meals = r.Recipe.All_Recipes
+        eligble_meals = Database.get_recipes()
 
     # Create a list to hold the weekly meal plan
     weekly_meal_plan = []
@@ -53,13 +58,13 @@ def generate_meal_plan(last_weeks_meals=None) -> list[r.Recipe]:
 
     # randomly select 2 eligible recipe objects of each type to add to the weekly meal plan
     for type in meal_types:
-        choices = random.sample([meal for meal in eligble_meals if meal.type == type], 2)
+        choices = random.sample([meal for meal in eligble_meals if meal.type == type], 2) #type: ignore
         weekly_meal_plan.extend(choices)
 
     return weekly_meal_plan
 
 
-def update_ingredients_by_category(ingredient: r.Ingredient, ingredients_by_category: dict):
+def update_ingredients_by_category(ingredient: Ingredient, ingredients_by_category: dict):
     """Update the ingredients_by_category dict with a new ingredient."""
     # If the category doesn't exist in the dictionary yet, add it
     if ingredient.category not in ingredients_by_category:
@@ -74,7 +79,7 @@ def update_ingredients_by_category(ingredient: r.Ingredient, ingredients_by_cate
         ingredients_by_category[ingredient.category][ingredient.name] += ingredient.quantity
 
 
-def generate_ingredients_by_category(weekly_meal_plan: list[r.Recipe]) -> dict:
+def generate_ingredients_by_category(weekly_meal_plan: list[Recipe]) -> dict:
     """Returns a dict of all the unique ingredients and their quantities in the weekly meal plan"""
     # Create a dictionary to hold the ingredients by category
     ingredients_by_category = {}
@@ -136,7 +141,7 @@ def current_meal_plan_for_table(MEAL_PLAN_FILE) -> list[tuple[str, str, str]]: #
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     def pack_meal_info(meal_name):
-        recipe = r.Recipe.get_recipe_from_name(meal_name)
+        recipe = get_recipe_from_name(meal_name)
         return (recipe.type, meal_name, ', '.join([i.name for i in recipe.ingredients])) #type: ignore
 
     # week_meal_plan_info = current_meal_plan_for_table()
@@ -163,13 +168,13 @@ def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be us
     """Rerolls a single named meal in the meal plan"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
-    old_meal = r.Recipe.get_recipe_from_name(meal_name)
+    old_meal = get_recipe_from_name(meal_name)
 
     new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
 
     meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
 
-    recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
+    recipe_list = [get_recipe_from_name(meal) for meal in meal_plan_list]
 
     ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
 
@@ -184,13 +189,13 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
     """Rerolls a list of meals chosen in the dashboard mealplan table"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
-    replaced_meals = [r.Recipe.get_recipe_from_name(meal_name) for meal_name in meal_name_list]
+    replaced_meals = [get_recipe_from_name(meal_name) for meal_name in meal_name_list]
 
     for meal in replaced_meals:
         new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe.name not in meal_plan_list])) #type: ignore
         meal_plan_list[meal_plan_list.index(meal.name)] = new_meal.name #type: ignore
 
-    recipe_list = [r.Recipe.get_recipe_from_name(meal) for meal in meal_plan_list]
+    recipe_list = [get_recipe_from_name(meal) for meal in meal_plan_list]
 
     ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
 
