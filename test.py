@@ -5,6 +5,7 @@ from dataclasses import astuple
 
 from Data.Mealplan import *
 from Data.Exercise import *
+from Data.database_sqlite import Database, get_exercise_session_by_type
 
 from shopping_list_generator import *
 from exercise_plan_generator import *
@@ -32,3 +33,8 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 #     print(astuple(r))
 
 # print(get_recipe_from_name('Burritos')) #PASSES
+
+# for e in Database.get_exercises(SessionType.CHEST_SHOULDERS): #PASSES
+#     print(e.name)
+
+# print(get_exercise_session_by_type(SessionType.BACK_CORE_ARMS))

@@ -5,7 +5,7 @@ from .exercise import Exercise
 from .workout import WorkoutSession
 from .hiit import HIIT
 
-from .workout import ALL_EXERCISES, BACK_CORE_ARM_EXERCISES, CHEST_SHOULDER_EXERCISES, LEG_EXERCISES, HIIT_EXERCISES, CARDIO_EXERCISES
+from .gym_day_allowances import GYM_DAY_CONFIG
 
 __all__ = [
     'MuscleGroup',
@@ -13,5 +13,5 @@ __all__ = [
     'Exercise',
     'WorkoutSession',
     'HIIT',
-    'workout'
+    'GYM_DAY_CONFIG'
 ]

@@ -1,9 +1,10 @@
 import sqlite3 as sql
+import random
 from pathlib import Path
 from dataclasses import astuple
 
-from .Exercise import SessionType, Exercise
-from .Exercise.workout import ALL_EXERCISES
+from .Exercise import SessionType, Exercise, WorkoutSession, MuscleGroup, GYM_DAY_CONFIG
+
 from .Mealplan import Ingredient, Recipe
 
 
@@ -35,6 +36,16 @@ class Database(object):
         with open('schema.sql') as f:
             script = f.read()
             cls.conn.executescript(script)
+
+    @classmethod
+    def clear_tables(cls):
+        cls.conn.execute("""
+        DROP TABLE IF EXISTS ingredients;
+        DROP TABLE IF EXISTS recipes;
+        DROP TABLE IF EXISTS recipe_ingredients;
+        DROP TABLE IF EXISTS exercises;
+        """)
+        cls.conn.commit()
 
 
     ### Retrieval ###
@@ -97,13 +108,25 @@ class Database(object):
                 for id, name, type, secondary_type, muscle_group, weight, weight_increment, reps, time in exercises
                 if type == selection.value
             ]
-    
+        
 
+### randomised Generation function ###
 
+def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore
+    """Returns a set of random exercises depending on the SessionType given."""
+    exercises = []
 
+    if day_type == SessionType.CARDIO:
 
+        exercises.extend(random.sample(Database.get_exercises(SessionType.CARDIO), 1))
+        
+        return{day_type.value: exercises}
 
-
+    else:       
+        for muscle_group, exercise_number in GYM_DAY_CONFIG.get(day_type): #type: ignore
+            exercises.extend(WorkoutSession.grab_selection(Database.get_exercises(day_type), muscle_group, exercise_number))
+     
+        return {day_type.value: exercises}
 
 
 

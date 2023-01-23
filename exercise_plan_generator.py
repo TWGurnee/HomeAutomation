@@ -4,7 +4,7 @@ import random
 from pathlib import Path
 
 from Data.Exercise import SessionType, Exercise, HIIT
-from Data.Exercise.workout import get_exercise_session_by_type
+from Data.database_sqlite import get_exercise_session_by_type
 from Data.helpers import load_current_plan
 
 ### Functions ###

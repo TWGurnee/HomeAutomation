@@ -1,8 +1,3 @@
--- DROP TABLE IF EXISTS ingredients;
--- DROP TABLE IF EXISTS recipes;
--- DROP TABLE IF EXISTS recipe_ingredients;
--- DROP TABLE IF EXISTS exercises;
-
 
 CREATE TABLE IF NOT EXISTS ingredients (
     ingredient_id INTEGER PRIMARY KEY AUTOINCREMENT,
