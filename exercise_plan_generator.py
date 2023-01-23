@@ -3,7 +3,7 @@ import random
 
 from pathlib import Path
 
-from Data.Exercise import SessionType, Exercise
+from Data.Exercise import SessionType, Exercise, GYM_DAY_CONFIG
 from Data.database_sqlite import generate_exercise_session_by_type, generate_HIIT_plan
 from Data.helpers import load_current_plan
 
@@ -25,17 +25,20 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
     return exercise_sessions
 
 
-def prev_weeks_last_gym_session(SAVE_LOCATION) -> str: #type: ignore
+def prev_weeks_last_gym_session(SAVE_LOCATION, gym_config) -> str: #type: ignore
     """Return the name of the last gym workout in the previous week"""
     plan = load_current_plan(SAVE_LOCATION)
     sessions = list(plan.values())
     sessions.reverse()
 
-    gym_pass = [
-        "Back Core Arm day",
-        "Chest Shoulder day",
-        "Leg day"
-    ]
+    # List the gym days
+    gym_days = list(gym_config.values())
+    gym_pass = [day.value for day in gym_days]
+    # gym_pass = [
+    #     "Back Core Arm day",
+    #     "Chest Shoulder day",
+    #     "Leg day"
+    # ]
 
     for session in sessions:
         session = session[0]
@@ -44,7 +47,7 @@ def prev_weeks_last_gym_session(SAVE_LOCATION) -> str: #type: ignore
             return session_title
 
 
-def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessions: list[dict]) -> dict:
+def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: str, exercise_sessions: list[dict]) -> dict:
     """fills with a weekly template with a randomised weekly exercise plan"""
 
     # To allow for a day gap between each gym session, below are all possible configurations indexes of the week.
@@ -65,11 +68,13 @@ def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessio
     gym_day_indexes = random.choice(gym_indexes)
 
     # List the gym days
-    gym_pass = [
-        "Back Core Arm day",
-        "Chest Shoulder day",
-        "Leg day"
-    ]
+    gym_days = list(gym_config.values())
+    gym_pass = [day.value for day in gym_days]
+    # gym_pass = [
+    #     "Back Core Arm day",
+    #     "Chest Shoulder day",
+    #     "Leg day"
+    # ]
 
     # Create list of the randomised gym days from all of the weekly plan
     gym_sessions = [session for session in exercise_sessions if list(session.keys())[0] in gym_pass]
