@@ -124,7 +124,8 @@ def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ign
 
     else:       
         for muscle_group, exercise_number in GYM_DAY_CONFIG.get(day_type): #type: ignore
-            exercises.extend(WorkoutSession.grab_selection(Database.get_exercises(day_type), muscle_group, exercise_number))
+            exercise_list = Database.get_exercises(day_type)
+            exercises.extend(WorkoutSession.grab_selection(exercise_list, muscle_group, exercise_number))
      
         return {day_type.value: exercises}
 

@@ -51,9 +51,6 @@ class Exercise:
     def to_tuple(self) -> tuple:
         return astuple(self, tuple_factory=Exercise.custom_astuple_factory)
 
-    @staticmethod
-    def from_tuple(): ...
-
 
     @staticmethod
     def to_json(exercise: "Exercise") -> str:
@@ -77,4 +74,3 @@ class Exercise:
         if saved_json["reps"]: output += f' for {saved_json["reps"]} reps.'
         if saved_json["time"]: output += f' for {saved_json["time"]} seconds'
         return output
-

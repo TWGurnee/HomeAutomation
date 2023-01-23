@@ -1,8 +1,13 @@
+from pathlib import Path
+import json
+
 from .session_type import SessionType
 from .muscle_group import MuscleGroup
 
-
 """This config constant allows to define the number of exercises of a specific muscle group to be associated with a specific gym days"""
+
+
+# CURRENT_CONFIG_FILE = Path(r"gym_config.json")
 
 #TODO Create class for config alteration:
 #   -Init base config
@@ -34,3 +39,12 @@ GYM_DAY_CONFIG = {
         (MuscleGroup.GLUTES, 1)
     ),
 }
+
+# def config_to_json(config_file):
+
+
+
+# with open(CURRENT_CONFIG_FILE, 'w') as f:
+#     json.dumps(GYM_DAY_CONFIG)
+
+

@@ -33,7 +33,7 @@ class WorkoutSession:
     @staticmethod
     def grab_selection(exercise_list: list[Exercise], muscle_group: MuscleGroup, number: int) -> list[Exercise]:
         """Returns a random selection exercises. The muscle group and number of exercises returned are entered as arguments"""
-        return random.sample([e for e in exercise_list if e.muscle_group == muscle_group], number)
+        return random.sample([e for e in exercise_list if e.muscle_group == muscle_group.value], number)
 
 
     ### Helper methods ###

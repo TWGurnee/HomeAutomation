@@ -17,7 +17,7 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 
 # send_current_shopping_list(MEAL_PLAN_FILE) #PASSES
 
-# print(prev_weeks_last_gym_session(WORKOUT_FILE)) #PASSES
+# print(prev_weeks_last_gym_session(WORKOUT_FILE, GYM_DAY_CONFIG)) #PASSES
 
 # for item in Recipe.All_Recipes: #PASSES
 #     print(astuple(item))

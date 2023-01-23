@@ -32,7 +32,7 @@ def prev_weeks_last_gym_session(SAVE_LOCATION, gym_config) -> str: #type: ignore
     sessions.reverse()
 
     # List the gym days
-    gym_days = list(gym_config.values())
+    gym_days = list(gym_config.keys())
     gym_pass = [day.value for day in gym_days]
     # gym_pass = [
     #     "Back Core Arm day",
@@ -68,7 +68,7 @@ def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: st
     gym_day_indexes = random.choice(gym_indexes)
 
     # List the gym days
-    gym_days = list(gym_config.values())
+    gym_days = list(gym_config.keys())
     gym_pass = [day.value for day in gym_days]
     # gym_pass = [
     #     "Back Core Arm day",
