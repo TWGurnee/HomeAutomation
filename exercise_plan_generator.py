@@ -216,8 +216,8 @@ SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 
 if __name__ == '__main__':
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
-    last_gym_session = prev_weeks_last_gym_session
-    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, last_gym_session, exercise_sessions) #type: ignore
+    last_gym_session = prev_weeks_last_gym_session(SAVE_LOCATION, GYM_DAY_CONFIG)
+    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, GYM_DAY_CONFIG, last_gym_session, exercise_sessions) #type: ignore
     save_new_plan(exercise_plan, SAVE_LOCATION)
 
 
