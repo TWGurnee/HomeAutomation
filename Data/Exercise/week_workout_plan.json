@@ -3,15 +3,6 @@
         {
             "Back Core Arm day": [
                 {
-                    "name": "Bent over rows",
-                    "type": "Back Core Arm day",
-                    "muscle_group": "Upper Back",
-                    "weight": 40,
-                    "reps": 10,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
                     "name": "Isolated rows",
                     "type": "Back Core Arm day",
                     "muscle_group": "Upper Back",
@@ -21,20 +12,29 @@
                     "secondary_type": null
                 },
                 {
-                    "name": "Romanian deadlifts",
+                    "name": "Lat pull downs",
                     "type": "Back Core Arm day",
-                    "muscle_group": "Lower Back",
-                    "weight": 30,
-                    "reps": null,
-                    "time": 30,
+                    "muscle_group": "Upper Back",
+                    "weight": 50,
+                    "reps": 10,
+                    "time": null,
                     "secondary_type": null
                 },
                 {
-                    "name": "Crunches",
+                    "name": "Deadlifts",
+                    "type": "Back Core Arm day",
+                    "muscle_group": "Lower Back",
+                    "weight": 100,
+                    "reps": 5,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Weighted Situps",
                     "type": "Back Core Arm day",
                     "muscle_group": "Core",
-                    "weight": null,
-                    "reps": 20,
+                    "weight": 10,
+                    "reps": 12,
                     "time": null,
                     "secondary_type": null
                 },
@@ -66,10 +66,10 @@
                     "secondary_type": null
                 },
                 {
-                    "name": "Tricep Shoulder Lifts",
+                    "name": "Dips",
                     "type": "Back Core Arm day",
                     "muscle_group": "Tricep",
-                    "weight": 20,
+                    "weight": null,
                     "reps": 10,
                     "time": null,
                     "secondary_type": null
@@ -78,104 +78,6 @@
         }
     ],
     "Tuesday": [
-        {
-            "Cardio day": [
-                {
-                    "name": "5K",
-                    "type": "Cardio day",
-                    "muscle_group": null,
-                    "weight": null,
-                    "reps": null,
-                    "time": null,
-                    "secondary_type": "Rest day"
-                }
-            ]
-        }
-    ],
-    "Wednesday": [
-        {
-            "Rest day": []
-        }
-    ],
-    "Thursday": [
-        {
-            "Chest Shoulder day": [
-                {
-                    "name": "Bench press",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Chest Press",
-                    "weight": 50,
-                    "reps": 10,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Press ups",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Chest Press",
-                    "weight": null,
-                    "reps": 15,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Decline press",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Chest Press",
-                    "weight": 40,
-                    "reps": 10,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Freeweight Fly",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Chest Fly",
-                    "weight": 14,
-                    "reps": 10,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Seated Shoulder press",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Shoulder Press",
-                    "weight": 25,
-                    "reps": 8,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Standing Shoulder press",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Shoulder Press",
-                    "weight": 30,
-                    "reps": 8,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Front shoulder lifts",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Shoulder Side",
-                    "weight": 10,
-                    "reps": 10,
-                    "time": null,
-                    "secondary_type": null
-                },
-                {
-                    "name": "Side shoulder lifts",
-                    "type": "Chest Shoulder day",
-                    "muscle_group": "Shoulder Side",
-                    "weight": 6,
-                    "reps": 10,
-                    "time": null,
-                    "secondary_type": null
-                }
-            ]
-        }
-    ],
-    "Friday": [
         {
             "Cardio day": [
                 {
@@ -190,16 +92,16 @@
             ]
         }
     ],
-    "Saturday": [
+    "Wednesday": [
         {
             "Leg day": [
                 {
-                    "name": "Leg press",
+                    "name": "Wall sits",
                     "type": "Leg day",
                     "muscle_group": "Whole Leg",
-                    "weight": 120,
-                    "reps": 10,
-                    "time": null,
+                    "weight": null,
+                    "reps": null,
+                    "time": 30,
                     "secondary_type": null
                 },
                 {
@@ -212,12 +114,12 @@
                     "secondary_type": null
                 },
                 {
-                    "name": "Wall sits",
+                    "name": "Leg press",
                     "type": "Leg day",
                     "muscle_group": "Whole Leg",
-                    "weight": null,
-                    "reps": null,
-                    "time": 30,
+                    "weight": 120,
+                    "reps": 10,
+                    "time": null,
                     "secondary_type": null
                 },
                 {
@@ -250,11 +152,109 @@
             ]
         }
     ],
-    "Sunday": [
+    "Thursday": [
         {
             "Rest day": [
                 {
                     "name": "5K",
+                    "type": "Cardio day",
+                    "muscle_group": null,
+                    "weight": null,
+                    "reps": null,
+                    "time": null,
+                    "secondary_type": "Rest day"
+                }
+            ]
+        }
+    ],
+    "Friday": [
+        {
+            "Chest Shoulder day": [
+                {
+                    "name": "Seated press",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Chest Press",
+                    "weight": 40,
+                    "reps": 10,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Press ups",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Chest Press",
+                    "weight": null,
+                    "reps": 15,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Bench press",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Chest Press",
+                    "weight": 50,
+                    "reps": 10,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Cable fly",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Chest Fly",
+                    "weight": 50,
+                    "reps": 10,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Standing Shoulder press",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Shoulder Press",
+                    "weight": 30,
+                    "reps": 8,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Seated Shoulder press",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Shoulder Press",
+                    "weight": 25,
+                    "reps": 8,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Front shoulder lifts",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Shoulder Side",
+                    "weight": 10,
+                    "reps": 10,
+                    "time": null,
+                    "secondary_type": null
+                },
+                {
+                    "name": "Side shoulder lifts",
+                    "type": "Chest Shoulder day",
+                    "muscle_group": "Shoulder Side",
+                    "weight": 6,
+                    "reps": 10,
+                    "time": null,
+                    "secondary_type": null
+                }
+            ]
+        }
+    ],
+    "Saturday": [
+        {
+            "Rest day": []
+        }
+    ],
+    "Sunday": [
+        {
+            "Cardio day": [
+                {
+                    "name": "FARTLEK 5k",
                     "type": "Cardio day",
                     "muscle_group": null,
                     "weight": null,
