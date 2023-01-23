@@ -5,7 +5,7 @@ from dataclasses import astuple
 
 from Data.Mealplan import *
 from Data.Exercise import *
-from Data.database_sqlite import Database, get_exercise_session_by_type
+from Data.database_sqlite import Database, generate_exercise_session_by_type
 
 from shopping_list_generator import *
 from exercise_plan_generator import *

@@ -1,9 +1,9 @@
 import sqlite3 as sql
 import random
-from pathlib import Path
-from dataclasses import astuple
 
-from .Exercise import SessionType, Exercise, WorkoutSession, MuscleGroup, GYM_DAY_CONFIG
+from pathlib import Path
+
+from .Exercise import SessionType, MuscleGroup, Exercise, WorkoutSession, GYM_DAY_CONFIG
 
 from .Mealplan import Ingredient, Recipe
 
@@ -110,9 +110,9 @@ class Database(object):
             ]
         
 
-### randomised Generation function ###
+### random generation functions ###
 
-def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore
+def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore
     """Returns a set of random exercises depending on the SessionType given."""
     exercises = []
 
@@ -128,6 +128,39 @@ def get_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore
      
         return {day_type.value: exercises}
 
+
+def generate_HIIT_plan():
+    """Randomly generates a plan for a HIIT workout.
+    Fills up to 15 exercises, to be done in a 30 active and 30 second rest.
+    2 sets would provide a 30 minute workout."""
+
+    exercise_pool = Database.get_exercises(SessionType.HIIT)
+
+    prev_exercise_type = None
+    # Loop counter to prevent infinity looping.
+    loops = 0
+    # Initialise list for plan to be filled by loop below.
+    plan = []
+
+    while len(plan) != 15:
+
+        if loops > 30:
+            return {"HIIT workout": plan}
+
+        chosen_exercise = random.choice(exercise_pool)
+
+        if chosen_exercise.muscle_group == prev_exercise_type:
+            loops+=1
+            continue
+        
+        else:
+            plan.append(chosen_exercise)
+            # Set the MuscleGroup to ensure no muscle overload.
+            prev_exercise_type = chosen_exercise.muscle_group
+            # Remove exercise from pool to ensure isnt duplicated.
+            exercise_pool.remove(chosen_exercise)
+    
+    return {"HIIT workout": plan} #TODO - timings?
 
 
 # Database.init_tables()

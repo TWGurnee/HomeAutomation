@@ -4,6 +4,12 @@ from .muscle_group import MuscleGroup
 
 """This config constant allows to define the number of exercises of a specific muscle group to be associated with a specific gym days"""
 
+#TODO Create class for config alteration:
+#   -Init base config
+#   -Change config
+#   -Switch between 3 preset configs?
+#   -
+
 GYM_DAY_CONFIG = {
 
     SessionType.BACK_CORE_ARMS: (

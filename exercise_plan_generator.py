@@ -3,8 +3,8 @@ import random
 
 from pathlib import Path
 
-from Data.Exercise import SessionType, Exercise, HIIT
-from Data.database_sqlite import get_exercise_session_by_type
+from Data.Exercise import SessionType, Exercise
+from Data.database_sqlite import generate_exercise_session_by_type, generate_HIIT_plan
 from Data.helpers import load_current_plan
 
 ### Functions ###
@@ -20,7 +20,7 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
         
         else:
             for _ in range(allowance):
-                exercise_sessions.append(get_exercise_session_by_type(session_type))
+                exercise_sessions.append(generate_exercise_session_by_type(session_type))
 
     return exercise_sessions
 
@@ -128,7 +128,7 @@ def fill_weekly_plan(week_template: dict, last_gym_session: str, exercise_sessio
 
         # If session is a HIIT, update session to be full plan.
         if exercise.secondary_type == SessionType.HIIT:
-            session = HIIT._get_plan()
+            session = generate_HIIT_plan()
 
         # As the plan can be filled, we need to account for situations where we have a cardio session left to add:
         if not final_indexes:
