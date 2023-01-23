@@ -1,16 +1,18 @@
+import sys
+
 from pathlib import Path
 from dataclasses import astuple
 
-from Data.Mealplan.recipes import *
-from Data.Exercise.exercise import *
+from Data.Mealplan import *
+from Data.Exercise import *
 
-from shopping_list_generator import send_current_shopping_list, re_roll_meal
-from exercise_plan_generator import prev_weeks_last_gym_session
+from shopping_list_generator import *
+from exercise_plan_generator import *
 
 MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json")
 WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 
-# re_roll_meal(MEAL_PLAN_FILE, "Harissa Pasta") #PASSES
+# re_roll_meal(MEAL_PLAN_FILE, "Prawn Chorizo Rice") #PASSES
 
 # send_current_shopping_list(MEAL_PLAN_FILE) #PASSES
 
@@ -29,3 +31,4 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 # for r in Recipe.All_Recipes: #PASSES
 #     print(astuple(r))
 
+# print(get_recipe_from_name('Burritos')) #PASSES
