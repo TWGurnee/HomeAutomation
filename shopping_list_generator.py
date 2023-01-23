@@ -9,7 +9,7 @@ from Config.config import SMTP_EMAIL, TO_FREYA
 from Data.helpers import load_current_plan
 from Data.database_sqlite import Database
 
-from Data.Mealplan.recipes import Ingredient, Recipe
+from Data.Mealplan import Ingredient, Recipe
 
 ### Constants ###
 MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json") ##TODO perhaps move to config file?
@@ -54,7 +54,7 @@ def generate_meal_plan(last_weeks_meals=None) -> list[Recipe]:
 
     # Meal types to ensure healthy plan and fair cooking responsibilities
     meal_types = ['Tim', 'Freya', 'Healthy']
-    #meal_types = {meal.type for meal in r.Recipe.All_Recipes}
+    #meal_types = {meal.type for meal in Database.get_recipes()}
 
     # randomly select 2 eligible recipe objects of each type to add to the weekly meal plan
     for type in meal_types:
@@ -170,9 +170,12 @@ def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be us
 
     old_meal = get_recipe_from_name(meal_name)
 
-    new_meal = random.choice([meal for meal in r.Recipe.All_Recipes if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
+    new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
 
-    meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
+    try:
+        meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
+    except ValueError as e:
+        print(f'{e}: Re-roll another meal')
 
     recipe_list = [get_recipe_from_name(meal) for meal in meal_plan_list]
 
@@ -192,8 +195,11 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
     replaced_meals = [get_recipe_from_name(meal_name) for meal_name in meal_name_list]
 
     for meal in replaced_meals:
-        new_meal = (random.choice([recipe for recipe in r.Recipe.All_Recipes if recipe.type == meal.type if recipe.name not in meal_plan_list])) #type: ignore
-        meal_plan_list[meal_plan_list.index(meal.name)] = new_meal.name #type: ignore
+        new_meal = (random.choice([recipe for recipe in Database.get_recipes() if recipe.type == meal.type if recipe.name not in meal_plan_list])) #type: ignore
+        try:
+            meal_plan_list[meal_plan_list.index(meal)] = new_meal.name
+        except ValueError as e:
+            print(f'{e}: Re-roll another meal')
 
     recipe_list = [get_recipe_from_name(meal) for meal in meal_plan_list]
 
