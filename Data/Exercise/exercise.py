@@ -13,6 +13,7 @@ class Exercise:
     type: SessionType
     muscle_group: MuscleGroup = field(default=None, metadata={"description": "The group of muscles used in the exercise. Required to ensure a balanced workout"}) #type: ignore
     weight: int = field(default=None, metadata={"description": "Weight in Kg used for the exercise"}) #type: ignore
+    weight_increment: float = field(default=None, metadata={"description": "The weight in KG that the proposed exercise would be increased by when the target is met"}) #type: ignore
     reps: int = field(default=None, metadata={"description": "Number of reps to perform for the exercise"}) #type: ignore
     time: int = field(default=None, metadata={"description": "Field for the best time, target time, or input time. Measured in seconds"}) #type: ignore
     secondary_type: SessionType = field(default=None, metadata={"description": "The secondary type of an exercise. Current use cases are HIIT and 5K to allow for appropriate plan generation"}) #type: ignore

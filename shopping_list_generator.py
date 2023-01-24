@@ -35,9 +35,6 @@ def save_new_meal_plan(MEAL_PLAN_FILE, meal_plan: list[str], ingredients_by_cate
         json.dump(data, f)
 
 
-def get_recipe_from_name(name: str):
-    get_meal = {meal.name: meal for meal in Database.get_recipes()} #type: ignore
-    return get_meal.get(name)
 
 ########### Meal Plan Functions ############
 
@@ -141,7 +138,7 @@ def current_meal_plan_for_table(MEAL_PLAN_FILE) -> list[tuple[str, str, str]]: #
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
     def pack_meal_info(meal_name):
-        recipe = get_recipe_from_name(meal_name)
+        recipe = Database.get_recipe_from_name(meal_name)
         return (recipe.type, meal_name, ', '.join([i.name for i in recipe.ingredients])) #type: ignore
 
     # week_meal_plan_info = current_meal_plan_for_table()
@@ -168,7 +165,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be us
     """Rerolls a single named meal in the meal plan"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
-    old_meal = get_recipe_from_name(meal_name)
+    old_meal = Database.get_recipe_from_name(meal_name)
 
     new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
 
@@ -177,7 +174,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be us
     except ValueError as e:
         print(f'{e}: Re-roll another meal')
 
-    recipe_list = [get_recipe_from_name(meal) for meal in meal_plan_list]
+    recipe_list = [Database.get_recipe_from_name(meal) for meal in meal_plan_list]
 
     ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
 
@@ -192,7 +189,7 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
     """Rerolls a list of meals chosen in the dashboard mealplan table"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
-    replaced_meals = [get_recipe_from_name(meal_name) for meal_name in meal_name_list]
+    replaced_meals = [Database.get_recipe_from_name(meal_name) for meal_name in meal_name_list]
 
     for meal in replaced_meals:
         new_meal = (random.choice([recipe for recipe in Database.get_recipes() if recipe.type == meal.type if recipe.name not in meal_plan_list])) #type: ignore
@@ -201,7 +198,7 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
         except ValueError as e:
             print(f'{e}: Re-roll another meal')
 
-    recipe_list = [get_recipe_from_name(meal) for meal in meal_plan_list]
+    recipe_list = [Database.get_recipe_from_name(meal) for meal in meal_plan_list]
 
     ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
 

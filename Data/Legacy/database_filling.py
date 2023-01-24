@@ -32,7 +32,7 @@
     #         return id.get(name)
 
     #     for id, name, category in recipes_table:
-    #         get ingredients from recipe
+    #         # get ingredients from recipe
     #         recipe = Recipe.get_recipe_from_name(name)
     #         recipe_id = id
     #         recipe_ingredient_ids = [get_ingredient_id_from_name(i.name) for i in recipe.ingredients] # type: ignore

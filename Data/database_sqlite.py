@@ -1,10 +1,10 @@
 import sqlite3 as sql
 import random
 
+from dataclasses import astuple
 from pathlib import Path
 
 from .Exercise import SessionType, MuscleGroup, Exercise, WorkoutSession, GYM_DAY_CONFIG
-
 from .Mealplan import Ingredient, Recipe
 
 
@@ -48,26 +48,123 @@ class Database(object):
         cls.conn.commit()
 
 
-    ### Retrieval ###
+    ### Ingredients ###
 
-    @staticmethod
-    def get_ingredients():
-        ingredients = Database.cursor.execute("SELECT ingredient_name, ingredient_shopping_category FROM ingredients")
+    @classmethod
+    def add_ingredient(cls, ingredient: Ingredient) -> None:
+        name, quantity, category = astuple(ingredient)
+        cls.cursor.execute("""
+            INSERT INTO ingredients (ingredient_name,ingredient_shopping_category)
+            VALUES (?, ?)""", (name, category,))
+        cls.conn.commit()
+
+
+    @classmethod
+    def get_ingredients(cls):
+        ingredients = cls.cursor.execute("SELECT ingredient_name, ingredient_shopping_category FROM ingredients")
         return [Ingredient(name=name, quantity=1, category=category) for name, category in ingredients]
     
 
     @staticmethod
-    def get_recipes(limit: str=None): # type: ignore
+    def get_ingredient_from_name(name: str):
+        ingredients = {ingredient.name: ingredient for ingredient in Database.get_ingredients()} #type: ignore
+        return ingredients.get(name)
+    
+
+    @classmethod
+    def get_ingredient_id_from_name(cls, name: str):
+        ingredients_table = list(cls.cursor.execute("SELECT * FROM ingredients"))
+        id = {i[1]: i[0] for i in ingredients_table}
+        return id.get(name)
+
+
+    @staticmethod
+    def categorise_ingredient(ingredient: str) -> str:
+        """Get or assign category for a ingredient.name or string"""
+
+        all_ingredients = Database.get_ingredients()
+
+        # To get categories we need all current ingredients and their category.
+        all_ingredient_names = [ingredient.name for ingredient in all_ingredients]
+        get_category_from_name = {i.name: i.category for i in all_ingredients}
+
+        # Categorise ingredient
+        if ingredient in all_ingredient_names:
+            category = get_category_from_name[ingredient]
+        else:
+            all_categories = {ingredient.category for ingredient in all_ingredients}
+            category = input(f'Please choose food category from following:\n{all_categories}')
+
+        return category
+
+
+    ### Recipes ###
+
+    @staticmethod
+    def generate_recipe(recipe_dict: dict):
+        """Helper method to generate recipes from a simple typed input dict:
+        For example: 
+        `Test_Recipe = {('Tim', 'Steak'): ['Steak', 'Broccoli/Asparagus', 'Chips/Potatoes', 'Peppercorn Sauce']}`
+        `generate_recipe(Test_Recipe)`
+
+        Currently result is unformatted and works on dicts of 1 recipe"""
+
+        # Unpack input:
+        meal_type, name = list(recipe_dict.keys())[0]
+        ingredients = recipe_dict[(meal_type, name)]
+
+        # Create list to hold the ingredients for building Recipe object.
+        ingredient_objects = []
+
+        # Fill ingredient_objects list
+        for ingredient in ingredients:
+            # Generic quantity value
+            quantity = 1
+
+            # Get category
+            category = Database.categorise_ingredient(ingredient)
+
+            # Add to list
+            ingredient_objects.append(Ingredient(
+                name=ingredient, quantity=quantity, category=category))
+
+        return Recipe(name=name, ingredients=ingredient_objects, type=meal_type)
+
+
+    @classmethod
+    def add_recipe(cls, recipe: Recipe) -> None:
+        """Adds a recipe to the recipe table and to the relating recipe_ingredients table"""        
+        name, ingredients, type = astuple(recipe)
+
+        cls.cursor.execute("""
+            INSERT INTO recipes (recipe_name, recipe_type)
+            VALUES (?, ?)""", (name, type,))
+        
+        recipe_id = cls.cursor.lastrowid
+        recipe_ingredient_ids = [Database.get_ingredient_id_from_name(ingredient.name) for ingredient in ingredients]
+
+        for ing_id in recipe_ingredient_ids:
+            cls.cursor.execute("""
+                INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
+                VALUES (?, ?, ?)""",
+                (1, recipe_id, ing_id)
+            )
+
+        cls.conn.commit()
+
+
+    @classmethod
+    def get_recipes(cls, limit: str=None): # type: ignore
         """Returns list of all recipes with optional specifier argument. Can return the names only or specified categories. """
 
-        Database.cursor.execute("""
+        cls.cursor.execute("""
         SELECT r.recipe_name, r.recipe_type, i.ingredient_name, ri.ingredient_quantity, i.ingredient_shopping_category
         FROM recipes r
         JOIN recipe_ingredients ri ON r.recipe_id = ri.recipe_id
         JOIN ingredients i ON i.ingredient_id = ri.ingredient_id
         """)
         
-        rows = Database.cursor.fetchall()
+        rows = cls.cursor.fetchall()
         
         recipes = {}
 
@@ -89,7 +186,16 @@ class Database(object):
         
         elif limit in ["Tim", "Freya", "Healthy"]:
             return [r for r in list(recipes.values()) if r.type == limit]
+
+
+    @staticmethod
+    def get_recipe_from_name(name: str) -> None:
+        meals_dict = {meal.name: meal for meal in Database.get_recipes()} #type: ignore
+        return meals_dict.get(name)
     
+
+
+    ### Exercises ###
 
     @staticmethod
     def get_exercises(selection: SessionType=None) -> list[Exercise]: #type: ignore
@@ -98,13 +204,13 @@ class Database(object):
         exercises = list(Database.cursor.execute("SELECT * FROM exercises"))
         if not selection:
             return [
-                Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, reps=reps, time=time, secondary_type=secondary_type)
+                Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, weight_increment=weight_increment, reps=reps, time=time, secondary_type=secondary_type)
                 for id, name, type, secondary_type, muscle_group, weight, weight_increment, reps, time in exercises
                 ]
         
         else: 
             return [
-                Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, reps=reps, time=time, secondary_type=secondary_type)
+                Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, weight_increment=weight_increment, reps=reps, time=time, secondary_type=secondary_type)
                 for id, name, type, secondary_type, muscle_group, weight, weight_increment, reps, time in exercises
                 if type == selection.value
             ]
@@ -161,7 +267,7 @@ def generate_HIIT_plan():
             # Remove exercise from pool to ensure isnt duplicated.
             exercise_pool.remove(chosen_exercise)
     
-    return {"HIIT workout": plan} #TODO - timings?
+    return {"HIIT workout": plan}
 
 
 # Database.init_tables()
