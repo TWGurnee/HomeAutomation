@@ -236,6 +236,24 @@ def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ign
         return {day_type.value: exercises}
 
 
+def get_workout_session(day_type: SessionType) -> WorkoutSession:
+    """Returns a workout session with random exercises depending on the SessionType given."""
+    exercises = []
+
+    if day_type == SessionType.CARDIO:
+
+        exercises.extend(random.sample(Database.get_exercises(SessionType.CARDIO), 1))
+        
+        return WorkoutSession(name=day_type.value, exercises=exercises, exercise_type=day_type)
+
+    else:       
+        for muscle_group, exercise_number in GYM_DAY_CONFIG.get(day_type): #type: ignore
+            exercise_list = Database.get_exercises(day_type)
+            exercises.extend(WorkoutSession.grab_selection(exercise_list, muscle_group, exercise_number))
+
+        return WorkoutSession(name=day_type.value, exercises=exercises, exercise_type=day_type)
+
+
 def generate_HIIT_plan():
     """Randomly generates a plan for a HIIT workout.
     Fills up to 15 exercises, to be done in a 30 active and 30 second rest.
@@ -268,6 +286,7 @@ def generate_HIIT_plan():
             exercise_pool.remove(chosen_exercise)
     
     return {"HIIT workout": plan}
+    # return WorkoutSession(name="HIIT workout", exercises=plan, exercise_type=SessionType.HIIT)
 
 
 # Database.init_tables()

@@ -1,1 +1,71 @@
-{"Meal Plan": ["Arrabiata", "Thai Curry", "Sausage Pasta Bake", "Chicken Pie", "Cod Mango Salad", "Chicken Avocado Salad"], "Shopping List": {"Frozen": {"Chopped Tomatoes": 1, "Broccoli": 1, "Green Beans": 1, "Peas": 1}, "Long-life": {"Penne": 1, "Coconut Milk": 1, "Rigatoni": 1, "Tomato Puree": 1, "Veg Stock": 1, "Flour": 2, "Pastry": 1, "Chicken Stock": 1}, "Herbs/Spices": {"Basil": 3, "Chilli Powder": 1, "Oregano": 1, "Rosemary": 1, "Thyme": 1, "Chilli Flakes": 1}, "Veg": {"Onions": 5, "Peppers": 2, "Mushrooms": 1, "Leaves": 3, "Carrots": 1, "Potatoes": 1, "Leeks": 1, "Mango": 1, "Avocado": 2, "Cucumber": 2, "Cherry Tomato": 1}, "Meat": {"Chicken": 3, "Sausages": 1, "Cod": 1}, "Snacks": {"Prawn Crackers": 1}, "Beverages": {"Red Wine": 1, "White Wine": 1}, "Dairy": {"Milk": 2, "Cheddar": 1}, "Condiment": {"Honey Mustard Dressing": 1}}}
+{
+    "Meal Plan": [
+        "Indian Curry",
+        "Quesadillas",
+        "Shepherds Pie",
+        "Chicken Chow Mein",
+        "CousCous Honey Garlic Prawns",
+        "Lentil Feta Salad"
+    ],
+    "Shopping List": {
+        "Herbs/Spices": {
+            "Curry Paste": 1,
+            "Parsely": 1,
+            "Thyme": 1,
+            "Oregano": 1,
+            "Chilli Flakes": 1
+        },
+        "Veg": {
+            "Peppers": 3,
+            "Onions": 3,
+            "Mushrooms": 1,
+            "Mushroom": 1,
+            "Leaves": 2,
+            "Potatoes": 1,
+            "Carrots": 1,
+            "Spring Onion": 2,
+            "Garlic": 1,
+            "Asparagus": 1
+        },
+        "Long-life": {
+            "Rice": 1,
+            "Tomato Puree": 1,
+            "Beef Stock": 1,
+            "Oyster Sauce": 1,
+            "Sesame Oil": 1,
+            "Noodles": 1,
+            "Corn Starch": 1,
+            "Chicken Stock": 1,
+            "Sugar": 1,
+            "Honey": 1,
+            "Cous Cous": 1,
+            "Green Lentils": 1,
+            "Olive Oil": 1
+        },
+        "Bread": {
+            "Naan": 1,
+            "Wraps": 1
+        },
+        "Condiment": {
+            "Chutney": 1,
+            "Worcestershire Sauce": 1,
+            "Ketjap Manis": 1,
+            "Balsamic Vinegar": 1
+        },
+        "Dairy": {
+            "Yoghurt/Cream": 1,
+            "Cheddar": 2,
+            "Butter": 1,
+            "Milk": 1,
+            "Feta": 1
+        },
+        "Meat": {
+            "Chicken": 2,
+            "Lamb Mince": 1
+        },
+        "Frozen": {
+            "Green Beans": 1,
+            "Prawns": 1
+        }
+    }
+}

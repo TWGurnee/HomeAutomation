@@ -29,11 +29,16 @@ class WorkoutSession:
         exercises = WorkoutSession.get_exercises_by_type(all_exercises, exercise_type)
         return WorkoutSession(name, exercises=exercises, exercise_type=exercise_type)
 
+
     ### Workout Generation Methods ###
     @staticmethod
     def grab_selection(exercise_list: list[Exercise], muscle_group: MuscleGroup, number: int) -> list[Exercise]:
         """Returns a random selection exercises. The muscle group and number of exercises returned are entered as arguments"""
         return random.sample([e for e in exercise_list if e.muscle_group == muscle_group.value], number)
+    
+
+    def to_plan(self):
+        return {self.name: self.exercises}
 
 
     ### Helper methods ###

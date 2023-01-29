@@ -246,3 +246,4 @@ if __name__ == "__main__":
     # Send meal plan to emails
     send_email(subject, msg, SMTP_EMAIL)
     send_email(subject, msg, TO_FREYA)
+    print(f'Mealplans sent to: {SMTP_EMAIL, TO_FREYA}')

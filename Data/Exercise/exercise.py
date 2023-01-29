@@ -20,18 +20,20 @@ class Exercise:
     #sets: int = field(default_factory=lambda: 4)
 
 
-    @staticmethod
-    def custom_asdict_factory(data):
-
-        def convert_value(obj):
-            if isinstance(obj, Enum):
-                return obj.value
-            return obj
-
-        return dict((k, convert_value(v)) for k, v in data)
-
     def to_dict(self) -> dict:
-        return asdict(self, dict_factory=Exercise.custom_asdict_factory)
+
+        def custom_asdict_factory(data):
+            
+            def convert_value(obj):
+                
+                if isinstance(obj, Enum):
+                    return obj.value
+                return obj
+            
+            return dict((k, convert_value(v)) for k, v in data)
+
+        return asdict(self, dict_factory=custom_asdict_factory)
+
 
     @staticmethod #TODO update to ensure works correctly
     def from_dict(data: dict) -> "Exercise":
@@ -39,24 +41,25 @@ class Exercise:
         return replace(Exercise, **data) #type: ignore
 
 
-    @staticmethod
-    def custom_astuple_factory(data):
-
-        def convert_value(obj):
-            if isinstance(obj, Enum):
-                return obj.value
-            return obj
-
-        return tuple(convert_value(i) for i in data)
-
     def to_tuple(self) -> tuple:
-        return astuple(self, tuple_factory=Exercise.custom_astuple_factory)
+
+        def custom_astuple_factory(data):
+            
+            def convert_value(obj):
+                if isinstance(obj, Enum):
+                    return obj.value
+                return obj
+
+            return tuple(convert_value(i) for i in data)
+        
+        return astuple(self, tuple_factory=custom_astuple_factory)
 
 
     @staticmethod
     def to_json(exercise: "Exercise") -> str:
         data = asdict(exercise)
         return json.dumps(data)
+
 
     @staticmethod
     def to_str(exercise: "Exercise") -> str:
@@ -66,6 +69,7 @@ class Exercise:
         if exercise.reps: output += f'for {exercise.reps} reps.'
         if exercise.time: output += f'for {exercise.time} seconds'
         return output
+
 
     @staticmethod
     def from_dict_to_str(saved_json: "dict") -> str:

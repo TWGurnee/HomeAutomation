@@ -219,6 +219,7 @@ if __name__ == '__main__':
     last_gym_session = prev_weeks_last_gym_session(SAVE_LOCATION, GYM_DAY_CONFIG)
     exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, GYM_DAY_CONFIG, last_gym_session, exercise_sessions) #type: ignore
     save_new_plan(exercise_plan, SAVE_LOCATION)
+    print('New weekly workout plan generated')
 
 
     # for i, j in zip(exercise_plan, exercise_plan.values()):

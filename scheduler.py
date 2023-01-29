@@ -14,15 +14,12 @@ MEALPLAN_TIME = "09:00"
 ### Scheduled functions ###
 def create_workout_plan():
     subprocess.call(['python', 'exercise_plan_generator.py'])
-    print('New weekly exercise plan generated.')
 
 def send_workout_reminder():
     subprocess.call(['python', "workout_reminder.py"])
-    print('workout reminder sent')
 
 def create_meal_plan():
     subprocess.call(['python', 'shopping_list_generator.py'])
-    print("week's meal plan created")
 
 
 ### Main() ###
