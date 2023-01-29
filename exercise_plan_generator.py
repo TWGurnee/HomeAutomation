@@ -3,7 +3,7 @@ import random
 
 from pathlib import Path
 
-from Data.Exercise import SessionType, Exercise, GYM_DAY_CONFIG
+from Data.Exercise import SessionType, Exercise, WorkoutSession, GYM_DAY_CONFIG
 from Data.database_sqlite import generate_exercise_session_by_type, generate_HIIT_plan
 from Data.helpers import load_current_plan
 
@@ -45,6 +45,36 @@ def prev_weeks_last_gym_session(SAVE_LOCATION, gym_config) -> str: #type: ignore
         session_title = list(session.keys())[0] 
         if session_title in gym_pass:
             return session_title
+
+
+def current_weekly_workout_plan_for_dash(SAVE_LOCATION):
+
+    plan = load_current_plan(SAVE_LOCATION)
+    days = list(plan.keys())
+    sessions = [session[0] for session in list(plan.values())]
+
+    workout_sessions = [WorkoutSession(name=list(session.keys())[0], exercises=list(session.values())[0]) for session in sessions]
+
+    #return (days, sessions)
+    return (days, workout_sessions)
+    # return {day: workout_session for day, workout_session in zip(days, workout_sessions)}
+    
+    # week_workout_plan_info = current_weekly_workout_plan_for_dash()
+    # {% for day, session in week_workout_plan_info %}
+    """
+    <tr>
+        <td>
+            {{day}}
+        </td>
+        <td>
+            {{session.name}}
+        </td>
+        <td>
+            {{[exercise.name for exercise in session.exercises]}}
+        </td>
+    </tr>
+    """
+    # {% endfor %}
 
 
 def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: str, exercise_sessions: list[dict]) -> dict:

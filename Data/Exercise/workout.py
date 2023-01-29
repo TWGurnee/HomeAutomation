@@ -39,7 +39,7 @@ class WorkoutSession:
 
     def to_plan(self):
         return {self.name: self.exercises}
-
+    
 
     ### Helper methods ###
     def add_exercise(self, exercise: Exercise):
