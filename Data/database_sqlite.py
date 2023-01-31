@@ -292,6 +292,9 @@ def generate_HIIT_plan():
 # Database.init_tables()
 
 
+
+
+
     # TODO
     # Workout table?
     # Exercise Workout join table?

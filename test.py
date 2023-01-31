@@ -42,4 +42,5 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 # back_day = get_workout_session(day_type=SessionType.BACK_CORE_ARMS) #PASSES
 # print(WorkoutSession.get_workout_session_key(back_day))
 
-print(current_weekly_workout_plan_for_dash(WORKOUT_FILE))
+# print(current_weekly_workout_plan_for_dash(WORKOUT_FILE))
+
