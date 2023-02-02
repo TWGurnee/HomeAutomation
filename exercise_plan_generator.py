@@ -139,6 +139,11 @@ def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: st
     # Choose random rest day indexes
     rest_day_indexes = random.sample(remaining_indexes, 2)
 
+    # Ensure Rest days are not next to eachother
+    while rest_day_indexes[0] - rest_day_indexes[1] in [1, -1]:
+        rest_day_indexes = random.sample(remaining_indexes, 2)
+
+
     # Assign rest days as above:
     for index in rest_day_indexes:
         chosen_day = list(week_template)[index]
