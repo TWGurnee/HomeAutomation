@@ -4,7 +4,7 @@ import random
 from dataclasses import astuple
 from pathlib import Path
 
-from .Exercise import SessionType, MuscleGroup, Exercise, WorkoutSession, GYM_DAY_CONFIG
+from .Exercise import SessionType, MuscleGroup, Exercise, WorkoutSession, get_gym_config
 from .Mealplan import Ingredient, Recipe
 
 
@@ -221,6 +221,8 @@ class Database(object):
 def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ignore
     """Returns a set of random exercises depending on the SessionType given."""
     exercises = []
+    GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
+
 
     if day_type == SessionType.CARDIO:
 
@@ -239,6 +241,7 @@ def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ign
 def get_workout_session(day_type: SessionType) -> WorkoutSession:
     """Returns a workout session with random exercises depending on the SessionType given."""
     exercises = []
+    GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
 
     if day_type == SessionType.CARDIO:
 

@@ -141,27 +141,21 @@ def current_meal_plan_for_table(MEAL_PLAN_FILE) -> list[tuple[str, str, str]]: #
         recipe = Database.get_recipe_from_name(meal_name)
         return (recipe.type, meal_name, ', '.join([i.name for i in recipe.ingredients])) #type: ignore
 
-    # week_meal_plan_info = current_meal_plan_for_table()
-    # {% for meal in week_plan_meal_info %}
-    """
-    <tr>
-        <td>
-            {{meal[0]}}
-        </td>
-        <td>
-            {{meal[1]}}
-        </td>
-        <td>
-            {{meal[2]}}
-        </td>
-    </tr>
-    """
-    # {% endfor %}
-
     return [pack_meal_info(meal) for meal in meal_plan_list]
 
 
-def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be used in dashboard
+def shopping_list_for_table(MEAL_PLAN_FILE):
+
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
+
+    categories = list(ingredients_by_category.keys())
+    ingredients_per_category = list(ingredients_by_category.values())
+    ingredients = [list(i.keys()) for i in ingredients_per_category]
+
+    return [(category, ingredient) for category, ingredient in zip(categories, ingredients)]
+
+
+def re_roll_meal(MEAL_PLAN_FILE, meal_name: str):
     """Rerolls a single named meal in the meal plan"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
@@ -178,7 +172,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal_name: str): ## DEPRECIATED, will not be us
 
     ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
 
-    print(meal_plan_list)
+    # print(meal_plan_list)
 
     save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
@@ -205,6 +199,20 @@ def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
     save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
     return current_meal_plan_for_table(MEAL_PLAN_FILE)
+
+
+def remove_selected_items_from_shoppinglist(MEAL_PLAN_FILE, category: str, items: list[str]):
+
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
+
+    #remove items from teh category
+    category_with_items = ingredients_by_category.get(category)
+    for item in items:
+        del category_with_items[item]
+
+    ingredients_by_category[category] = category_with_items
+
+    save_new_meal_plan(MEAL_PLAN_FILE, meal_plan_list, ingredients_by_category)
 
 
 ### Replace meal with specific choice

@@ -3,7 +3,7 @@ import random
 
 from pathlib import Path
 
-from Data.Exercise import SessionType, Exercise, WorkoutSession, GYM_DAY_CONFIG
+from Data.Exercise import SessionType, Exercise, WorkoutSession, get_gym_config
 from Data.database_sqlite import generate_exercise_session_by_type, generate_HIIT_plan
 from Data.helpers import load_current_plan
 
@@ -55,44 +55,31 @@ def current_weekly_workout_plan_for_dash(SAVE_LOCATION):
 
     workout_sessions = [WorkoutSession(name=list(session.keys())[0], exercises=list(session.values())[0]) for session in sessions]
 
-    #return (days, sessions)
     return (days, workout_sessions)
-    # return {day: workout_session for day, workout_session in zip(days, workout_sessions)}
+
+
+
+def fill_weekly_plan(week_template: dict,
+                     gym_config: dict,
+                     gym_indexes: list[list[int]],
+                     last_gym_session: str,
+                     exercise_sessions: list[dict]) -> dict:
     
-    # week_workout_plan_info = current_weekly_workout_plan_for_dash()
-    # {% for day, session in week_workout_plan_info %}
-    """
-    <tr>
-        <td>
-            {{day}}
-        </td>
-        <td>
-            {{session.name}}
-        </td>
-        <td>
-            {{[exercise.name for exercise in session.exercises]}}
-        </td>
-    </tr>
-    """
-    # {% endfor %}
-
-
-def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: str, exercise_sessions: list[dict]) -> dict:
     """fills with a weekly template with a randomised weekly exercise plan"""
 
-    # To allow for a day gap between each gym session, below are all possible configurations indexes of the week.
-    gym_indexes = [
-        [0,2,4],
-        [0,2,5],
-        [0,2,6],
-        [0,3,5],
-        [0,3,6],
-        [0,4,6],
-        [1,3,5],
-        [1,3,6],
-        [1,4,6],
-        [2,4,6]
-    ]
+    # To allow for a day gap between each gym session, below are all possible configurations indexes of a 3 day week.
+    # gym_indexes = [
+    #     [0,2,4],
+    #     [0,2,5],
+    #     [0,2,6],
+    #     [0,3,5],
+    #     [0,3,6],
+    #     [0,4,6],
+    #     [1,3,5],
+    #     [1,3,6],
+    #     [1,4,6],
+    #     [2,4,6]
+    # ]
 
     # Choose the gym day indexes from the list at random
     gym_day_indexes = random.choice(gym_indexes)
@@ -106,10 +93,29 @@ def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: st
     #     "Leg day"
     # ]
 
+    # OR
+
+    # gym_pass = [
+    #     "Upper Body",
+    #     "Upper Body",
+    #     "lower Body",
+    #     "lower Body"
+    # ]
+
+
     # Create list of the randomised gym days from all of the weekly plan
     gym_sessions = [session for session in exercise_sessions if list(session.keys())[0] in gym_pass]
 
-    random.shuffle(gym_sessions)
+    # Randomise order
+    if len(gym_sessions) == 3:
+        random.shuffle(gym_sessions)
+    
+    # If 4 day week we want alternating days: (Upper, lower, upper, lower)
+    elif len(gym_sessions) == 4:
+        second_upper = gym_sessions[1]
+        gym_sessions.remove(second_upper)
+        gym_sessions.insert(2, second_upper)
+
 
     #Helper function in-case we have back to back gym sessions of the same type.
     def replace_first_session(gym_sessions):
@@ -143,11 +149,11 @@ def fill_weekly_plan(week_template: dict, gym_config: dict, last_gym_session: st
     while rest_day_indexes[0] - rest_day_indexes[1] in [1, -1]:
         rest_day_indexes = random.sample(remaining_indexes, 2)
 
-
     # Assign rest days as above:
     for index in rest_day_indexes:
         chosen_day = list(week_template)[index]
         week_template[chosen_day] = {"Rest day": []}
+
 
     ### Pass Three:
     # Finally we account for the Cardio exercises:
@@ -237,14 +243,7 @@ WEEK_TEMPLATE = {
     'Sunday': {}
 }
 
-# Week consists of: {Type of workout session: number of weekdays}
-WEEK_ALLOWANCES = {
-    SessionType.BACK_CORE_ARMS: 1,
-    SessionType.CHEST_SHOULDERS: 1,
-    SessionType.LEGS: 1,
-    SessionType.CARDIO: 3,
-    SessionType.REST: 2
-}
+GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
 
 SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 
@@ -252,7 +251,7 @@ SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
 if __name__ == '__main__':
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
     last_gym_session = prev_weeks_last_gym_session(SAVE_LOCATION, GYM_DAY_CONFIG)
-    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, GYM_DAY_CONFIG, last_gym_session, exercise_sessions) #type: ignore
+    exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, GYM_DAY_CONFIG, GYM_INDEXES, last_gym_session, exercise_sessions) #type: ignore
     save_new_plan(exercise_plan, SAVE_LOCATION)
     print('New weekly workout plan generated')
 
