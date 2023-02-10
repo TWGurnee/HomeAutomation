@@ -13,8 +13,8 @@ from .muscle_group import MuscleGroup
 #   -Switch between 3 preset configs?
 #   -
 
+"""Below assigns whether the plan will generate a 3 or a 4 day week for gym workouts"""
 CURRENT_PLAN = 3
-# Currently 4 does not work as there are no exercises stored with a day type of upper or lower, they are currently stored as 3 day SessionType
 
 
 """ 3 gym 3 cardio plan """

@@ -208,6 +208,37 @@ class Database(object):
                 for id, name, type, secondary_type, muscle_group, weight, weight_increment, reps, time in exercises
                 ]
         
+        elif selection == SessionType.UPPER:
+            return [
+                Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, weight_increment=weight_increment, reps=reps, time=time, secondary_type=secondary_type)
+                for id, name, type, secondary_type, muscle_group, weight, weight_increment, reps, time in exercises
+                if muscle_group in [
+                    MuscleGroup.UPPER_BACK.value,
+                    MuscleGroup.CHEST_PRESS.value,
+                    MuscleGroup.CHEST_FLY.value,
+                    MuscleGroup.SHOULDER_PRESS.value,
+                    MuscleGroup.SHOULDER_SIDE.value,
+                    MuscleGroup.BICEP.value,
+                    MuscleGroup.TRICEP.value
+                ]
+                and type != SessionType.HIIT.value
+            ]
+
+        elif selection == SessionType.LOWER:
+            return [
+                Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, weight_increment=weight_increment, reps=reps, time=time, secondary_type=secondary_type)
+                for id, name, type, secondary_type, muscle_group, weight, weight_increment, reps, time in exercises
+                if muscle_group in [
+                    MuscleGroup.CORE.value,
+                    MuscleGroup.LOWER_BACK.value,
+                    MuscleGroup.WHOLE_LEG.value,
+                    MuscleGroup.QUADS.value,
+                    MuscleGroup.HAMSTRINGS.value,
+                    MuscleGroup.GLUTES.value
+                ]
+                and type != SessionType.HIIT.value
+            ]
+
         else: 
             return [
                 Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, weight_increment=weight_increment, reps=reps, time=time, secondary_type=secondary_type)
@@ -215,6 +246,7 @@ class Database(object):
                 if type == selection.value
             ]
         
+                
 
 ### random generation functions ###
 
@@ -222,7 +254,7 @@ def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ign
     """Returns a set of random exercises depending on the SessionType given."""
     exercises = []
     GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
-
+    print(day_type.value)
 
     if day_type == SessionType.CARDIO:
 
@@ -234,7 +266,8 @@ def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ign
         for muscle_group, exercise_number in GYM_DAY_CONFIG.get(day_type): #type: ignore
             exercise_list = Database.get_exercises(day_type)
             exercises.extend(WorkoutSession.grab_selection(exercise_list, muscle_group, exercise_number))
-     
+
+
         return {day_type.value: exercises}
 
 
