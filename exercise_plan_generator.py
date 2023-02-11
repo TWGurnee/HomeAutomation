@@ -27,18 +27,17 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
 
 def prev_weeks_last_gym_session(SAVE_LOCATION, gym_config) -> str: #type: ignore
     """Return the name of the last gym workout in the previous week"""
+    
     plan = load_current_plan(SAVE_LOCATION)
+    
     sessions = list(plan.values())
+    
+    # Will iterate through list back to front to return once first match found.
     sessions.reverse()
 
-    # List the gym days
     gym_days = list(gym_config.keys())
+    
     gym_pass = [day.value for day in gym_days]
-    # gym_pass = [
-    #     "Back Core Arm day",
-    #     "Chest Shoulder day",
-    #     "Leg day"
-    # ]
 
     for session in sessions:
         session = session[0]
@@ -87,6 +86,7 @@ def fill_weekly_plan(week_template: dict,
     # List the gym days
     gym_days = list(gym_config.keys())
     gym_pass = [day.value for day in gym_days]
+    
     # gym_pass = [
     #     "Back Core Arm day",
     #     "Chest Shoulder day",
@@ -106,16 +106,9 @@ def fill_weekly_plan(week_template: dict,
     # Create list of the randomised gym days from all of the weekly plan
     gym_sessions = [session for session in exercise_sessions if list(session.keys())[0] in gym_pass]
 
-    # Randomise order
+    # Randomise order if 3 day plan
     if len(gym_sessions) == 3:
         random.shuffle(gym_sessions)
-    
-    # If 4 day week we want alternating days: (Upper, lower, upper, lower)
-    elif len(gym_sessions) == 4:
-        second_upper = gym_sessions[1]
-        gym_sessions.remove(second_upper)
-        gym_sessions.insert(2, second_upper)
-
 
     #Helper function in-case we have back to back gym sessions of the same type.
     def replace_first_session(gym_sessions):
@@ -130,6 +123,14 @@ def fill_weekly_plan(week_template: dict,
     first_session_title = list(first_session.keys())[0]
     if first_session_title == last_gym_session:
         replace_first_session(gym_sessions)
+
+    
+    # If 4 day week we want alternating days: (upper, lower, upper, lower)
+    elif len(gym_sessions) == 4:
+        second_upper = gym_sessions[1]
+        gym_sessions.remove(second_upper)
+        gym_sessions.insert(2, second_upper)
+
 
     ### Pass one: Assigning gym days 
     for index, session in zip(gym_day_indexes, gym_sessions):

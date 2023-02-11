@@ -19,6 +19,14 @@ CURRENT_PLAN = 3
 
 """ 3 gym 3 cardio plan """
 def get_gym_config():
+    """
+    Function to return the gym config based on current selection.
+    Returns a tuple of (GYM_INDEXES, WEEK_ALLOWANCE, GYM_DAY_CONFIG):
+    GYM_INDEXES: a list of weekday index possibilites for the gym days
+    WEEK_ALLOWANCE: a dict of SessionTypes: int of days that each session occurs
+    GYM_DAY_CONFIG: a dict of the gym SessionTypes and the number of exercises per MuscleGroup
+    """
+    
     if CURRENT_PLAN == 3:
 
         # To allow for a day gap between each gym session, below are all possible configurations indexes of the week.
