@@ -312,11 +312,7 @@ class App(customtkinter.CTk):
         self.reroll_meal_by_index(5)
 
     
-
-
-
-
-
+    
 
 if __name__ == "__main__":
     app = App()

@@ -165,7 +165,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal: str | int):
     """Rerolls a single named meal in the meal plan"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
-    if isinstance(meal, str):
+    def replace_meal(meal: str, meal_plan_list: list[str]):
         old_meal = Database.get_recipe_from_name(meal)
 
         new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
@@ -175,16 +175,13 @@ def re_roll_meal(MEAL_PLAN_FILE, meal: str | int):
         except ValueError as e:
             print(f'{e}: Re-roll another meal')
 
+
+    if isinstance(meal, str):
+        replace_meal(meal, meal_plan_list)
+
     elif isinstance(meal, int):
         old_meal = meal_plan_list[meal]
-        old_meal = Database.get_recipe_from_name(old_meal)
-
-        new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
-    
-        try:
-            meal_plan_list[meal] = new_meal.name
-        except ValueError as e:
-            print(f'{e}: Re-roll another meal')
+        replace_meal(old_meal, meal_plan_list)
 
     recipe_list = [Database.get_recipe_from_name(meal) for meal in meal_plan_list]
 
