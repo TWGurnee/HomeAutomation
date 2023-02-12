@@ -155,18 +155,36 @@ def shopping_list_for_table(MEAL_PLAN_FILE):
     return [(category, ingredient) for category, ingredient in zip(categories, ingredients)]
 
 
-def re_roll_meal(MEAL_PLAN_FILE, meal_name: str):
+def shopping_list_for_textbox(MEAL_PLAN_FILE):
+    meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
+    shopping_list_string = generate_shopping_list(ingredients_by_category)
+    return shopping_list_string
+
+
+def re_roll_meal(MEAL_PLAN_FILE, meal: str | int):
     """Rerolls a single named meal in the meal plan"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 
-    old_meal = Database.get_recipe_from_name(meal_name)
+    if isinstance(meal, str):
+        old_meal = Database.get_recipe_from_name(meal)
 
-    new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
+        new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
 
-    try:
-        meal_plan_list[meal_plan_list.index(meal_name)] = new_meal.name
-    except ValueError as e:
-        print(f'{e}: Re-roll another meal')
+        try:
+            meal_plan_list[meal_plan_list.index(meal)] = new_meal.name
+        except ValueError as e:
+            print(f'{e}: Re-roll another meal')
+
+    elif isinstance(meal, int):
+        old_meal = meal_plan_list[meal]
+        old_meal = Database.get_recipe_from_name(old_meal)
+
+        new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
+    
+        try:
+            meal_plan_list[meal] = new_meal.name
+        except ValueError as e:
+            print(f'{e}: Re-roll another meal')
 
     recipe_list = [Database.get_recipe_from_name(meal) for meal in meal_plan_list]
 

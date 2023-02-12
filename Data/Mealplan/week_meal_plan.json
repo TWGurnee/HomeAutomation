@@ -1,71 +1,69 @@
 {
     "Meal Plan": [
-        "Indian Curry",
-        "Quesadillas",
-        "Shepherds Pie",
-        "Chicken Chow Mein",
-        "CousCous Honey Garlic Prawns",
-        "Lentil Feta Salad"
+        "Stir Fry",
+        "Carmelised Onion Sausages",
+        "Salmon Tagiatelle",
+        "Chicken Alfredo",
+        "Cod Mango Salad",
+        "Greek Salad"
     ],
     "Shopping List": {
-        "Herbs/Spices": {
-            "Curry Paste": 1,
-            "Parsely": 1,
-            "Thyme": 1,
-            "Oregano": 1,
-            "Chilli Flakes": 1
-        },
-        "Veg": {
-            "Peppers": 3,
-            "Onions": 3,
-            "Mushrooms": 1,
-            "Mushroom": 1,
-            "Leaves": 2,
-            "Potatoes": 1,
-            "Carrots": 1,
-            "Spring Onion": 2,
-            "Garlic": 1,
-            "Asparagus": 1
-        },
-        "Long-life": {
-            "Rice": 1,
-            "Tomato Puree": 1,
-            "Beef Stock": 1,
-            "Oyster Sauce": 1,
-            "Sesame Oil": 1,
-            "Noodles": 1,
-            "Corn Starch": 1,
-            "Chicken Stock": 1,
-            "Sugar": 1,
-            "Honey": 1,
-            "Cous Cous": 1,
-            "Green Lentils": 1,
-            "Olive Oil": 1
-        },
-        "Bread": {
-            "Naan": 1,
-            "Wraps": 1
-        },
         "Condiment": {
-            "Chutney": 1,
-            "Worcestershire Sauce": 1,
-            "Ketjap Manis": 1,
+            "Stir Fry Sauce": 1,
+            "Soy Sauce": 1,
+            "Lemon Juice": 1,
             "Balsamic Vinegar": 1
         },
-        "Dairy": {
-            "Yoghurt/Cream": 1,
-            "Cheddar": 2,
-            "Butter": 1,
-            "Milk": 1,
-            "Feta": 1
+        "Long-life": {
+            "Noodles": 1,
+            "Tomato Puree": 1,
+            "Rice": 1,
+            "Chicken Stock": 1,
+            "Penne": 1,
+            "Flour": 1,
+            "Olive Oil": 1
+        },
+        "Veg": {
+            "Mini-Corn": 1,
+            "Beansprouts": 1,
+            "Mushrooms": 1,
+            "Onions": 1,
+            "Peppers": 1,
+            "Garlic": 2,
+            "Chilli": 1,
+            "Spinach": 1,
+            "Mango": 1,
+            "Leaves": 2,
+            "Avocado": 1,
+            "Cucumber": 2,
+            "Cherry Tomato": 1,
+            "Olives": 1,
+            "Sundried Tomato": 1
         },
         "Meat": {
-            "Chicken": 2,
-            "Lamb Mince": 1
+            "Chicken/Steak": 1,
+            "Sausages": 1,
+            "Salmon": 1,
+            "Cod": 1
         },
         "Frozen": {
-            "Green Beans": 1,
-            "Prawns": 1
+            "Green Beans": 1
+        },
+        "Herbs/Spices": {
+            "Parsely": 1,
+            "Paprika": 1,
+            "Salt": 1,
+            "Pepper": 1,
+            "Chilli Flakes": 1
+        },
+        "Dairy": {
+            "Cheddar": 1,
+            "Cr\u00e8me fraiche": 1,
+            "Low Fat Cream Cheese": 1,
+            "Parmesan": 1,
+            "Oat Milk": 1,
+            "Butter": 1,
+            "Feta": 1
         }
     }
 }

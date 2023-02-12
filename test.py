@@ -44,3 +44,4 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 
 # print(current_weekly_workout_plan_for_dash(WORKOUT_FILE))
 
+
