@@ -5,6 +5,11 @@ import schedule
 import time
 import subprocess
 import threading
+from multiprocessing import Process
+
+import shopping_list_generator
+import workout_reminder
+import exercise_plan_generator
 
 
 ### Constants ###
@@ -20,13 +25,16 @@ MEALPLAN_TIME = "09:00"
 
 ### Scheduled functions ###
 def create_workout_plan():
-    subprocess.call(['python', 'exercise_plan_generator.py'])
+    # subprocess.call(['python', 'exercise_plan_generator.py'])
+    exercise_plan_generator.main()
 
 def send_workout_reminder():
-    subprocess.call(['python', "workout_reminder.py"])
+    # subprocess.call(['python', "workout_reminder.py"])
+    workout_reminder.main()
 
 def create_meal_plan():
-    subprocess.call(['python', 'shopping_list_generator.py'])
+    # subprocess.call(['python', 'shopping_list_generator.py'])
+    shopping_list_generator.main()
 
 
 ### Main() ###
@@ -51,7 +59,7 @@ def scheduler():
 class Scheduler():
 
     def __init__(self):
-        self.WORKOUT_GENERATION_TIME = "23:05"
+        self.WORKOUT_GENERATION_TIME = "23:00"
         self.WORKOUT_REMINDER_TIME = "09:00"
         self.MEALPLAN_TIME = "09:00"
 
@@ -88,6 +96,10 @@ class Scheduler():
     def run(self):
         scheduling_thread = threading.Thread(target=self.scheduler, daemon=True)
         scheduling_thread.start()
+        # scheduling_thread = Process(target=self.scheduler, daemon=True)
+        # scheduling_thread.start()
+
+
    
 
 if __name__ == "__main__":

@@ -233,10 +233,9 @@ def remove_selected_items_from_shoppinglist(MEAL_PLAN_FILE, category: str, items
 ### Replace meal with specific choice
 # TODO dropdown menu showing all mealsto specifically replace a meal with? Perhaps a popup with a dropdown list?
 
-
-
 ### Main ###
-if __name__ == "__main__":
+
+def main():
     """Main function is the generation of a new meal plan and resultant shopping list.
     This is emailed to both parties. 
     """
@@ -270,3 +269,7 @@ if __name__ == "__main__":
     send_email(subject, msg, SMTP_EMAIL)
     send_email(subject, msg, TO_FREYA)
     print(f'Mealplans sent to: {SMTP_EMAIL, TO_FREYA}')
+
+
+if __name__ == "__main__":
+    main()

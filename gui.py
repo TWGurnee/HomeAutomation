@@ -190,6 +190,7 @@ class App(customtkinter.CTk):
     ### Home functions ###
     def start_scheduler(self):
         self.scheduler.run()
+        # print("scheduler running")
 
     def send_shopping_list(self):
         send_current_shopping_list(MEAL_PLAN_FILE)

@@ -261,12 +261,17 @@ GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
 EXERCISE_PLAN_SAVE = Path(r"Data\Exercise\week_workout_plan.json")
 
 
-if __name__ == '__main__':
+def main():
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
     last_gym_session = prev_weeks_last_gym_session(EXERCISE_PLAN_SAVE, GYM_DAY_CONFIG)
     exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, GYM_DAY_CONFIG, GYM_INDEXES, last_gym_session, exercise_sessions) #type: ignore
     save_new_plan(exercise_plan, EXERCISE_PLAN_SAVE)
     print('New weekly workout plan generated')
+
+
+
+if __name__ == '__main__':
+    main()
 
 
     # for i, j in zip(exercise_plan, exercise_plan.values()):
