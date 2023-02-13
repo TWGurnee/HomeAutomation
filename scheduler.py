@@ -42,7 +42,7 @@ def scheduler():
         print('Scheduler running...')
         while True:
             schedule.run_pending()
-            time.sleep(30) # check for new tasks every half-minute
+            time.sleep(15) # check for new tasks every half-minute
 
     except Exception as e:
         print(f'Scheduler interrupted: {e}')
@@ -51,7 +51,7 @@ def scheduler():
 class Scheduler():
 
     def __init__(self):
-        self.WORKOUT_GENERATION_TIME = "00:01"
+        self.WORKOUT_GENERATION_TIME = "23:05"
         self.WORKOUT_REMINDER_TIME = "09:00"
         self.MEALPLAN_TIME = "09:00"
 
@@ -79,7 +79,7 @@ class Scheduler():
             print('Scheduler running...')
             while True:
                 schedule.run_pending()
-                time.sleep(1) # check for new tasks every half-minute
+                time.sleep(1) 
 
         except Exception as e:
             print(f'Scheduler interrupted: {e}')
@@ -90,7 +90,5 @@ class Scheduler():
         scheduling_thread.start()
    
 
-
 if __name__ == "__main__":
-    scheduling_thread = threading.Thread(target=scheduler, daemon=True)
-    scheduling_thread.run()
+    scheduler()

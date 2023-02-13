@@ -25,10 +25,10 @@ def get_exercise_sessions(WEEK_ALLOWANCES: dict) -> list[dict]:
     return exercise_sessions
 
 
-def prev_weeks_last_gym_session(SAVE_LOCATION, gym_config) -> str: #type: ignore
+def prev_weeks_last_gym_session(EXERCISE_PLAN_SAVE, gym_config) -> str: #type: ignore
     """Return the name of the last gym workout in the previous week"""
     
-    plan = load_current_plan(SAVE_LOCATION)
+    plan = load_current_plan(EXERCISE_PLAN_SAVE)
     
     sessions = list(plan.values())
     
@@ -46,9 +46,9 @@ def prev_weeks_last_gym_session(SAVE_LOCATION, gym_config) -> str: #type: ignore
             return session_title
 
 
-def current_weekly_workout_plan_for_dash(SAVE_LOCATION):
+def current_weekly_workout_plan_for_dash(EXERCISE_PLAN_SAVE):
 
-    plan = load_current_plan(SAVE_LOCATION)
+    plan = load_current_plan(EXERCISE_PLAN_SAVE)
     days = list(plan.keys())
     sessions = [session[0] for session in list(plan.values())]
 
@@ -56,6 +56,18 @@ def current_weekly_workout_plan_for_dash(SAVE_LOCATION):
 
     return (days, workout_sessions)
 
+
+
+def simplified_weekly_workout_plan(EXERCISE_PLAN_SAVE):
+
+    plan = load_current_plan(EXERCISE_PLAN_SAVE)
+    days = list(plan.keys())
+    sessions = [list(session[0])[0] for session in list(plan.values())]
+    exercises = [session[0] for session in list(plan.values())]
+    exercises = [list(e.values())[0] for e in exercises]
+    exercises = [[i.get("name") for i in e] if e else "Rest" for e in exercises]
+
+    return (days, sessions, exercises)
 
 
 def fill_weekly_plan(week_template: dict,
@@ -214,9 +226,9 @@ def fill_weekly_plan(week_template: dict,
     return week_template
 
 
-def save_new_plan(exercise_plan: dict, SAVE_LOCATION):
+def save_new_plan(exercise_plan: dict, EXERCISE_PLAN_SAVE):
     """Saves plan as JSON"""
-    with open(SAVE_LOCATION, 'w') as f:
+    with open(EXERCISE_PLAN_SAVE, 'w') as f:
         data = {}
         for day, session in exercise_plan.items():
             output = {}
@@ -246,14 +258,14 @@ WEEK_TEMPLATE = {
 
 GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
 
-SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
+EXERCISE_PLAN_SAVE = Path(r"Data\Exercise\week_workout_plan.json")
 
 
 if __name__ == '__main__':
     exercise_sessions = get_exercise_sessions(WEEK_ALLOWANCES)
-    last_gym_session = prev_weeks_last_gym_session(SAVE_LOCATION, GYM_DAY_CONFIG)
+    last_gym_session = prev_weeks_last_gym_session(EXERCISE_PLAN_SAVE, GYM_DAY_CONFIG)
     exercise_plan = fill_weekly_plan(WEEK_TEMPLATE, GYM_DAY_CONFIG, GYM_INDEXES, last_gym_session, exercise_sessions) #type: ignore
-    save_new_plan(exercise_plan, SAVE_LOCATION)
+    save_new_plan(exercise_plan, EXERCISE_PLAN_SAVE)
     print('New weekly workout plan generated')
 
 

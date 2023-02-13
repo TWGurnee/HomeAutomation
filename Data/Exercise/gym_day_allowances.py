@@ -18,7 +18,7 @@ CURRENT_PLAN = 3
 
 
 """ 3 gym 3 cardio plan """
-def get_gym_config(days: int=None): #type: ignore
+def get_gym_config():#3): #type: ignore
     """
     Function to return the gym config based on current selection.
     Returns a tuple of (GYM_INDEXES, WEEK_ALLOWANCE, GYM_DAY_CONFIG):
@@ -27,8 +27,8 @@ def get_gym_config(days: int=None): #type: ignore
     GYM_DAY_CONFIG: a dict of the gym SessionTypes and the number of exercises per MuscleGroup
     """
     
-    if days:
-        CURRENT_PLAN = days
+    # if days:
+    #     CURRENT_PLAN = days
 
     if CURRENT_PLAN == 3: #type: ignore
 

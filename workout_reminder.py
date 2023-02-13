@@ -10,12 +10,12 @@ from Data.Exercise import Exercise
 
 ### Constants ###
 
-SAVE_LOCATION = Path(r"Data\Exercise\week_workout_plan.json")
+EXERCISE_PLAN_SAVE = Path(r"Data\Exercise\week_workout_plan.json")
 
 ### Main() ###
 
-def todays_workout_to_string(SAVE_LOCATION):
-    plan = load_current_plan(SAVE_LOCATION) # TODO: update loading function so Exercise Objexts are made.
+def todays_workout_to_string(EXERCISE_PLAN_SAVE):
+    plan = load_current_plan(EXERCISE_PLAN_SAVE) # TODO: update loading function so Exercise Objexts are made.
 
     day = datetime.datetime.today().strftime('%A')
 
@@ -39,8 +39,11 @@ def todays_workout_to_string(SAVE_LOCATION):
     return msg
 
 
+def main():
+    subject = "Exercise Reminder"
+    msg = todays_workout_to_string(EXERCISE_PLAN_SAVE)
+    send_email(subject, msg, SMTP_EMAIL)
+
 # Run
 if __name__ == '__main__':
-    subject = "Exercise Reminder"
-    msg = todays_workout_to_string(SAVE_LOCATION)
-    send_email(subject, msg, SMTP_EMAIL)
+    main()
