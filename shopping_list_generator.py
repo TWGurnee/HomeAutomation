@@ -61,7 +61,7 @@ def generate_meal_plan(last_weeks_meals=None) -> list[Recipe]:
     return weekly_meal_plan
 
 
-def update_ingredients_by_category(ingredient: Ingredient, ingredients_by_category: dict):
+def update_ingredients_by_category(ingredient: Ingredient, ingredients_by_category: dict) -> None:
     """Update the ingredients_by_category dict with a new ingredient."""
     # If the category doesn't exist in the dictionary yet, add it
     if ingredient.category not in ingredients_by_category:
@@ -76,7 +76,7 @@ def update_ingredients_by_category(ingredient: Ingredient, ingredients_by_catego
         ingredients_by_category[ingredient.category][ingredient.name] += ingredient.quantity
 
 
-def generate_ingredients_by_category(weekly_meal_plan: list[Recipe]) -> dict:
+def generate_ingredients_by_category(weekly_meal_plan: list[Recipe]) -> dict[str, str]:
     """Returns a dict of all the unique ingredients and their quantities in the weekly meal plan"""
     # Create a dictionary to hold the ingredients by category
     ingredients_by_category = {}
@@ -171,7 +171,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal: str | int):
         new_meal = random.choice([meal for meal in Database.get_recipes() if meal.type == old_meal.type if meal.name not in meal_plan_list]) #type: ignore
 
         try:
-            meal_plan_list[meal_plan_list.index(meal)] = new_meal.name
+            meal_plan_list[meal_plan_list.index(meal)] = new_meal.name 
         except ValueError as e:
             print(f'{e}: Re-roll another meal')
 
@@ -185,7 +185,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal: str | int):
 
     recipe_list = [Database.get_recipe_from_name(meal) for meal in meal_plan_list]
 
-    ingredients_by_category = generate_ingredients_by_category(recipe_list) #type: ignore
+    ingredients_by_category = generate_ingredients_by_category(recipe_list) 
 
     # print(meal_plan_list)
 
@@ -194,7 +194,7 @@ def re_roll_meal(MEAL_PLAN_FILE, meal: str | int):
     return current_meal_plan_for_table(MEAL_PLAN_FILE)
 
 
-def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list["str"]):
+def re_roll_selection(MEAL_PLAN_FILE, meal_name_list: list[str]):
     """Rerolls a list of meals chosen in the dashboard mealplan table"""
     meal_plan_list, ingredients_by_category = unpack_saved_meal_plan(MEAL_PLAN_FILE)
 

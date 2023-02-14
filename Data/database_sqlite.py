@@ -126,7 +126,7 @@ class Database(object):
         return ingredients.get(name)
     
 
-    @classmethod
+    @classmethod # perhaps depreciated: get_item_id specifically queries and retrieves from database. This forces the entire list into the memory to search.
     def get_ingredient_id_from_name(cls, name: str):
         ingredients_table = list(cls.cursor.execute("SELECT * FROM ingredients"))
         id = {i[1]: i[0] for i in ingredients_table}
@@ -196,7 +196,7 @@ class Database(object):
             VALUES (?, ?)""", (name, type,))
         
         recipe_id = cls.cursor.lastrowid
-        recipe_ingredient_ids = [Database.get_ingredient_id_from_name(ingredient.name) for ingredient in ingredients]
+        recipe_ingredient_ids = [Database.get_item_id("ingredients", ingredient.name) for ingredient in ingredients]
 
         for ing_id in recipe_ingredient_ids:
             cls.cursor.execute("""
@@ -223,7 +223,7 @@ class Database(object):
 
 
     @classmethod
-    def get_recipes(cls, limit: str=None): # type: ignore
+    def get_recipes(cls, limit: str=None) -> list[Recipe]: # type: ignore
         """Returns list of all recipes with optional specifier argument. Can return the names only or specified categories. """
 
         cls.cursor.execute("""
@@ -258,9 +258,9 @@ class Database(object):
 
 
     @staticmethod
-    def get_recipe_from_name(name: str) -> None:
+    def get_recipe_from_name(name: str) -> Recipe:
         meals_dict = {meal.name: meal for meal in Database.get_recipes()} #type: ignore
-        return meals_dict.get(name)
+        return meals_dict.get(name) #type: ignore
     
 
 
