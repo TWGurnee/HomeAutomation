@@ -12,7 +12,7 @@ class Database(object):
     """sqlite3 database class for mealplan and exercise manipulation"""
 
     DB_NAME = Path(r"Data\database.db")
-    conn = sql.connect(DB_NAME)
+    conn = sql.connect(DB_NAME, check_same_thread=False) #
     cursor = conn.cursor()
 
     ### Context manager functions ###
@@ -47,6 +47,61 @@ class Database(object):
         """)
         cls.conn.commit()
 
+
+    ## Helpers ###
+
+    @classmethod
+    def get_item_id(cls, table_name: str, item_name: str) -> int | None:
+    
+        if table_name == "ingredients":
+            cls.cursor.execute("""
+                SELECT ingredient_id
+                FROM ingredients
+                WHERE ingredient_name=?
+                """, 
+                (item_name,)
+            )
+            item_id = cls.cursor.fetchone()
+            if not item_id:
+                print(f"{item_name} not found in {table_name}")
+                return
+
+        if table_name == "recipes":
+            cls.cursor.execute("""
+                SELECT recipe_id
+                FROM recipes
+                WHERE recipe_name=?
+                """, 
+                (item_name,)
+            )
+            item_id = cls.cursor.fetchone()
+            if not item_id:
+                print(f"{item_name} not found in {table_name}")
+                return            
+            
+        if table_name == "exercises":
+            cls.cursor.execute("""
+                SELECT exercise_id
+                FROM exercises
+                WHERE exercise_name=?
+                """, 
+                (item_name,)
+            )
+            item_id = cls.cursor.fetchone()
+            if not item_id:
+                print(f"{item_name} not found in {table_name}")
+                return
+            
+
+        elif table_name not in ["ingredients", "recipes", "exercises"]:
+            print("no table found of that name")
+            return
+
+        # Retrieve item_id int from tuple
+        item_id = item_id[0] #type: ignore (possibly unbound error)
+
+        return item_id
+    
 
     ### Ingredients ###
 
@@ -101,7 +156,7 @@ class Database(object):
     ### Recipes ###
 
     @staticmethod
-    def generate_recipe(recipe_dict: dict):
+    def generate_recipe(recipe_dict: dict): #TODO: rework to take tuple of (category, name, [ingredients])
         """Helper method to generate recipes from a simple typed input dict:
         For example: 
         `Test_Recipe = {('Tim', 'Steak'): ['Steak', 'Broccoli/Asparagus', 'Chips/Potatoes', 'Peppercorn Sauce']}`
@@ -149,6 +204,20 @@ class Database(object):
                 VALUES (?, ?, ?)""",
                 (1, recipe_id, ing_id)
             )
+
+        cls.conn.commit()
+
+
+    @classmethod
+    def add_ingredient_to_recipe(cls, ingredient_name: str, recipe_name: str) -> None:
+        ingredient_id = Database.get_item_id("ingredients", ingredient_name)
+        recipe_id = Database.get_item_id("recipes", recipe_name)
+
+        cls.cursor.execute("""
+          INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
+          VALUES (?, ?, ?)""",
+          (1, recipe_id, ingredient_id)
+        )
 
         cls.conn.commit()
 

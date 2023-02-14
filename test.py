@@ -46,5 +46,10 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 
 # print(simplified_weekly_workout_plan(WORKOUT_FILE))
 
-for i in range(6):
-    print(i)
+
+# with Database() as db:
+#     db.cursor.execute("""
+#     INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
+#     VALUES (?, ?, ?)""",
+#     ())
+
