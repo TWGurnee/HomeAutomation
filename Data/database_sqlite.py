@@ -33,7 +33,7 @@ class Database(object):
 
     @classmethod
     def init_tables(cls):
-        with open('schema.sql') as f:
+        with open('schema.sql', "r") as f:
             script = f.read()
             cls.conn.executescript(script)
 
@@ -323,7 +323,6 @@ def generate_exercise_session_by_type(day_type: SessionType) -> dict: #type: ign
     """Returns a set of random exercises depending on the SessionType given."""
     exercises = []
     GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
-    print(day_type.value)
 
     if day_type == SessionType.CARDIO:
 

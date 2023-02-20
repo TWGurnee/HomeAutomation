@@ -11,7 +11,12 @@ from .muscle_group import MuscleGroup
 #   -Init base config
 #   -Change config
 #   -Switch between 3 preset configs?
-#   -
+#   - DB config integration?
+
+
+# ---- Chooseable GYM days ----
+# - Allow the user to choose their gym days prior to generation (check box)
+# - From the checked answers we can remove indexes from the possible indexes, or even create new ones?
 
 """Below assigns whether the plan will generate a 3 or a 4 day week for gym workouts"""
 CURRENT_PLAN = 3
@@ -115,19 +120,19 @@ def get_gym_config():#3): #type: ignore
         GYM_DAY_CONFIG = {
 
             SessionType.UPPER: (
+                (MuscleGroup.CHEST_PRESS, 2),
                 (MuscleGroup.UPPER_BACK, 1),
-                (MuscleGroup.CHEST_PRESS, 1),
                 (MuscleGroup.CHEST_FLY, 1),
-                (MuscleGroup.SHOULDER_PRESS, 1),
-                (MuscleGroup.SHOULDER_SIDE, 1),
+                (MuscleGroup.CORE, 1),
                 (MuscleGroup.BICEP, 2),
                 (MuscleGroup.TRICEP, 2)
             ),
 
             SessionType.LOWER: (
-                (MuscleGroup.CORE, 1),
                 (MuscleGroup.LOWER_BACK, 1),
                 (MuscleGroup.WHOLE_LEG, 3),
+                (MuscleGroup.SHOULDER_PRESS, 1),
+                (MuscleGroup.SHOULDER_SIDE, 1),
                 (MuscleGroup.QUADS, 1),
                 (MuscleGroup.HAMSTRINGS, 1),
                 (MuscleGroup.GLUTES, 1)

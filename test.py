@@ -10,6 +10,7 @@ from Data.database_sqlite import Database, generate_exercise_session_by_type, ge
 
 from shopping_list_generator import *
 from exercise_plan_generator import *
+import workout_reminder
 
 MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json")
 WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
@@ -54,3 +55,4 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 #     VALUES (?, ?, ?)""",
 #     ())
 
+workout_reminder.main()

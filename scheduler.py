@@ -59,7 +59,7 @@ def scheduler():
 class Scheduler():
 
     def __init__(self):
-        self.WORKOUT_GENERATION_TIME = "23:00"
+        self.WORKOUT_GENERATION_TIME = "00:00"
         self.WORKOUT_REMINDER_TIME = "09:00"
         self.MEALPLAN_TIME = "09:00"
 
