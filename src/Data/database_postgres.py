@@ -1,4 +1,4 @@
-import sqlite3 as sql
+import psycopg2 as sql
 import random
 
 from dataclasses import astuple
@@ -7,12 +7,14 @@ from pathlib import Path
 from .Exercise import SessionType, MuscleGroup, Exercise, WorkoutSession, get_gym_config
 from .Mealplan import Ingredient, Recipe
 
+from ..Config.config import DB_PASSWORD
+
 
 class Database(object):
     """sqlite3 database class for mealplan and exercise manipulation"""
 
-    DB_NAME = Path(r"Data\database.db")
-    conn = sql.connect(DB_NAME, check_same_thread=False) #
+    # DB_NAME = Path(r"Data\database.db")
+    conn = sql.connect(dbname="HomeAutomationDB", user="twgurnee", password=DB_PASSWORD, host='ep-silent-moon-297124.eu-central-1.aws.neon.tech')
     cursor = conn.cursor()
 
     ### Context manager functions ###
@@ -23,6 +25,7 @@ class Database(object):
     def __exit__(self, ext_type, exc_value, traceback):
         self.cursor.close()
         if isinstance(exc_value, Exception):
+            print('failed query. rolling back')
             self.conn.rollback()
         else:
             self.conn.commit()
@@ -35,11 +38,11 @@ class Database(object):
     def init_tables(cls):
         with open('schema.sql', "r") as f:
             script = f.read()
-            cls.conn.executescript(script)
+            cls.cursor.execute(script)
 
     @classmethod
     def clear_tables(cls):
-        cls.conn.execute("""
+        cls.cursor.execute("""
         DROP TABLE IF EXISTS ingredients;
         DROP TABLE IF EXISTS recipes;
         DROP TABLE IF EXISTS recipe_ingredients;
@@ -57,7 +60,7 @@ class Database(object):
             cls.cursor.execute("""
                 SELECT ingredient_id
                 FROM ingredients
-                WHERE ingredient_name=?
+                WHERE ingredient_name=%s
                 """, 
                 (item_name,)
             )
@@ -70,7 +73,7 @@ class Database(object):
             cls.cursor.execute("""
                 SELECT recipe_id
                 FROM recipes
-                WHERE recipe_name=?
+                WHERE recipe_name=%s
                 """, 
                 (item_name,)
             )
@@ -83,7 +86,7 @@ class Database(object):
             cls.cursor.execute("""
                 SELECT exercise_id
                 FROM exercises
-                WHERE exercise_name=?
+                WHERE exercise_name=%s
                 """, 
                 (item_name,)
             )
@@ -107,16 +110,17 @@ class Database(object):
 
     @classmethod
     def add_ingredient(cls, ingredient: Ingredient) -> None:
-        name, quantity, category = astuple(ingredient)
+        name, quantity, category, unit = astuple(ingredient)
         cls.cursor.execute("""
             INSERT INTO ingredients (ingredient_name,ingredient_shopping_category)
-            VALUES (?, ?)""", (name, category,))
+            VALUES (%s, %s)""", (name, category,))
         cls.conn.commit()
 
 
     @classmethod
     def get_ingredients(cls):
-        ingredients = cls.cursor.execute("SELECT ingredient_name, ingredient_shopping_category FROM ingredients")
+        cls.cursor.execute("SELECT ingredient_name, ingredient_shopping_category FROM ingredients")
+        ingredients = cls.cursor.fetchall()
         return [Ingredient(name=name, quantity=1, category=category) for name, category in ingredients]
     
 
@@ -128,7 +132,8 @@ class Database(object):
 
     @classmethod # perhaps depreciated: get_item_id specifically queries and retrieves from database. This forces the entire list into the memory to search.
     def get_ingredient_id_from_name(cls, name: str):
-        ingredients_table = list(cls.cursor.execute("SELECT * FROM ingredients"))
+        cls.cursor.execute("SELECT * FROM ingredients")
+        ingredients_table = list(cls.cursor.fetchall())
         id = {i[1]: i[0] for i in ingredients_table}
         return id.get(name)
 
@@ -193,7 +198,7 @@ class Database(object):
 
         cls.cursor.execute("""
             INSERT INTO recipes (recipe_name, recipe_type)
-            VALUES (?, ?)""", (name, type,))
+            VALUES (%s, %s)""", (name, type,))
         
         recipe_id = cls.cursor.lastrowid
         recipe_ingredient_ids = [Database.get_item_id("ingredients", ingredient.name) for ingredient in ingredients]
@@ -201,7 +206,7 @@ class Database(object):
         for ing_id in recipe_ingredient_ids:
             cls.cursor.execute("""
                 INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
-                VALUES (?, ?, ?)""",
+                VALUES (%s, %s, %s)""",
                 (1, recipe_id, ing_id)
             )
 
@@ -215,7 +220,7 @@ class Database(object):
 
         cls.cursor.execute("""
           INSERT INTO recipe_ingredients (ingredient_quantity, recipe_id, ingredient_id)
-          VALUES (?, ?, ?)""",
+          VALUES (%s, %s, %s)""",
           (1, recipe_id, ingredient_id)
         )
 
@@ -266,11 +271,12 @@ class Database(object):
 
     ### Exercises ###
 
-    @staticmethod
-    def get_exercises(selection: SessionType=None) -> list[Exercise]: #type: ignore
+    @classmethod
+    def get_exercises(cls, selection: SessionType=None) -> list[Exercise]: #type: ignore
         """Returns list of all exercises unless SessionType specified. """
 
-        exercises = list(Database.cursor.execute("SELECT * FROM exercises"))
+        cls.cursor.execute("SELECT * FROM exercises")
+        exercises = list(cls.cursor.fetchall())
         if not selection:
             return [
                 Exercise(name=name, type=type, muscle_group=muscle_group, weight=weight, weight_increment=weight_increment, reps=reps, time=time, secondary_type=secondary_type)
@@ -400,8 +406,8 @@ def generate_HIIT_plan():
 
 
     # TODO
-    # Workout table?
-    # Exercise Workout join table?
+    # Workout table%s
+    # Exercise Workout join table%s
 
 
     ### Data manipulation methods ###
@@ -412,7 +418,7 @@ def generate_HIIT_plan():
     # Remove item from recipe
     # Generate Meal Plan
     # Get recipe from name
-    # Get all recipes?
+    # Get all recipes%s
     
     ## Exercise
     # Add an exercise

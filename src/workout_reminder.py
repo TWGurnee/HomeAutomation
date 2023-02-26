@@ -2,11 +2,11 @@ from pathlib import Path
 
 import datetime
 
-from Config.emails import send_email
-from Config.config import SMTP_EMAIL
+from .Config.emails import send_email
+from .Config.config import SMTP_EMAIL
 
-from Data.helpers import load_current_plan
-from Data.Exercise import Exercise
+from .Data.helpers import load_current_plan
+from .Data.Exercise import Exercise
 
 ### Constants ###
 

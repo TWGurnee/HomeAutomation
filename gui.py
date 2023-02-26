@@ -3,11 +3,11 @@ import tkinter
 import tkinter.messagebox
 import customtkinter
 
-from scheduler import Scheduler
+from src.scheduler import Scheduler
 
-import workout_reminder
-from exercise_plan_generator import EXERCISE_PLAN_SAVE, simplified_weekly_workout_plan
-from shopping_list_generator import MEAL_PLAN_FILE, current_meal_plan_for_table, shopping_list_for_textbox, re_roll_meal, send_current_shopping_list
+import src.workout_reminder as workout_reminder
+from src.exercise_plan_generator import EXERCISE_PLAN_SAVE, simplified_weekly_workout_plan
+from src.shopping_list_generator import MEAL_PLAN_FILE, current_meal_plan_for_table, shopping_list_for_textbox, re_roll_meal, send_current_shopping_list
 
 customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"

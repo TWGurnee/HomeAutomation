@@ -3,9 +3,9 @@ import random
 
 from pathlib import Path
 
-from Data.Exercise import SessionType, Exercise, WorkoutSession, get_gym_config
-from Data.database_sqlite import generate_exercise_session_by_type, generate_HIIT_plan
-from Data.helpers import load_current_plan
+from .Data.Exercise import SessionType, Exercise, WorkoutSession, get_gym_config
+from .Data.database_sqlite import generate_exercise_session_by_type, generate_HIIT_plan
+from .Data.helpers import load_current_plan
 
 ### Functions ###
 

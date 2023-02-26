@@ -1,4 +1,4 @@
-import psycopg2 as sql
+import sqlite3 as sql
 import random
 
 from dataclasses import astuple
@@ -11,8 +11,8 @@ from .Mealplan import Ingredient, Recipe
 class Database(object):
     """sqlite3 database class for mealplan and exercise manipulation"""
 
-    DB_NAME = Path(r"Data\database.db")
-    conn = sql.connect(DB_NAME, check_same_thread=False) #TODO
+    DB_NAME = Path(r"src\Data\database.db")
+    conn = sql.connect(DB_NAME, check_same_thread=False) #
     cursor = conn.cursor()
 
     ### Context manager functions ###
@@ -35,11 +35,11 @@ class Database(object):
     def init_tables(cls):
         with open('schema.sql', "r") as f:
             script = f.read()
-            cls.cursor.execute(script)
+            cls.conn.executescript(script)
 
     @classmethod
     def clear_tables(cls):
-        cls.cursor.execute("""
+        cls.conn.execute("""
         DROP TABLE IF EXISTS ingredients;
         DROP TABLE IF EXISTS recipes;
         DROP TABLE IF EXISTS recipe_ingredients;

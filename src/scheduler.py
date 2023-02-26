@@ -7,9 +7,9 @@ import subprocess
 import threading
 from multiprocessing import Process
 
-import shopping_list_generator
-import workout_reminder
-import exercise_plan_generator
+from . import shopping_list_generator
+from . import workout_reminder
+from . import exercise_plan_generator
 
 
 ### Constants ###

@@ -3,9 +3,9 @@ import requests as req
 import threading as td
 from pathlib import Path
 
-import shopping_list_generator as shop_list
-import Data.Mealplan.recipes as meals
-from scheduler import scheduler
+import src.shopping_list_generator as shop_list
+import src.Data.Mealplan.recipes as meals
+from src.scheduler import scheduler
 
 def start_scheduler_thread():
     """Starts email scheduler prior to api."""

@@ -3,13 +3,13 @@ import random
 import json
 from pathlib import Path
 
-from Config.emails import send_email
-from Config.config import SMTP_EMAIL, TO_FREYA
+from .Config.emails import send_email
+from .Config.config import SMTP_EMAIL, TO_FREYA
 
-from Data.helpers import load_current_plan
-from Data.database_sqlite import Database
+from .Data.helpers import load_current_plan
+from .Data.database_sqlite import Database
 
-from Data.Mealplan import Ingredient, Recipe
+from .Data.Mealplan import Ingredient, Recipe
 
 ### Constants ###
 MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json") ##TODO perhaps move to config file?

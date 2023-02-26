@@ -1,6 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
-from Config.config import SMTP_PASSWORD, SMTP_SERVER, SMTP_PORT, SMTP_EMAIL
+from .config import SMTP_PASSWORD, SMTP_SERVER, SMTP_PORT, SMTP_EMAIL
 
 # Defines helper email functions for reminders.
 

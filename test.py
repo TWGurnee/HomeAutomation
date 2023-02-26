@@ -1,19 +1,22 @@
 import sys
 import time
 
+
 from pathlib import Path
 from dataclasses import astuple
 
-from Data.Mealplan import *
-from Data.Exercise import *
-from Data.database_sqlite import Database, generate_exercise_session_by_type, get_workout_session
+from src.Data.Mealplan import *
+from src.Data.Exercise import *
+from src.Data.database_sqlite import Database, generate_exercise_session_by_type, get_workout_session
 
-from shopping_list_generator import *
-from exercise_plan_generator import *
-import workout_reminder
+import src.Data.database_postgres as PSQL
 
-MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json")
-WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
+from src.shopping_list_generator import *
+from src.exercise_plan_generator import *
+import src.workout_reminder
+
+MEAL_PLAN_FILE = Path(r"src\Data\Mealplan\week_meal_plan.json")
+WORKOUT_FILE = Path(r"src\Data\Exercise\week_workout_plan.json")
 
 # re_roll_meal(MEAL_PLAN_FILE, "Prawn Chorizo Rice") #PASSES
 
@@ -55,4 +58,9 @@ WORKOUT_FILE = Path(r"Data\Exercise\week_workout_plan.json")
 #     VALUES (?, ?, ?)""",
 #     ())
 
-workout_reminder.main()
+# ingredients = Database.get_ingredients()
+
+# for ingredient in ingredients:
+#     PSQL.Database.add_ingredient(ingredient)
+
+print(PSQL.Database.get_ingredients())
