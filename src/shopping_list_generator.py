@@ -12,7 +12,7 @@ from .Data.database_sqlite import Database
 from .Data.Mealplan import Ingredient, Recipe
 
 ### Constants ###
-MEAL_PLAN_FILE = Path(r"Data\Mealplan\week_meal_plan.json") ##TODO perhaps move to config file?
+MEAL_PLAN_FILE = Path(r"src\Data\Mealplan\week_meal_plan.json") ##TODO perhaps move to config file?
 
 
 ### Helper methods

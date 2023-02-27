@@ -1,9 +1,5 @@
-ask_sdk_core==1.18.0
-ask_sdk_model==1.47.0
 customtkinter==5.1.2
 Flask==2.2.2
 psycopg2==2.9.5
 requests==2.27.1
 schedule==1.1.0
-setuptools==58.1.0
-HomeAutomation==1.0.0

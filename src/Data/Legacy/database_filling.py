@@ -54,3 +54,34 @@
     #             INSERT INTO exercises (exercise_name,exercise_type,exercise_secondary_type,exercise_musclegroup,exercise_weight,exercise_reps,exercise_time)
     #             VALUES (?, ?, ?, ?, ?, ?, ?)""", (name, type, secondary_type, muscle_group, weight, reps, time,))
     #     cls.conn.commit()
+
+
+# with PSQL.Database() as db:
+#     db.cursor.execute("SELECT * FROM recipes") 
+#     recipes_table = list(db.cursor.fetchall())
+
+#     db.cursor.execute("SELECT * FROM ingredients")
+#     ingredients_table = list(db.cursor.fetchall())
+
+#     def get_ingredient_id_from_name(name):
+#         id = {i[1]: i[0] for i in ingredients_table}
+#         return id.get(name)
+    
+
+#     for id, name in recipes_table:
+#         # get ingredients from recipe
+#         recipe = Database.get_recipe_from_name(name)
+#         recipe_id = id
+#         recipe_ingredient_ids = [PSQL.Database.get_item_id("ingredients", i.name) for i in recipe.ingredients] # type: ignore
+#         for ing_id, ing in zip(recipe_ingredient_ids, recipe.ingredients):
+            
+#             quantity = input(f"insert quantity of {ing.name} used in {recipe.name}: ")
+
+#             unit = input(f'what unit of measurement is used for {ing.name}: ')
+#             if unit == "" or " ": quantity = None
+
+#             db.cursor.execute("""
+#                 INSERT INTO recipe_ingredients (ingredient_quantity, ingredient_unit, recipe_id, ingredient_id)
+#                 VALUES (%s, %s, %s, %s)""",
+#                 (quantity, unit, recipe_id, ing_id)
+#             )

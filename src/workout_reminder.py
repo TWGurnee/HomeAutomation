@@ -10,7 +10,7 @@ from .Data.Exercise import Exercise
 
 ### Constants ###
 
-EXERCISE_PLAN_SAVE = Path(r"Data\Exercise\week_workout_plan.json")
+EXERCISE_PLAN_SAVE = Path(r"src\Data\Exercise\week_workout_plan.json")
 
 ### Main() ###
 

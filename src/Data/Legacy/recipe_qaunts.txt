@@ -1,0 +1,598 @@
+insert quantity of Bacon used in Bacon Broccoli Fry-up: 170
+what unit of measurement is used for Bacon: grams
+insert quantity of Broccoli used in Bacon Broccoli Fry-up: 1
+what unit of measurement is used for Broccoli: pack
+insert quantity of Olive Oil used in Bacon Broccoli Fry-up: 15
+what unit of measurement is used for Olive Oil: ml
+insert quantity of Mushrooms used in Bacon Broccoli Fry-up: 200
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Leeks used in Bacon Broccoli Fry-up: 2
+what unit of measurement is used for Leeks: 
+insert quantity of Parmesan/Halloumi used in Bacon Broccoli Fry-up: 1
+what unit of measurement is used for Parmesan/Halloumi: 
+insert quantity of Mince/Chicken used in Burritos: 500
+what unit of measurement is used for Mince/Chicken: grams
+insert quantity of Onions used in Burritos: 1
+what unit of measurement is used for Onions: 
+insert quantity of Peppers used in Burritos: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Wraps used in Burritos: 8
+what unit of measurement is used for Wraps: 
+insert quantity of Cheddar used in Burritos: 50
+what unit of measurement is used for Cheddar: grams
+insert quantity of Avocado used in Burritos: 1
+what unit of measurement is used for Avocado: 
+insert quantity of Mushrooms used in Burritos: 200
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Leaves used in Burritos: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Rice used in Burritos: 1
+what unit of measurement is used for Rice: pack
+insert quantity of Garlic used in Burritos: 3
+what unit of measurement is used for Garlic: cloves
+insert quantity of Curry Paste used in Indian Curry: 1
+what unit of measurement is used for Curry Paste: 
+insert quantity of Peppers used in Indian Curry: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Onions used in Indian Curry: 1
+what unit of measurement is used for Onions: 
+insert quantity of Mushrooms used in Indian Curry: 200
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Rice used in Indian Curry: 150
+what unit of measurement is used for Rice: grams
+insert quantity of Naan used in Indian Curry: 2
+what unit of measurement is used for Naan: 
+insert quantity of Chutney used in Indian Curry: 1
+what unit of measurement is used for Chutney: 
+insert quantity of Yoghurt/Cream used in Indian Curry: 200
+what unit of measurement is used for Yoghurt/Cream: ml
+insert quantity of Chopped Tomatoes used in Arrabiata: 1
+what unit of measurement is used for Chopped Tomatoes: can
+insert quantity of Penne used in Arrabiata: 120
+what unit of measurement is used for Penne: grams
+insert quantity of Basil used in Arrabiata: 1
+what unit of measurement is used for Basil: tbsp
+insert quantity of Chilli Powder used in Arrabiata: 1
+what unit of measurement is used for Chilli Powder: tsp
+insert quantity of Onions used in Arrabiata: 1
+what unit of measurement is used for Onions: 
+insert quantity of Peppers used in Arrabiata: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Mushrooms used in Arrabiata: 200
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Oregano used in Arrabiata: 1
+what unit of measurement is used for Oregano: tbsp
+insert quantity of Coconut Milk used in Thai Curry: 1
+what unit of measurement is used for Coconut Milk: can
+insert quantity of Broccoli used in Thai Curry: 400
+what unit of measurement is used for Broccoli: grams
+insert quantity of Leaves used in Thai Curry: 1
+what unit of measurement is used for Leaves: bag
+insert quantity of Green Beans used in Thai Curry: 250
+what unit of measurement is used for Green Beans: grams
+insert quantity of Peas used in Thai Curry: 100
+what unit of measurement is used for Peas: grams
+insert quantity of Chicken used in Thai Curry: 2
+what unit of measurement is used for Chicken: breasts
+insert quantity of Prawn Crackers used in Thai Curry: 1
+what unit of measurement is used for Prawn Crackers: bag
+insert quantity of Onions used in Thai Curry: 1
+what unit of measurement is used for Onions: 
+insert quantity of Mince/Pulled Chicken used in Burgers: 500 
+what unit of measurement is used for Mince/Pulled Chicken: grams
+insert quantity of Bread Rolls used in Burgers: 2
+what unit of measurement is used for Bread Rolls:     
+insert quantity of Beef Tomato used in Burgers: 2
+what unit of measurement is used for Beef Tomato: 
+insert quantity of Lettuce used in Burgers: 1
+what unit of measurement is used for Lettuce: head
+insert quantity of Mustard used in Burgers: 1
+what unit of measurement is used for Mustard: tbsp
+insert quantity of Parsley used in Burgers: 1
+what unit of measurement is used for Parsley: tsp
+insert quantity of Ketchup used in Burgers: 1
+what unit of measurement is used for Ketchup: 
+insert quantity of Mayonnaise used in Burgers: 1
+what unit of measurement is used for Mayonnaise: 
+insert quantity of Chips used in Burgers: 1
+what unit of measurement is used for Chips: bag
+insert quantity of Onions used in Burgers: 1
+what unit of measurement is used for Onions: 
+insert quantity of Garlic used in Burgers: 3
+what unit of measurement is used for Garlic: cloves
+insert quantity of Flatbread used in Pizza: 2
+what unit of measurement is used for Flatbread: 
+insert quantity of Mozzarella used in Pizza: 1
+what unit of measurement is used for Mozzarella: 
+insert quantity of Parmesan used in Pizza: 20
+what unit of measurement is used for Parmesan: grams
+insert quantity of Meat Topping used in Pizza: 1
+what unit of measurement is used for Meat Topping: 
+insert quantity of Mushrooms used in Pizza: 100
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Peppers used in Pizza: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Tomato Puree used in Pizza: 1
+what unit of measurement is used for Tomato Puree: tbsp
+insert quantity of Steak used in Steak: 2
+what unit of measurement is used for Steak: 
+insert quantity of Broccoli/Asparagus used in Steak: 1
+what unit of measurement is used for Broccoli/Asparagus: pack
+insert quantity of Chips/Potatoes used in Steak: 2
+what unit of measurement is used for Chips/Potatoes: 
+insert quantity of Peppercorn Sauce used in Steak: 1
+what unit of measurement is used for Peppercorn Sauce: pack
+insert quantity of Wraps used in Quesadillas: 4
+what unit of measurement is used for Wraps: 
+insert quantity of Chicken used in Quesadillas: 1  
+what unit of measurement is used for Chicken: breast
+insert quantity of Mushrooms used in Quesadillas: 100
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Cheddar used in Quesadillas: 50
+what unit of measurement is used for Cheddar: grams 
+insert quantity of Onions used in Quesadillas: 1
+what unit of measurement is used for Onions: 
+insert quantity of Leaves used in Quesadillas: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Fusilli used in Creamy Pesto: 120
+what unit of measurement is used for Fusilli: grams
+insert quantity of Pesto used in Creamy Pesto: 1
+what unit of measurement is used for Pesto: jar
+insert quantity of Cherry Tomatoes used in Creamy Pesto: 16
+what unit of measurement is used for Cherry Tomatoes: 
+insert quantity of Parmesan used in Creamy Pesto: 20
+what unit of measurement is used for Parmesan: grams
+insert quantity of Olive Oil used in Creamy Pesto: 1
+what unit of measurement is used for Olive Oil: tbsp
+insert quantity of Double Cream used in Creamy Pesto: 150
+what unit of measurement is used for Double Cream: ml
+insert quantity of Basil used in Creamy Pesto: 1
+what unit of measurement is used for Basil: pack
+insert quantity of Oregano used in Creamy Pesto: 1
+what unit of measurement is used for Oregano: tbsp
+insert quantity of Stir Fry Sauce used in Stir Fry: 1
+what unit of measurement is used for Stir Fry Sauce: pack
+insert quantity of Soy Sauce used in Stir Fry: 25
+what unit of measurement is used for Soy Sauce: ml
+insert quantity of Noodles used in Stir Fry: 1
+what unit of measurement is used for Noodles: pack
+insert quantity of Mini-Corn used in Stir Fry: 1
+what unit of measurement is used for Mini-Corn: pack
+insert quantity of Beansprouts used in Stir Fry: 50
+what unit of measurement is used for Beansprouts: grams
+insert quantity of Mushrooms used in Stir Fry: 100
+what unit of measurement is used for Mushrooms: grams
+insert quantity of Chicken/Steak used in Stir Fry: 400
+what unit of measurement is used for Chicken/Steak: grams
+insert quantity of Onions used in Carmelised Onion Sausages: 1
+what unit of measurement is used for Onions: 
+insert quantity of Peppers used in Carmelised Onion Sausages: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Garlic used in Carmelised Onion Sausages: 4
+what unit of measurement is used for Garlic: cloves
+insert quantity of Green Beans used in Carmelised Onion Sausages: 100
+what unit of measurement is used for Green Beans: grams
+insert quantity of Parsely used in Carmelised Onion Sausages: 1
+what unit of measurement is used for Parsely: tbsp
+insert quantity of Sausages used in Carmelised Onion Sausages: 6
+what unit of measurement is used for Sausages: 
+insert quantity of Tomato Puree used in Carmelised Onion Sausages: 1
+what unit of measurement is used for Tomato Puree: tbsp
+insert quantity of Paprika used in Carmelised Onion Sausages: 1
+what unit of measurement is used for Paprika: tbsp
+insert quantity of Rice used in Carmelised Onion Sausages: 150
+what unit of measurement is used for Rice: grams
+insert quantity of Chicken Stock used in Carmelised Onion Sausages: 2
+what unit of measurement is used for Chicken Stock: cubes
+insert quantity of Cheddar used in Carmelised Onion Sausages: 50
+what unit of measurement is used for Cheddar: grams
+insert quantity of Chilli used in Carmelised Onion Sausages: 1
+what unit of measurement is used for Chilli: tsp
+insert quantity of Pasta used in Spiced Pork Ragu: 120
+what unit of measurement is used for Pasta: grams
+insert quantity of Spinach used in Spiced Pork Ragu: 1
+what unit of measurement is used for Spinach: pack
+insert quantity of Garlic used in Spiced Pork Ragu: 3
+what unit of measurement is used for Garlic: cloves
+insert quantity of Chopped Tomatoes used in Spiced Pork Ragu: 1
+what unit of measurement is used for Chopped Tomatoes: can
+insert quantity of Parsely used in Spiced Pork Ragu: 1
+what unit of measurement is used for Parsely: tbsp
+insert quantity of Sausages used in Spiced Pork Ragu: 4
+what unit of measurement is used for Sausages: 
+insert quantity of Tomato Puree used in Spiced Pork Ragu: 1
+what unit of measurement is used for Tomato Puree: tbsp
+insert quantity of Cheddar used in Spiced Pork Ragu: 50
+what unit of measurement is used for Cheddar: grams 
+insert quantity of Chilli Flakes used in Spiced Pork Ragu: 1
+what unit of measurement is used for Chilli Flakes: tsp
+insert quantity of Plum Tomatoes used in Prawn Chorizo Rice: 100
+what unit of measurement is used for Plum Tomatoes: grams
+insert quantity of Peppers used in Prawn Chorizo Rice: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Garlic used in Prawn Chorizo Rice: 4
+what unit of measurement is used for Garlic: cloves
+insert quantity of Ciabatta used in Prawn Chorizo Rice: 2
+what unit of measurement is used for Ciabatta: 
+insert quantity of Parsely used in Prawn Chorizo Rice: 1
+what unit of measurement is used for Parsely: tbsp
+insert quantity of Chorizo used in Prawn Chorizo Rice: 200
+what unit of measurement is used for Chorizo: grams
+insert quantity of Tomato Puree used in Prawn Chorizo Rice: 1
+what unit of measurement is used for Tomato Puree: tbsp
+insert quantity of Paprika used in Prawn Chorizo Rice: 1
+what unit of measurement is used for Paprika: tbsp
+insert quantity of Rice used in Prawn Chorizo Rice: 1
+what unit of measurement is used for Rice: pack
+insert quantity of Prawns used in Prawn Chorizo Rice: 275
+what unit of measurement is used for Prawns: grams
+insert quantity of Cheddar used in Prawn Chorizo Rice: 50
+what unit of measurement is used for Cheddar: grams
+insert quantity of Spring Onion used in Mexican Loaded Wedges: 3
+what unit of measurement is used for Spring Onion: 
+insert quantity of Peppers used in Mexican Loaded Wedges: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Garlic used in Mexican Loaded Wedges: 3
+what unit of measurement is used for Garlic: cloves
+insert quantity of Potatoes used in Mexican Loaded Wedges: 2
+what unit of measurement is used for Potatoes: 
+insert quantity of Lime used in Mexican Loaded Wedges: 1
+what unit of measurement is used for Lime: 
+insert quantity of Mince/Chicken used in Mexican Loaded Wedges: 500
+what unit of measurement is used for Mince/Chicken: grams
+insert quantity of Tomato Passata used in Mexican Loaded Wedges: 500
+what unit of measurement is used for Tomato Passata: grams
+insert quantity of Paprika used in Mexican Loaded Wedges: 1
+what unit of measurement is used for Paprika: tbsp
+insert quantity of Beef Stock/Chicken Stock used in Mexican Loaded Wedges: 2
+what unit of measurement is used for Beef Stock/Chicken Stock: cubes
+insert quantity of Cheddar used in Mexican Loaded Wedges: 50
+what unit of measurement is used for Cheddar: grams
+insert quantity of Black Beans used in Mexican Loaded Wedges: 1
+what unit of measurement is used for Black Beans: can
+insert quantity of Carrots used in Mexican Loaded Wedges: 2
+what unit of measurement is used for Carrots: 
+insert quantity of Garlic used in Sweet and Sour Chicken: 2
+what unit of measurement is used for Garlic: cloves
+insert quantity of Rice Vinegar used in Sweet and Sour Chicken: 2
+what unit of measurement is used for Rice Vinegar: tbsp
+insert quantity of Red Onions used in Sweet and Sour Chicken: 1
+what unit of measurement is used for Red Onions: 
+insert quantity of Cornflour used in Sweet and Sour Chicken: 10
+what unit of measurement is used for Cornflour: grams
+insert quantity of Spring Onion used in Sweet and Sour Chicken: 2
+what unit of measurement is used for Spring Onion: 
+insert quantity of Vegetable Stock used in Sweet and Sour Chicken: 1
+what unit of measurement is used for Vegetable Stock: cube
+insert quantity of Rice used in Sweet and Sour Chicken: 120
+what unit of measurement is used for Rice: grams
+insert quantity of Chicken used in Sweet and Sour Chicken: 400
+what unit of measurement is used for Chicken: grams
+insert quantity of Ketjap Manis used in Sweet and Sour Chicken: 2
+what unit of measurement is used for Ketjap Manis: tbsp
+insert quantity of Peppers used in Sweet and Sour Chicken: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Oyster Sauce used in Chicken Chow Mein: 2
+what unit of measurement is used for Oyster Sauce: tbsp
+insert quantity of Sesame Oil used in Chicken Chow Mein: 1
+what unit of measurement is used for Sesame Oil: tsp
+insert quantity of Green Beans used in Chicken Chow Mein: 1
+what unit of measurement is used for Green Beans: pack
+insert quantity of Spring Onion used in Chicken Chow Mein: 3
+what unit of measurement is used for Spring Onion: 
+insert quantity of Noodles used in Chicken Chow Mein: 200
+what unit of measurement is used for Noodles: grams
+insert quantity of Chicken used in Chicken Chow Mein: 2  
+what unit of measurement is used for Chicken: breasts
+insert quantity of Ketjap Manis used in Chicken Chow Mein: 1  
+what unit of measurement is used for Ketjap Manis: tbsp
+insert quantity of Corn Starch used in Chicken Chow Mein: 2
+what unit of measurement is used for Corn Starch: tsp
+insert quantity of Chicken Stock used in Chicken Chow Mein: 1
+what unit of measurement is used for Chicken Stock: cube
+insert quantity of Sugar used in Chicken Chow Mein: 2
+what unit of measurement is used for Sugar: tsp
+insert quantity of Peppers used in Chicken Chow Mein: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Potatoes used in Shepherds Pie: 900
+what unit of measurement is used for Potatoes: grams
+insert quantity of Lamb Mince used in Shepherds Pie: 500
+what unit of measurement is used for Lamb Mince: grams
+insert quantity of Tomato Puree used in Shepherds Pie: 1
+what unit of measurement is used for Tomato Puree: tbsp
+insert quantity of Onions used in Shepherds Pie: 1
+what unit of measurement is used for Onions: 
+insert quantity of Carrots used in Shepherds Pie: 3
+what unit of measurement is used for Carrots: 
+insert quantity of Butter used in Shepherds Pie: 85
+what unit of measurement is used for Butter: grams
+insert quantity of Worcestershire Sauce used in Shepherds Pie: 1
+what unit of measurement is used for Worcestershire Sauce: tbsp
+insert quantity of Milk used in Shepherds Pie: 3
+what unit of measurement is used for Milk: tbsp
+insert quantity of Beef Stock used in Shepherds Pie: 1
+what unit of measurement is used for Beef Stock: cube
+insert quantity of Cheddar used in Shepherds Pie: 50
+what unit of measurement is used for Cheddar: grams
+insert quantity of Onions used in Chicken Fried Rice: 1
+what unit of measurement is used for Onions: 
+insert quantity of Egg used in Chicken Fried Rice: 2
+what unit of measurement is used for Egg: 
+insert quantity of Garlic used in Chicken Fried Rice: 2
+what unit of measurement is used for Garlic: cloves
+insert quantity of Ginger used in Chicken Fried Rice: 2
+what unit of measurement is used for Ginger: tsp
+insert quantity of Carrots used in Chicken Fried Rice: 1
+what unit of measurement is used for Carrots: 
+insert quantity of Peas used in Chicken Fried Rice: 1
+what unit of measurement is used for Peas: cup
+insert quantity of Spring Onion used in Chicken Fried Rice: 2
+what unit of measurement is used for Spring Onion: 
+insert quantity of Soy Sauce used in Chicken Fried Rice: 3
+what unit of measurement is used for Soy Sauce: tbsp
+insert quantity of Rice used in Chicken Fried Rice: 4  
+what unit of measurement is used for Rice: cups
+insert quantity of Chicken Thighs used in Chicken Fried Rice: 6
+what unit of measurement is used for Chicken Thighs: 
+insert quantity of Sesame Oil used in Chicken Fried Rice: 1
+what unit of measurement is used for Sesame Oil: tsp
+insert quantity of Chinese 5 Spice used in Chicken Fried Rice: 1
+what unit of measurement is used for Chinese 5 Spice: tsp
+insert quantity of Macaroni used in Mac & Cheese: 350
+what unit of measurement is used for Macaroni: grams
+insert quantity of Butter used in Mac & Cheese: 2
+what unit of measurement is used for Butter: tbsp
+insert quantity of Milk used in Mac & Cheese: 500
+what unit of measurement is used for Milk: ml
+insert quantity of Cheddar used in Mac & Cheese: 250
+what unit of measurement is used for Cheddar: grams
+insert quantity of Red Wine used in Sausage Pasta Bake: 250
+what unit of measurement is used for Red Wine: ml
+insert quantity of Rigatoni used in Sausage Pasta Bake: 500
+what unit of measurement is used for Rigatoni: grams
+insert quantity of Sausages used in Sausage Pasta Bake: 6
+what unit of measurement is used for Sausages: 
+insert quantity of Carrots used in Sausage Pasta Bake: 4
+what unit of measurement is used for Carrots: 
+insert quantity of Onions used in Sausage Pasta Bake: 1
+what unit of measurement is used for Onions: 
+insert quantity of Tomato Puree used in Sausage Pasta Bake: 2
+what unit of measurement is used for Tomato Puree: tbsp
+insert quantity of Veg Stock used in Sausage Pasta Bake: 300
+what unit of measurement is used for Veg Stock: ml
+insert quantity of Milk used in Sausage Pasta Bake: 600
+what unit of measurement is used for Milk: ml
+insert quantity of Flour used in Sausage Pasta Bake: 50
+what unit of measurement is used for Flour: grams
+insert quantity of Cheddar used in Sausage Pasta Bake: 50
+what unit of measurement is used for Cheddar: grams
+insert quantity of Rosemary used in Sausage Pasta Bake: 1
+what unit of measurement is used for Rosemary: tsp
+insert quantity of Basil used in Sausage Pasta Bake: 1
+what unit of measurement is used for Basil: tbsp
+insert quantity of Chicken used in Chicken Pie: 3
+what unit of measurement is used for Chicken: breasts
+insert quantity of Pastry used in Chicken Pie: 1
+what unit of measurement is used for Pastry: roll
+insert quantity of Onions used in Chicken Pie: 1
+what unit of measurement is used for Onions: 
+insert quantity of Flour used in Chicken Pie: 50
+what unit of measurement is used for Flour: grams
+insert quantity of Milk used in Chicken Pie: 285
+what unit of measurement is used for Milk: ml
+insert quantity of Chicken Stock used in Chicken Pie: 1
+what unit of measurement is used for Chicken Stock: cube
+insert quantity of White Wine used in Chicken Pie: 250
+what unit of measurement is used for White Wine: ml
+insert quantity of Potatoes used in Chicken Pie: 2
+what unit of measurement is used for Potatoes: large
+insert quantity of Thyme used in Chicken Pie: 1
+what unit of measurement is used for Thyme: tbsp
+insert quantity of Basil used in Chicken Pie: 1
+what unit of measurement is used for Basil: tbsp
+insert quantity of Leeks used in Chicken Pie: 2
+what unit of measurement is used for Leeks: 
+insert quantity of Salmon used in Salmon Tagiatelle: 2
+what unit of measurement is used for Salmon: fillets
+insert quantity of Crème fraiche used in Salmon Tagiatelle: 200
+what unit of measurement is used for Crème fraiche: ml
+insert quantity of Salt used in Salmon Tagiatelle: 1
+what unit of measurement is used for Salt: tsp
+insert quantity of Pepper used in Salmon Tagiatelle: 1
+what unit of measurement is used for Pepper: tsp
+insert quantity of Lemon Juice used in Salmon Tagiatelle: 1
+what unit of measurement is used for Lemon Juice: cup
+insert quantity of Tagliatelle used in Salmon Tagiatelle: 6
+what unit of measurement is used for Tagliatelle: baskets
+insert quantity of Chicken Thighs used in Chicken Stew: 6
+what unit of measurement is used for Chicken Thighs: 
+insert quantity of Dijon Mustard used in Chicken Stew: 1
+what unit of measurement is used for Dijon Mustard: tbsp
+insert quantity of Crème fraiche used in Chicken Stew: 75
+what unit of measurement is used for Crème fraiche: grams
+insert quantity of Veg Stock used in Chicken Stew: 1
+what unit of measurement is used for Veg Stock: cube
+insert quantity of Chicken Stock used in Chicken Stew: 1
+what unit of measurement is used for Chicken Stock: cube
+insert quantity of Butter used in Chicken Stew: 1
+what unit of measurement is used for Butter: tbsp
+insert quantity of Parsley used in Chicken Stew: 1
+what unit of measurement is used for Parsley: tbsp
+insert quantity of Peas used in Chicken Stew: 200
+what unit of measurement is used for Peas: grams
+insert quantity of Leeks used in Chicken Stew: 3
+what unit of measurement is used for Leeks: 
+insert quantity of Celery used in Chicken Stew: 3
+what unit of measurement is used for Celery: 
+insert quantity of Potatoes used in Chicken Stew: 2
+what unit of measurement is used for Potatoes: large
+insert quantity of Baked Potatoes used in Baked Potatoes: 2
+what unit of measurement is used for Baked Potatoes: 
+insert quantity of Tuna used in Baked Potatoes: 1
+what unit of measurement is used for Tuna: tin
+insert quantity of Mayonnaise used in Baked Potatoes: 2
+what unit of measurement is used for Mayonnaise: tbsp
+insert quantity of Baked Beans used in Baked Potatoes: 1
+what unit of measurement is used for Baked Beans: can
+insert quantity of Leaves used in Baked Potatoes: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Butter used in Baked Potatoes: 2
+what unit of measurement is used for Butter: tbsp
+insert quantity of Salmon used in Salmon Fillet: 2
+what unit of measurement is used for Salmon: fillets
+insert quantity of Potatoes used in Salmon Fillet: 300
+what unit of measurement is used for Potatoes: grams
+insert quantity of Broccoli/Asparagus used in Salmon Fillet: 1
+what unit of measurement is used for Broccoli/Asparagus: pack
+insert quantity of Butter used in Salmon Fillet: 30
+what unit of measurement is used for Butter: grams
+insert quantity of Oregano used in Salmon Fillet: 1
+what unit of measurement is used for Oregano: tbsp
+insert quantity of Chilli Flakes used in Salmon Fillet: 1
+what unit of measurement is used for Chilli Flakes: tsp
+insert quantity of Garlic used in Salmon Fillet: 3
+what unit of measurement is used for Garlic: cloves
+insert quantity of Rigatoni used in Harissa Pasta: 500
+what unit of measurement is used for Rigatoni: grams
+insert quantity of Rose Harissa Paste used in Harissa Pasta: 2
+what unit of measurement is used for Rose Harissa Paste: tbsp
+insert quantity of Mascarpone used in Harissa Pasta: 250
+what unit of measurement is used for Mascarpone: grams
+insert quantity of Sundried Tomato used in Harissa Pasta: 200
+what unit of measurement is used for Sundried Tomato: grams
+insert quantity of Parmesan used in Harissa Pasta: 50
+what unit of measurement is used for Parmesan: grams
+insert quantity of Garlic used in Harissa Pasta: 1
+what unit of measurement is used for Garlic: clove
+insert quantity of Fresh Basil used in Harissa Pasta: 25
+what unit of measurement is used for Fresh Basil: grams
+insert quantity of Penne used in Chicken Alfredo: 250
+what unit of measurement is used for Penne: grams
+insert quantity of Low Fat Cream Cheese used in Chicken Alfredo: 120
+what unit of measurement is used for Low Fat Cream Cheese: grams
+insert quantity of Parmesan used in Chicken Alfredo: 28
+what unit of measurement is used for Parmesan: grams
+insert quantity of Oat Milk used in Chicken Alfredo: 350
+what unit of measurement is used for Oat Milk: grams
+insert quantity of Flour used in Chicken Alfredo: 1
+what unit of measurement is used for Flour: tbsp
+insert quantity of Garlic used in Chicken Alfredo: 2
+what unit of measurement is used for Garlic: cloves
+insert quantity of Butter used in Chicken Alfredo: 2
+what unit of measurement is used for Butter: tsp
+insert quantity of Spinach used in Chicken Alfredo: 240
+what unit of measurement is used for Spinach: grams
+insert quantity of Onions used in Chicken Alfredo: 1
+what unit of measurement is used for Onions: 
+insert quantity of Chicken used in Chicken Alfredo: 2
+what unit of measurement is used for Chicken: breasts
+insert quantity of Chicken used in Katsu Curry: 2
+what unit of measurement is used for Chicken: breasts
+insert quantity of Breadcrumbs used in Katsu Curry: 100 
+what unit of measurement is used for Breadcrumbs: grams
+insert quantity of Rice used in Katsu Curry: 120
+what unit of measurement is used for Rice: grams
+insert quantity of Onions used in Katsu Curry: 1
+what unit of measurement is used for Onions: 
+insert quantity of Garlic used in Katsu Curry: 2
+what unit of measurement is used for Garlic: cloves
+insert quantity of Ginger used in Katsu Curry: 1
+what unit of measurement is used for Ginger: tbsp
+insert quantity of Turmeric used in Katsu Curry: 1
+what unit of measurement is used for Turmeric: tsp
+insert quantity of Mild Curry Powder used in Katsu Curry: 3
+what unit of measurement is used for Mild Curry Powder: tbsp
+insert quantity of Flour used in Katsu Curry: 1
+what unit of measurement is used for Flour: tbsp
+insert quantity of Veg Stock used in Katsu Curry: 1
+what unit of measurement is used for Veg Stock: cube
+insert quantity of Coconut Milk used in Katsu Curry: 100
+what unit of measurement is used for Coconut Milk: ml
+insert quantity of Eggs used in Katsu Curry: 2
+what unit of measurement is used for Eggs: 
+insert quantity of Leaves used in Katsu Curry: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Chicken used in Chicken Avocado Salad: 2
+what unit of measurement is used for Chicken: breasts
+insert quantity of Leaves used in Chicken Avocado Salad: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Avocado used in Chicken Avocado Salad: 1
+what unit of measurement is used for Avocado: 
+insert quantity of Onions used in Chicken Avocado Salad: 1
+what unit of measurement is used for Onions: 
+insert quantity of Peppers used in Chicken Avocado Salad: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Cucumber used in Chicken Avocado Salad: 1
+what unit of measurement is used for Cucumber: 
+insert quantity of Honey Mustard Dressing used in Chicken Avocado Salad: 1
+what unit of measurement is used for Honey Mustard Dressing: tbsp
+insert quantity of Cod used in Cod Mango Salad: 2
+what unit of measurement is used for Cod: fillets
+insert quantity of Mango used in Cod Mango Salad: 1
+what unit of measurement is used for Mango: 
+insert quantity of Leaves used in Cod Mango Salad: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Avocado used in Cod Mango Salad: 1
+what unit of measurement is used for Avocado: 
+insert quantity of Cucumber used in Cod Mango Salad: 1
+what unit of measurement is used for Cucumber: 
+insert quantity of Cherry Tomato used in Cod Mango Salad: 400
+what unit of measurement is used for Cherry Tomato: grams
+insert quantity of Chilli Flakes used in Cod Mango Salad: 1
+what unit of measurement is used for Chilli Flakes: tsp
+insert quantity of Halloumi used in Halloumi & Mango Salad: 1
+what unit of measurement is used for Halloumi: 
+insert quantity of Mango used in Halloumi & Mango Salad: 1
+what unit of measurement is used for Mango: 
+insert quantity of Rocket used in Halloumi & Mango Salad: 1
+what unit of measurement is used for Rocket: pack
+insert quantity of Cherry Tomato used in Halloumi & Mango Salad: 1
+what unit of measurement is used for Cherry Tomato: pack
+insert quantity of Avocado used in Halloumi & Mango Salad: 1
+what unit of measurement is used for Avocado: 
+insert quantity of Feta used in Greek Salad: 250
+what unit of measurement is used for Feta: grams
+insert quantity of Leaves used in Greek Salad: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Olives used in Greek Salad: 1
+what unit of measurement is used for Olives: pack
+insert quantity of Cucumber used in Greek Salad: 1
+what unit of measurement is used for Cucumber: 
+insert quantity of Sundried Tomato used in Greek Salad: 1
+what unit of measurement is used for Sundried Tomato: jar
+insert quantity of Olive Oil used in Greek Salad: 25
+what unit of measurement is used for Olive Oil: ml
+insert quantity of Balsamic Vinegar used in Greek Salad: 1
+what unit of measurement is used for Balsamic Vinegar: tbsp
+insert quantity of Prawns used in CousCous Honey Garlic Prawns: 275
+what unit of measurement is used for Prawns: grams
+insert quantity of Honey used in CousCous Honey Garlic Prawns: 60   
+what unit of measurement is used for Honey: ml
+insert quantity of Cous Cous used in CousCous Honey Garlic Prawns: 1
+what unit of measurement is used for Cous Cous: pack
+insert quantity of Garlic used in CousCous Honey Garlic Prawns: 2
+what unit of measurement is used for Garlic: cloves
+insert quantity of Asparagus used in CousCous Honey Garlic Prawns: 1
+what unit of measurement is used for Asparagus: pack
+insert quantity of Peppers used in CousCous Honey Garlic Prawns: 1
+what unit of measurement is used for Peppers: 
+insert quantity of Green Lentils used in Lentil Feta Salad: 1
+what unit of measurement is used for Green Lentils: pack
+insert quantity of Spring Onion used in Lentil Feta Salad: 2
+what unit of measurement is used for Spring Onion: 
+insert quantity of Feta used in Lentil Feta Salad: 250
+what unit of measurement is used for Feta: grams
+insert quantity of Parsely used in Lentil Feta Salad: 1
+what unit of measurement is used for Parsely: tbsp
+insert quantity of Leaves used in Lentil Feta Salad: 1
+what unit of measurement is used for Leaves: pack
+insert quantity of Thyme used in Lentil Feta Salad: 1
+what unit of measurement is used for Thyme: tsp
+insert quantity of Oregano used in Lentil Feta Salad: 1
+what unit of measurement is used for Oregano: tbsp
+insert quantity of Chilli Flakes used in Lentil Feta Salad: 1
+what unit of measurement is used for Chilli Flakes: tsp
+insert quantity of Balsamic Vinegar used in Lentil Feta Salad: 1
+what unit of measurement is used for Balsamic Vinegar: tbsp
+insert quantity of Olive Oil used in Lentil Feta Salad: 20
+what unit of measurement is used for Olive Oil: ml

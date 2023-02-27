@@ -4,7 +4,7 @@ import threading as td
 from pathlib import Path
 
 import src.shopping_list_generator as shop_list
-import src.Data.Mealplan.recipes as meals
+import src.Data.Mealplan.recipe as meals
 from src.scheduler import scheduler
 
 def start_scheduler_thread():

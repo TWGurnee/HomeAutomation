@@ -258,7 +258,7 @@ WEEK_TEMPLATE = {
 
 GYM_INDEXES, WEEK_ALLOWANCES, GYM_DAY_CONFIG = get_gym_config() # type: ignore
 
-EXERCISE_PLAN_SAVE = Path(r"Data\Exercise\week_workout_plan.json")
+EXERCISE_PLAN_SAVE = Path(r"src\Data\Exercise\week_workout_plan.json")
 
 
 def main():

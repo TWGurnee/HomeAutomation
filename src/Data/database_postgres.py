@@ -121,7 +121,7 @@ class Database(object):
     def get_ingredients(cls):
         cls.cursor.execute("SELECT ingredient_name, ingredient_shopping_category FROM ingredients")
         ingredients = cls.cursor.fetchall()
-        return [Ingredient(name=name, quantity=1, category=category) for name, category in ingredients]
+        return [Ingredient(name=name, category=category) for name, category in ingredients]
     
 
     @staticmethod
@@ -161,7 +161,7 @@ class Database(object):
     ### Recipes ###
 
     @staticmethod
-    def generate_recipe(recipe_dict: dict): #TODO: rework to take tuple of (category, name, [ingredients])
+    def generate_recipe(recipe_dict: dict): #TODO: rework to take tuple of (name, [ingredients])
         """Helper method to generate recipes from a simple typed input dict:
         For example: 
         `Test_Recipe = {('Tim', 'Steak'): ['Steak', 'Broccoli/Asparagus', 'Chips/Potatoes', 'Peppercorn Sauce']}`
@@ -269,7 +269,8 @@ class Database(object):
     
 
 
-    ### Exercises ###
+
+   ### Exercises ###
 
     @classmethod
     def get_exercises(cls, selection: SessionType=None) -> list[Exercise]: #type: ignore

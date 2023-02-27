@@ -63,4 +63,9 @@ WORKOUT_FILE = Path(r"src\Data\Exercise\week_workout_plan.json")
 # for ingredient in ingredients:
 #     PSQL.Database.add_ingredient(ingredient)
 
-print(PSQL.Database.get_ingredients())
+# recipes = Database.get_recipes()
+
+# PSQL.Database.fill_recipes(recipes)
+
+
+
