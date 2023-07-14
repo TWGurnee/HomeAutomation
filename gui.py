@@ -229,6 +229,14 @@ class App(customtkinter.CTk):
 
         self.exercise_tabview.add("Today's Plan")
 
+        todays_plan_txt = workout_reminder.todays_workout_to_string(EXERCISE_PLAN_SAVE)
+        self.todays_plan_frame = customtkinter.CTkFrame(self.exercise_tabview.tab("Today's Plan"), height=40, width=940)
+        self.todays_plan_frame.grid(row=0, column=0, padx=20, sticky="nsew")
+        self.todays_plan_text = customtkinter.CTkLabel(self.todays_plan_frame, text=todays_plan_txt, font=customtkinter.CTkFont(size=12), width=80, height=20)
+        self.todays_plan_text.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+
+
+        
 
 
     ### Meal Plan functions ###

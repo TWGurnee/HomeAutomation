@@ -34,7 +34,7 @@ def todays_workout_to_string(EXERCISE_PLAN_SAVE):
         exercises_string = '\n'.join([Exercise.from_dict_to_str(exercise) for exercise in exercises])
         msg += exercises_string
 
-    print(msg)
+    # print(msg)
 
     return msg
 

@@ -68,4 +68,3 @@ WORKOUT_FILE = Path(r"src\Data\Exercise\week_workout_plan.json")
 # PSQL.Database.fill_recipes(recipes)
 
 
-
